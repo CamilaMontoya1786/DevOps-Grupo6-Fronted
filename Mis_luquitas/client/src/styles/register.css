@@ -23,7 +23,7 @@ body::before {
   height: 800px;
   background-color: #b7ce63;
   transform: rotate(45deg); /* Crea el efecto de rombo */
-  z-index: 0; /* Colocamos el rombo detrás del contenido */
+  z-index: -1; /* Colocamos el rombo detrás del contenido */
 }
 
 .body_register {
@@ -33,7 +33,7 @@ body::before {
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 2);
-  width: 720px; /* Cambia este valor para ajustar el ancho */
+  width: 800px; /* Cambia este valor para ajustar el ancho */
   font-family: "Inter", sans-serif;
   
 }
@@ -66,8 +66,10 @@ body::before {
   justify-content: space-between;
   margin-bottom: 30px;
   position: relative; /* Necesario para que los mensajes se posicionen correctamente */
-  margin-left:12px ;
+  margin-left:20px ;
+  width: 800px;
 }
+
 
 .error-message {
   color: rgb(182, 1, 1); /* Color del texto de error */

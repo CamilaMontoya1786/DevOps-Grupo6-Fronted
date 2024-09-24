@@ -1,219 +1,13 @@
-<<<<<<< HEAD
-import React from 'react'
-
-
-
-function Register() {
-  return (
-    <div>register</div>
-  )
-}
-
-export default Register
-=======
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/authContext";
 import LogoImage from "../imagine/logo.png";
 import "../styles/register.css";
 
-
-
-
 // Lista de países
 const countries = [
-  "Albania",
-  "Alemania",
-  "Andorra",
-  "Angola",
-  "Antigua y Barbuda",
-  "Arabia Saudita",
-  "Argelia",
-  "Argentina",
-  "Armenia",
-  "Australia",
-  "Austria",
-  "Azerbaiyán",
-  "Bahamas",
-  "Bangladés",
-  "Barbados",
-  "Baréin",
-  "Bélgica",
-  "Belice",
-  "Benín",
-  "Bielorrusia",
-  "Birmania",
-  "Bolivia",
-  "Bosnia y Herzegovina",
-  "Botsuana",
-  "Brasil",
-  "Brunéi",
-  "Bulgaria",
-  "Burkina Faso",
-  "Burundi",
-  "Cabo Verde",
-  "Camboya",
-  "Camerún",
-  "Canadá",
-  "Catar",
-  "Chad",
-  "Chile",
-  "China",
-  "Chipre",
-  "Ciudad del Vaticano",
-  "Colombia",
-  "Comoras",
-  "Corea del Norte",
-  "Corea del Sur",
-  "Costa de Marfil",
-  "Costa Rica",
-  "Croacia",
-  "Cuba",
-  "Dinamarca",
-  "Dominica",
-  "Ecuador",
-  "Egipto",
-  "El Salvador",
-  "Emiratos Árabes Unidos",
-  "Eritrea",
-  "Eslovaquia",
-  "Eslovenia",
-  "España",
-  "Estados Unidos",
-  "Estonia",
-  "Esuatini",
-  "Etiopía",
-  "Filipinas",
-  "Finlandia",
-  "Fiyi",
-  "Francia",
-  "Gabón",
-  "Gambia",
-  "Georgia",
-  "Ghana",
-  "Granada",
-  "Grecia",
-  "Guatemala",
-  "Guyana",
-  "Guinea",
-  "Guinea ecuatorial",
-  "Guinea-Bisáu",
-  "Haití",
-  "Honduras",
-  "Hungría",
-  "India",
-  "Indonesia",
-  "Irak",
-  "Irán",
-  "Irlanda",
-  "Islandia",
-  "Islas Marshall",
-  "Islas Salomón",
-  "Israel",
-  "Italia",
-  "Jamaica",
-  "Japón",
-  "Jordania",
-  "Kazajistán",
-  "Kenia",
-  "Kirguistán",
-  "Kiribati",
-  "Kuwait",
-  "Laos",
-  "Lesoto",
-  "Letonia",
-  "Líbano",
-  "Liberia",
-  "Libia",
-  "Liechtenstein",
-  "Lituania",
-  "Luxemburgo",
-  "Madagascar",
-  "Malasia",
-  "Malaui",
-  "Maldivas",
-  "Malí",
-  "Malta",
-  "Marruecos",
-  "Mauricio",
-  "Mauritania",
-  "México",
-  "Micronesia",
-  "Moldavia",
-  "Mónaco",
-  "Mongolia",
-  "Montenegro",
-  "Mozambique",
-  "Namibia",
-  "Nauru",
-  "Nepal",
-  "Nicaragua",
-  "Níger",
-  "Nigeria",
-  "Noruega",
-  "Nueva Zelanda",
-  "Omán",
-  "Países Bajos",
-  "Pakistán",
-  "Palaos",
-  "Panamá",
-  "Papúa Nueva Guinea",
-  "Paraguay",
-  "Perú",
-  "Polonia",
-  "Portugal",
-  "Reino Unido",
-  "República Centroafricana",
-  "República Checa",
-  "República del Congo",
-  "República Democrática del Congo",
-  "República Dominicana",
-  "Ruanda",
-  "Rumanía",
-  "Rusia",
-  "Samoa",
-  "San Cristóbal y Nieves",
-  "San Marino",
-  "San Vicente y las Granadinas",
-  "Santa Lucía",
-  "Santo Tomé y Príncipe",
-  "Senegal",
-  "Serbia",
-  "Seychelles",
-  "Sierra Leona",
-  "Singapur",
-  "Siria",
-  "Somalia",
-  "Sri Lanka",
-  "Suazilandia",
-  "Sudáfrica",
-  "Sudán",
-  "Sudán del Sur",
-  "Suecia",
-  "Suiza",
-  "Surinam",
-  "Tailandia",
-  "Tanzania",
-  "Tayikistán",
-  "Timor Oriental",
-  "Togo",
-  "Tonga",
-  "Trinidad y Tobago",
-  "Túnez",
-  "Turkmenistán",
-  "Turquía",
-  "Tuvalu",
-  "Ucrania",
-  "Uganda",
-  "Uruguay",
-  "Uzbekistán",
-  "Vanuatu",
-  "Venezuela",
-  "Vietnam",
-  "Yemen",
-  "Yibuti",
-  "Zambia",
-  "Zimbabue",
+  "Albania", "Alemania", "Andorra", "Angola", "Antigua y Barbuda",
+  // Agrega aquí los demás países
 ];
 
 function Register() {
@@ -223,14 +17,16 @@ function Register() {
     formState: { errors },
   } = useForm({ mode: "onBlur" });
   const { signup } = useAuth();
-
- 
+  const [errorMessage, setErrorMessage] = useState("");
 
   const onSubmit = async (value) => {
-    await signup(value);
+    try {
+      await signup(value);
+    } catch (error) {
+      setErrorMessage("Error al registrarse. Por favor, intenta de nuevo."); // Manejo de errores
+    }
   };
 
-  
   const handleBeforeInput = (event) => {
     const char = event.data;
     if (!/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]$/.test(char)) {
@@ -247,10 +43,10 @@ function Register() {
 
       <div className="body_register">
         <h2>Registrarse</h2>
-
+        {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+        
         <form onSubmit={handleSubmit(onSubmit)}>
-
-          {/*Nombre */}
+          {/* Nombre */}
           <div className="input-container">
             <div className="left">
               <input
@@ -263,7 +59,7 @@ function Register() {
                     message: "El nombre solo puede contener letras",
                   },
                 })}
-                onBeforeInput={handleBeforeInput} // Usar onBeforeInput
+                onBeforeInput={handleBeforeInput}
               />
               {errors.name && (
                 <span className="error-message">{errors.name.message}</span>
@@ -271,7 +67,6 @@ function Register() {
             </div>
 
             <div className="right">
-              <p className="asterisk1">*</p>
               <input
                 type="text"
                 placeholder="Apellido"
@@ -282,12 +77,10 @@ function Register() {
                     message: "Solo se permiten letras",
                   },
                 })}
-                onBeforeInput={handleBeforeInput} // Usar onBeforeInput
+                onBeforeInput={handleBeforeInput}
               />
               {errors.lastname && (
-                <span className="error-message1">
-                  {errors.lastname.message}
-                </span>
+                <span className="error-message1">{errors.lastname.message}</span>
               )}
             </div>
           </div>
@@ -295,44 +88,31 @@ function Register() {
           {/* Campo de tipo de documento y número de documento */}
           <div className="input-container">
             <div className="left">
-              <p className="asterisk1">*</p>
-              <select
-                {...register("documentType", {
-                  required: true,
-                })}
-              >
+              <select {...register("documentType", { required: true })}>
                 <option value="">Tipo de Documento...</option>
                 <option value="CC">Cédula de Ciudadanía (CC)</option>
                 <option value="TI">Tarjeta de Identidad (TI)</option>
                 <option value="RC">Registro Civil (RC)</option>
                 <option value="CE">Cédula de Extranjería (CE)</option>
                 <option value="CI">Carné de Identidad (CI)</option>
-                <option value="DNI">
-                  Documento Nacional de Identidad (DNI)
-                </option>
+                <option value="DNI">Documento Nacional de Identidad (DNI)</option>
               </select>
               {errors.documentType && (
-                <span className="error-message">
-                  {errors.documentType.message}
-                </span>
+                <span className="error-message">{errors.documentType.message}</span>
               )}
-              {/* Campo de documento */}
             </div>
             <div className="right">
-              <p className="asterisk">*</p>
               <input
                 type="text"
                 placeholder="Número de documento"
                 {...register("document", {
                   required: true,
                   pattern: {
-                    value: /^[0-9]{6,10}$/, // Permite entre 6 y 10 dígitos
-                    message:
-                      "El número de documento debe tener entre 6 y 10 dígitos",
+                    value: /^[0-9]{6,10}$/,
+                    message: "El número de documento debe tener entre 6 y 10 dígitos",
                   },
                 })}
                 onBeforeInput={(event) => {
-                  // Solo permite caracteres numéricos
                   const char = event.data;
                   if (!/^[0-9]$/.test(char)) {
                     event.preventDefault();
@@ -340,18 +120,15 @@ function Register() {
                 }}
               />
               {errors.document && (
-                <span className="error-message2">
-                  {errors.document.message}
-                </span>
+                <span className="error-message2">{errors.document.message}</span>
               )}
             </div>
           </div>
 
-          {/* Campo de correo electrónico  */}
+          {/* Campo de correo electrónico */}
           <div className="input-container">
             <div className="left">
-              <p className="asterisk1">*</p>
-              <input
+              <input id="Contraseña"
                 type="email"
                 placeholder="Correo electrónico"
                 {...register("gmail", {
@@ -367,9 +144,8 @@ function Register() {
               )}
             </div>
 
-            {/* Campo de  país */}
+            {/* Campo de país */}
             <div className="right">
-              <p className="asterisk">*</p>
               <select {...register("country", { required: true })}>
                 <option value="">Seleccione un país...</option>
                 {countries.map((country, index) => (
@@ -384,10 +160,9 @@ function Register() {
             </div>
           </div>
 
-          {/* Campo de contraseña  */}
+          {/* Campo de contraseña */}
           <div className="input-container">
             <div className="left">
-              <p className="asterisk1">*</p>
               <input
                 type="password"
                 placeholder="Contraseña"
@@ -398,23 +173,16 @@ function Register() {
                     message: "La contraseña debe tener al menos 8 caracteres",
                   },
                   pattern: {
-                    value: /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])/,
-                    message:
-                      "La contraseña debe incluir al menos un número, una letra mayúscula, una letra minúscula y un carácter especial",
+                    value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/,
+                    message: "La contraseña debe incluir al menos un número, una letra mayúscula, una letra minúscula y un carácter especial",
                   },
                 })}
               />
               {errors.password && (
                 <span className="error-message">{errors.password.message}</span>
               )}
-              <p className="text">
-                "La contraseña debe incluir al menos un número, una letra
-                mayúscula, una letra minúscula y un carácter especial"
-              </p>
             </div>
-            {/* Campo de contraseña  */}
             <div className="right">
-              <p className="asterisk">*</p>
               <input
                 type="text"
                 placeholder="Número de teléfono"
@@ -422,12 +190,10 @@ function Register() {
                   required: true,
                   pattern: {
                     value: /^[0-9]{7,15}$/,
-                    message:
-                      "El número de teléfono debe tener entre 7 y 15 dígitos",
+                    message: "El número de teléfono debe tener entre 7 y 15 dígitos",
                   },
                 })}
                 onBeforeInput={(event) => {
-                  // Solo permite caracteres numéricos
                   const char = event.data;
                   if (!/^[0-9]$/.test(char)) {
                     event.preventDefault();
@@ -441,9 +207,7 @@ function Register() {
           </div>
 
           <div className="button-container">
-            <button type="submit" className="button-register">
-              Registrar
-            </button>
+            <button type="submit" className="button-register">Registrar</button>
             <p className="text1">* Los campos son obligatorios</p>
           </div>
         </form>
@@ -453,4 +217,3 @@ function Register() {
 }
 
 export default Register;
->>>>>>> feauture_register_createRegister
