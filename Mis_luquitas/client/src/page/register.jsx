@@ -1,16 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/authContext";
 import LogoImage from "../imagine/logo.png";
 import "../styles/register.css";
-
-// Lista de países
-const countries = [
-  "Albania", "Alemania", "Andorra", "Angola", "Antigua y Barbuda",
-  // Agrega aquí los demás países
-];
+import axios from 'axios';
 
 function Register() {
+  const [data, setData] = useState([]);
+  const [userList, setUserList] = useState([]);
   const {
     register,
     handleSubmit,
@@ -19,11 +16,37 @@ function Register() {
   const { signup } = useAuth();
   const [errorMessage, setErrorMessage] = useState("");
 
+  useEffect(() => {
+    axios.get('http://localhost:3000/identification/identifications')
+      .then(response => {
+        setData(response.data);
+      })
+      .catch(error => {
+        console.error('Error al obtener los datos:', error);
+      });
+  }, []);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/country/countries');
+        setUserList(response.data); 
+      } catch (error) {
+        console.error('Error al obtener los datos:', error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
   const onSubmit = async (value) => {
+    console.log("Submitting:", value); // Verificar que se envían los datos
     try {
       await signup(value);
+      console.log("Registro exitoso");
     } catch (error) {
-      setErrorMessage("Error al registrarse. Por favor, intenta de nuevo."); // Manejo de errores
+      console.error("Error al registrarse:", error);
+      setErrorMessage("Error al registrarse. Por favor, intenta de nuevo.");
     }
   };
 
@@ -50,9 +73,10 @@ function Register() {
           <div className="input-container">
             <div className="left">
               <input
+                name="userName"
                 type="text"
                 placeholder="Nombre"
-                {...register("name", {
+                {...register("userName", {
                   required: true,
                   pattern: {
                     value: /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/,
@@ -61,8 +85,8 @@ function Register() {
                 })}
                 onBeforeInput={handleBeforeInput}
               />
-              {errors.name && (
-                <span className="error-message">{errors.name.message}</span>
+              {errors.userName && (
+                <span className="error-message">{errors.userName.message}</span>
               )}
             </div>
 
@@ -70,7 +94,7 @@ function Register() {
               <input
                 type="text"
                 placeholder="Apellido"
-                {...register("lastname", {
+                {...register("userLastName", {
                   required: true,
                   pattern: {
                     value: /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/,
@@ -79,8 +103,8 @@ function Register() {
                 })}
                 onBeforeInput={handleBeforeInput}
               />
-              {errors.lastname && (
-                <span className="error-message1">{errors.lastname.message}</span>
+              {errors.userLastName && (
+                <span className="error-message1">{errors.userLastName.message}</span>
               )}
             </div>
           </div>
@@ -88,24 +112,23 @@ function Register() {
           {/* Campo de tipo de documento y número de documento */}
           <div className="input-container">
             <div className="left">
-              <select {...register("documentType", { required: true })}>
-                <option value="">Tipo de Documento...</option>
-                <option value="CC">Cédula de Ciudadanía (CC)</option>
-                <option value="TI">Tarjeta de Identidad (TI)</option>
-                <option value="RC">Registro Civil (RC)</option>
-                <option value="CE">Cédula de Extranjería (CE)</option>
-                <option value="CI">Carné de Identidad (CI)</option>
-                <option value="DNI">Documento Nacional de Identidad (DNI)</option>
+              <select {...register("typeId", { required: true })}>
+                <option value="">Seleccione un tipo de documento...</option>
+                {data.map((identity) => (
+                  <option key={identity.typeId} value={identity.typeId}>
+                    {identity.idDescription}
+                  </option>
+                ))}
               </select>
-              {errors.documentType && (
-                <span className="error-message">{errors.documentType.message}</span>
+              {errors.typeId && (
+                <span className="error-message">{errors.typeId.message}</span>
               )}
             </div>
             <div className="right">
               <input
                 type="text"
                 placeholder="Número de documento"
-                {...register("document", {
+                {...register("idNumber", {
                   required: true,
                   pattern: {
                     value: /^[0-9]{6,10}$/,
@@ -119,8 +142,8 @@ function Register() {
                   }
                 }}
               />
-              {errors.document && (
-                <span className="error-message2">{errors.document.message}</span>
+              {errors.idNumber && (
+                <span className="error-message2">{errors.idNumber.message}</span>
               )}
             </div>
           </div>
@@ -128,10 +151,10 @@ function Register() {
           {/* Campo de correo electrónico */}
           <div className="input-container">
             <div className="left">
-              <input id="Contraseña"
+              <input
                 type="email"
                 placeholder="Correo electrónico"
-                {...register("gmail", {
+                {...register("email", {
                   required: true,
                   pattern: {
                     value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -139,23 +162,23 @@ function Register() {
                   },
                 })}
               />
-              {errors.gmail && (
-                <span className="error-message">{errors.gmail.message}</span>
+              {errors.email && (
+                <span className="error-message">{errors.email.message}</span>
               )}
             </div>
 
             {/* Campo de país */}
             <div className="right">
-              <select {...register("country", { required: true })}>
-                <option value="">Seleccione un país...</option>
-                {countries.map((country, index) => (
-                  <option key={index} value={country}>
-                    {country}
-                  </option>
-                ))}
-              </select>
-              {errors.country && (
-                <span className="error-message1">{errors.country.message}</span>
+            <select {...register("countryId", { required: true })}>
+    <option value="">Seleccione un país...</option>
+    {userList.map((country) => (
+      <option key={country.countryId} value={country.countryId}>
+        {`${country.countryId}. ${country.countryName}`} {/* Muestra el ID y el nombre del país aquí */}
+      </option>
+    ))}
+  </select>
+              {errors.countryId && (
+                <span className="error-message1">{errors.countryId.message}</span>
               )}
             </div>
           </div>
