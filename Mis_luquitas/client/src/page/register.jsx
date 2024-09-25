@@ -231,7 +231,7 @@ function Register() {
 
           <div className="button-container">
             <button type="submit" className="button-register">Registrar</button>
-            <p className="text1">* Los campos son obligatorios</p>
+            <p className="text1"> Todos los campos son obligatorios</p>
           </div>
         </form>
       </div>
