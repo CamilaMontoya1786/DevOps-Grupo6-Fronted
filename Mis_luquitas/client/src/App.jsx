@@ -5,6 +5,7 @@ import { AuthProvider } from "./context/authContext";
 import Login from "./page/loguin";
 import Restorepassword from "./page/restorepassword";
 
+
 function App() {
   return (
     <AuthProvider>
@@ -12,7 +13,9 @@ function App() {
         <Routes>
           <Route path="/register" element={<Register />} />
           <Route path="/loguin" element={<Login />} />
+
           <Route path="/restorepassword" element={<Restorepassword/>} />
+
         </Routes>
       </BrowserRouter>
     </AuthProvider>

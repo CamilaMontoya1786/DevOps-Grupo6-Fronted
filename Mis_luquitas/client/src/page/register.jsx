@@ -1,4 +1,6 @@
+
 import React, { useState, useEffect } from "react";
+
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/authContext";
 import LogoImage from "../imagine/logo.png";
@@ -8,6 +10,7 @@ import axios from 'axios';
 function Register() {
   const [data, setData] = useState([]);
   const [userList, setUserList] = useState([]);
+
   const {
     register,
     handleSubmit,
@@ -15,6 +18,7 @@ function Register() {
   } = useForm({ mode: "onBlur" });
   const { signup } = useAuth();
   const [errorMessage, setErrorMessage] = useState("");
+
 
   useEffect(() => {
     axios.get('http://localhost:3000/identification/identifications')
@@ -47,6 +51,7 @@ function Register() {
     } catch (error) {
       console.error("Error al registrarse:", error);
       setErrorMessage("Error al registrarse. Por favor, intenta de nuevo.");
+
     }
   };
 
@@ -73,10 +78,12 @@ function Register() {
           <div className="input-container">
             <div className="left">
               <input
+
                 name="userName"
                 type="text"
                 placeholder="Nombre"
                 {...register("userName", {
+
                   required: true,
                   pattern: {
                     value: /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/,
@@ -85,8 +92,10 @@ function Register() {
                 })}
                 onBeforeInput={handleBeforeInput}
               />
+
               {errors.userName && (
                 <span className="error-message">{errors.userName.message}</span>
+
               )}
             </div>
 
@@ -94,7 +103,9 @@ function Register() {
               <input
                 type="text"
                 placeholder="Apellido"
+
                 {...register("userLastName", {
+
                   required: true,
                   pattern: {
                     value: /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/,
@@ -103,8 +114,10 @@ function Register() {
                 })}
                 onBeforeInput={handleBeforeInput}
               />
+
               {errors.userLastName && (
                 <span className="error-message1">{errors.userLastName.message}</span>
+
               )}
             </div>
           </div>
@@ -112,6 +125,7 @@ function Register() {
           {/* Campo de tipo de documento y número de documento */}
           <div className="input-container">
             <div className="left">
+
               <select {...register("typeId", { required: true })}>
                 <option value="">Seleccione un tipo de documento...</option>
                 {data.map((identity) => (
@@ -122,13 +136,16 @@ function Register() {
               </select>
               {errors.typeId && (
                 <span className="error-message">{errors.typeId.message}</span>
+
               )}
             </div>
             <div className="right">
               <input
                 type="text"
                 placeholder="Número de documento"
+
                 {...register("idNumber", {
+
                   required: true,
                   pattern: {
                     value: /^[0-9]{6,10}$/,
@@ -142,8 +159,10 @@ function Register() {
                   }
                 }}
               />
+
               {errors.idNumber && (
                 <span className="error-message2">{errors.idNumber.message}</span>
+
               )}
             </div>
           </div>
@@ -151,10 +170,12 @@ function Register() {
           {/* Campo de correo electrónico */}
           <div className="input-container">
             <div className="left">
+
               <input
                 type="email"
                 placeholder="Correo electrónico"
                 {...register("email", {
+
                   required: true,
                   pattern: {
                     value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -162,13 +183,16 @@ function Register() {
                   },
                 })}
               />
+
               {errors.email && (
                 <span className="error-message">{errors.email.message}</span>
+
               )}
             </div>
 
             {/* Campo de país */}
             <div className="right">
+
             <select {...register("countryId", { required: true })}>
     <option value="">Seleccione un país...</option>
     {userList.map((country) => (
@@ -179,6 +203,7 @@ function Register() {
   </select>
               {errors.countryId && (
                 <span className="error-message1">{errors.countryId.message}</span>
+
               )}
             </div>
           </div>
@@ -231,7 +256,9 @@ function Register() {
 
           <div className="button-container">
             <button type="submit" className="button-register">Registrar</button>
+
             <p className="text1"> Todos los campos son obligatorios</p>
+
           </div>
         </form>
       </div>

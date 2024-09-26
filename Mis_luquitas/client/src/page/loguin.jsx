@@ -35,7 +35,9 @@ function Login() {
           <input
             type="email"
             placeholder="Correo electrónico"
+
             {...register("email", {
+
               required: true,
               pattern: {
                 value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
