@@ -36,15 +36,14 @@ function Restorepassword() {
       </div>
 
       <form className={styles.container} onSubmit={handleSubmit}>
-        <div>
+        <div >
           <h1 className={styles.titulo}>Recuperar contraseña</h1>
           <hr></hr>
           <p className={styles.parrafo}>
             Ingresa tu correo electrónico para recibir un enlace de
             recuperación.{" "}
           </p>
-          <input
-            className={styles.input}
+          <input className={styles.input}
             type="email"
             id="email"
             placeholder="Correo Electronico"
@@ -54,11 +53,13 @@ function Restorepassword() {
           />
           <hr></hr>
         </div>
+
+
         <div className={styles.button}>
-          <button className={styles.button-1} type="submit">
+          <button className={styles.button_1} type="submit">
             Enviar
           </button>
-          <button className={styles.button-1}  type="submit">
+          <button className={styles.button_1}  type="submit">
             Cancelar
           </button>
         </div>
