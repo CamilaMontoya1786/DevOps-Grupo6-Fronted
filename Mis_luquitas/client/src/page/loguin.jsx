@@ -10,9 +10,10 @@ function Login() {
     handleSubmit,
     formState: { errors },
   } = useForm({ mode: "onBlur" });
+
   const { signin } = useAuth();
 
-  const [errorMessage, setErrorMessage] = useState("");
+  const [setErrorMessage] = useState("");
 
   const onSubmit = async (value) => {
     try {
@@ -23,7 +24,7 @@ function Login() {
   };
 
   return (
-    <div>
+    <div className={styles.login_page}>
       <div className={styles.header_Loguin}>
         <img src={LogoImage} alt="Descripción de la imagen" />
         <h1 className={styles.title_register}>Mis Luquitas</h1>

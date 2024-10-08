@@ -73,7 +73,7 @@ function Register() {
 
   return (
     <>
-    
+    <div className={styles.register_page}>
       <div className={styles.header_register}>
         <img src={LogoImage} alt="Descripción de la imagen" />
         <h1 className={styles.title_register}>Mis Luquitas</h1>
@@ -270,6 +270,7 @@ function Register() {
             <p className={styles.text1}> Todos los campos son obligatorios</p>
           </div>
         </form>
+      </div>
       </div>
     </>
   );

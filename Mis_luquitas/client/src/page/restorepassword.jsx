@@ -29,7 +29,7 @@ function Restorepassword() {
   };
 
   return (
-    <div>
+    <div className={styles.restorepassword_page}>
       <div className={styles.header}>
         <img className={styles.LogoImage} src={LogoImage} alt="Descripción de la imagen" />
         <h2 className={styles.h2}>Mis Luquitas</h2>
