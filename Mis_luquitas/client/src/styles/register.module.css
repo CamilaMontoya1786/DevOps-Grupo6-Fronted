@@ -1,27 +1,28 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
-body {
-  position: relative; /* Añadido para que el pseudo-elemento se posicione correctamente */
+.register_page  {
+  position: relative;
   font-family: "Inter", sans-serif;
-  margin: 0;
-  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #ffffff;
+  flex-direction: column;
+  overflow: hidden; /* Elimina el scroll */
+  margin: 0;
+  padding: 0;
 }
 
-body::before {
+.register_page::before {
   content: "";
   position: absolute;
   top: 0;
-  left: -300px; /* Ajusta según el tamaño que prefieras */
+  left: -300px;
   width: 800px;
   height: 800px;
   background-color: #b7ce63;
-  transform: rotate(45deg); /* Crea el efecto de rombo */
-  z-index: -1; /* Colocamos el rombo detrás del contenido */
+  transform: rotate(45deg);
+  z-index: -1;
 }
 
 .body_register {
