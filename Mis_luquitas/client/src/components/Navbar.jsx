@@ -9,9 +9,7 @@ import lupa from "../imagine/lupa.png";
 import ayuda from "../imagine/ayuda.png";
 import cerrarsesion from "../imagine/cerrarsesion.png";
 
-
 function Navbar() {
-    
   return (
     <div className={styles.left}>
       <nav className={styles.navbar}>
@@ -41,12 +39,15 @@ function Navbar() {
             <Link to="/loguin">Ayuda</Link>
             <img src={ayuda} />
           </li>
-  
+
           <li>
             <Link to="/loguin">Cerrar Sesión</Link>
             <img src={cerrarsesion} />
           </li>
         </ul>
+        <div className={styles.User}>
+          <span className={styles.UserName}>Name user</span>
+        </div>
       </nav>
     </div>
   );
