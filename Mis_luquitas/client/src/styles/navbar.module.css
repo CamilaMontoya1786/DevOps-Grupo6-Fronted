@@ -2,7 +2,7 @@
 
 .left {
   background-color: #b7ce63;
-  width: 25%;
+  width: 20%;
   height: 100vh;
   box-shadow: 0 0 10px rgba(0, 0, 0, 1);
   font-family: "Inter", sans-serif;
@@ -18,11 +18,12 @@
   padding: 10px; /* Añade un poco de padding para crear un área clicable más grande */
   border-radius: 5px; /* Esquinas redondeadas */
   transition: background-color 0.3s; /* Suaviza la transición del color de fondo */
+  margin-top: 15px;
 }
 
 .Link li:hover {
   background-color: #d7ea8f; /* Color de fondo al pasar el mouse */
-  margin-left: -20px;
+  margin-left: -10px;
 }
 
 .Link li img {
@@ -38,7 +39,24 @@
   font-weight: bold; /* Aplica negrita a todo el texto */
   font-family: "Inter", sans-serif;
   display: block; /* Para que el área del enlace cubra todo el li */
-  width: 100%; /* Hace que el enlace ocupe todo el espacio del li */
+  width: 300px; /* Hace que el enlace ocupe todo el espacio del li */
+  margin-left: 20px;
+  
+}
+
+.UserName {
+  color: black;
+  font-size: 18px;
+  font-weight: bold; /* Aplica negrita a todo el texto */
+  font-family: "Inter", sans-serif;
+  text-align: right; /* Alinea el texto a la derecha */
+}
+
+
+.User {
+  position: absolute; /* Permite posicionar el nombre de usuario */
+  bottom: 20px; /* Espacio desde la parte inferior */
+  right: 20px; /* Espacio desde la derecha */
 }
 
 .linea {
@@ -52,6 +70,7 @@
   flex-direction: column; /* Organiza los elementos en una columna */
   justify-content: center; /* Centra verticalmente */
   align-items: center; /* Centra horizontalmente */
+  margin-bottom: 20px;
 }
 
 .header img {
