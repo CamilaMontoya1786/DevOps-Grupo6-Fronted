@@ -6,12 +6,21 @@ import Login from "./page/loguin";
 import Restorepassword from "./page/restorepassword";
 import Navbar from "./components/Navbar";
 import Home from "./page/Home";
+import UserProfile from "./page/userprofile";
+
 
 function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
         <MainRoutes /> {/* Movemos la lógica de las rutas a un componente separado */}
+        <Routes>
+          <Route path="/register" element={<Register />} />
+          <Route path="/loguin" element={<Login />} />
+          <Route path="/restorepassword" element={<Restorepassword/>} />
+          <Route path="/userprofile" element={<UserProfile/>} />
+
+        </Routes>
       </BrowserRouter>
     </AuthProvider>
   );

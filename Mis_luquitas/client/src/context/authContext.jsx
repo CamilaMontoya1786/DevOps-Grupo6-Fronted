@@ -35,4 +35,12 @@ export const AuthProvider = ({ children }) => {
       {children}
     </AuthContext.Provider>
   );
+  const updateUserProfile = async (userData) => {
+    const res = await userProfileRequest(userData);
+    setUser(res.data);
+  };
+
+  return <AuthContext.Provider value={{
+    signup,user, signin, updateUserProfile
+  }}>{children}</AuthContext.Provider>;
 };
