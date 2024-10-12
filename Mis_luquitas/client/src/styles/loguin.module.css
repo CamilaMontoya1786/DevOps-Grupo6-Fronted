@@ -29,7 +29,7 @@
 .login_container {
   display: flex;
   background-color: #ececec; /* Cambia esto si quieres otro color */
-  padding: 30px;
+  padding: 50px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 1);
   width: 350px;
@@ -109,7 +109,7 @@
 }
 /* Estilos del botón */
 .button {
-  margin-top: 10px;
+  margin-top: 145px;
   width: 120px;
   padding: 10px 15px;
   background-color: #8fb339;

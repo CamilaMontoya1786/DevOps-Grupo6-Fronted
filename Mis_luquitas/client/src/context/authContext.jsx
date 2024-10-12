@@ -23,6 +23,21 @@ export const AuthProvider = ({ children }) => {
     const res = await loguinRequest(userData);
     setUser(res.data);
   };
+  const updateUserProfile = async (userData) => {
+    const res = await userProfileRequest(userData);
+    setUser(res.data);
+  };
+
+  const updatePassword = async (userData) => {
+    const res = await updatePasswordRequest(userData);
+    setUser(res.data);
+  };
+
+
+  const help = async (userData) => {
+    const res = await helpRequest(userData);
+    setUser(res.data);
+  };
 
   return (
     <AuthContext.Provider
@@ -30,17 +45,13 @@ export const AuthProvider = ({ children }) => {
         signup,
         user,
         signin,
+        updateUserProfile,
+        updatePassword,
+        help
       }}
     >
       {children}
     </AuthContext.Provider>
   );
-  const updateUserProfile = async (userData) => {
-    const res = await userProfileRequest(userData);
-    setUser(res.data);
-  };
-
-  return <AuthContext.Provider value={{
-    signup,user, signin, updateUserProfile
-  }}>{children}</AuthContext.Provider>;
-};
+  
+}

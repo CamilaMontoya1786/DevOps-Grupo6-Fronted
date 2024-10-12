@@ -137,9 +137,12 @@
   cursor: pointer;
   font-size: 14px;
   font-weight: bold; /* Agregar negrita */
-  margin-top: 10px; /* Añadir margen superior */
+  margin-top: 20px; /* Añadir margen superior */
+  transform: translateX(-50%);
   width: 120px;
 }
+
+
 
 /* Estilo para el hover del botón */
 .button_register:hover {
@@ -160,6 +163,7 @@
 .text1 {
   color: #ee3737;
   font-size: 12px;
+  margin-bottom: 40px;
 }
 
 .helper_message {

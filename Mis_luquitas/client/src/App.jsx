@@ -7,6 +7,8 @@ import Restorepassword from "./page/restorepassword";
 import Navbar from "./components/Navbar";
 import Home from "./page/Home";
 import UserProfile from "./page/userprofile";
+import Changepassword from "./page/changePassword";
+import Help from "./page/help";
 
 
 function App() {
@@ -14,13 +16,6 @@ function App() {
     <AuthProvider>
       <BrowserRouter>
         <MainRoutes /> {/* Movemos la lógica de las rutas a un componente separado */}
-        <Routes>
-          <Route path="/register" element={<Register />} />
-          <Route path="/loguin" element={<Login />} />
-          <Route path="/restorepassword" element={<Restorepassword/>} />
-          <Route path="/userprofile" element={<UserProfile/>} />
-
-        </Routes>
       </BrowserRouter>
     </AuthProvider>
   );
@@ -28,16 +23,19 @@ function App() {
 
 function MainRoutes() {
   const location = useLocation();
-  const hideNavbar = ["/register", "/loguin", "/restorepassword"].includes(location.pathname);
+  const hideNavbar = ["/register", "/login", "/restorepassword", "/userprofile", "/changePassword"].includes(location.pathname);
 
   return (
     <>
       {!hideNavbar && <Navbar />}
       <Routes>
         <Route path="/register" element={<Register />} />
-        <Route path="/loguin" element={<Login />} />
+        <Route path="/login" element={<Login />} /> {/* Corregido "loguin" */}
         <Route path="/restorepassword" element={<Restorepassword />} />
         <Route path="/Home" element={<Home />} />
+        <Route path="/userprofile" element={<UserProfile />} />
+        <Route path="/changePassword" element={<Changepassword />} />
+        <Route path="/help" element={<Help/>} />
       </Routes>
     </>
   );

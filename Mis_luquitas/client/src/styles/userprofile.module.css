@@ -19,7 +19,7 @@
   box-shadow: 0 0 400px rgba(0, 0, 0, 0.2);
   width: 800px;
   height: 400px;
-  margin-top: 300px;
+  margin-top: 230px;
   margin-right: 35px;
   display: flex;
   flex-direction: column;
@@ -35,7 +35,7 @@
   transform: translate(-50%, -50%);
   cursor: pointer;
   z-index: 2;
-  margin-top: 100px;
+  margin-top: 80px;
 }
 
 .profile-image-preview {
@@ -91,10 +91,11 @@ button:hover {
 
 /* Ajuste del ícono en los botones */
 .icon-house {
-  width: 20px;
-  margin-bottom: 550px;
-  margin-right: 0px;
-  z-index: 2;
+  position: fixed; /* Fija la posición */
+  margin-bottom: 550px; /* Ajusta la distancia desde la parte superior */
+  left: 230px; /* Ajusta la distancia desde la izquierda */
+  width: 20px; /* Ajusta el tamaño del ícono */
+  z-index: 2; /* Asegúrate de que esté encima de otros elementos */
 }
 
 /* Ajuste para el ícono de cerrar */
@@ -123,7 +124,7 @@ button:hover {
 }
 
 .input-container select {
-  width: 290px;
+  width: 270px;
   padding: 8px;
   border: 1px solid #000000;
   border-radius: 4px;
@@ -139,6 +140,17 @@ button:hover {
 }
 
 /* Mensajes de error */
-.error-message {
-  color: red;
+.message {
+  color: rgb(182, 1, 1); /* Color del texto de error */
+  font-size: 13px; /* Tamaño del texto */
+  display: block; /* Asegura que el mensaje ocupe el ancho completo y permita múltiples líneas */
+  margin-bottom: 5px; /* Espacio entre el mensaje y el input */
+  position: absolute; /* Permite posicionar el mensaje */
+  bottom: 30%; /* Coloca el mensaje encima del input */
+  right: 50px; /* Alineación horizontal */
+  transform: translateY(62px); /* Ajusta la distancia hacia arriba */
+  z-index: 10; /* Asegura que el mensaje esté por encima de otros elementos */
+  word-wrap: break-word; /* Permite que las palabras se dividan en varias líneas si son demasiado largas */
+  max-width: 300px; /* Ajusta el ancho máximo según sea necesario */
 }
+
