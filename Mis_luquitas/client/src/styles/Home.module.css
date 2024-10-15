@@ -13,10 +13,11 @@
 }
 
 .header h2 {
-  font-size: 70px;
+  font-size: 60px;
   font-family: "Abril Fatface", serif;
   font-weight: 400;
   margin-bottom: 10px;
+  margin-right: 50px;
   width: 100%;
   margin-top: 5%;
   
@@ -39,7 +40,7 @@
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 1);
   width: 450px;
-  height: 450px;
+  height: 400px;
   text-align: center; /* Centra el texto horizontalmente */
 }
 .consejo {
@@ -50,7 +51,7 @@
 
 .imagen img {
   display: flex;
-  width: 450px;
+  width: 400px;
   height: auto;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 1);

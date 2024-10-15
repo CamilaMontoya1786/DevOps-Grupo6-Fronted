@@ -16,6 +16,7 @@ function UserProfile() {
   
   const [profileImage, setProfileImage] = useState(defaultProfileImage);  // Inicia con la imagen predeterminada
   const fileInputRef = useRef(null); // Referencia al input de archivo
+  const [showHelperMessage, setShowHelperMessage] = useState(false); // Estado para mostrar el mensaje de ayuda
 
   useEffect(() => {
     const fetchCountries = async () => {
@@ -80,11 +81,9 @@ function UserProfile() {
         <img className={profile["icon-house"]} src={icon} alt="Icono de regresar" /> {/* Icono importado */}
 
         <button type="button" className={profile["logout-button"]} onClick={logout}>
-        Cerrar sesión  
+          Cerrar sesión  
         </button>
         <img className={profile["icon-close"]} src={icon2} alt="Icono de cerrar sesión" /> {/* Icono importado */}
-
-
 
         <div>
           <label htmlFor="profileImage" className={profile["profile-image-label"]}>
@@ -190,14 +189,26 @@ function UserProfile() {
                 type="password"
                 placeholder="Contraseña"
                 {...register("password", {
+                  required: true,
                   minLength: {
                     value: 8,
                     message: "La contraseña debe tener al menos 8 caracteres",
                   },
+                  pattern: {
+                    value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/,
+                    message: "La contraseña debe incluir al menos un número, una letra mayúscula, una letra minúscula y un carácter especial",
+                  },
                 })}
+                onFocus={() => setShowHelperMessage(true)} // Muestra el mensaje al hacer clic
+                onBlur={() => setShowHelperMessage(false)} // Oculta el mensaje al salir del campo
               />
+              {showHelperMessage && (
+                <span className={profile.message}>
+                  La contraseña debe incluir al menos un número, una letra mayúscula, una letra minúscula y un carácter especial
+                </span>
+              )}
               {errors.password && (
-                <span className="error-message">{errors.password.message}</span>
+                <span className={`${profile["error-message"]}`}>{errors.password.message}</span>
               )}
             </div>
           </div>
