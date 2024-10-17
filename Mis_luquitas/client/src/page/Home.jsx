@@ -1,8 +1,11 @@
 import React from "react";
 import styles from "../styles/Home.module.css";
 import cerdito from "../imagine/cerdito.jpg";
-
+import { useAuth } from "../context/authContext";
+ 
 function Home() {
+  const { user } = useAuth();
+  console.log(user);
   return (
     <div className={styles.todo}>
       <div className={styles.header}>

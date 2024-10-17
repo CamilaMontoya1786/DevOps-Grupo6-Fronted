@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column; /* Cambiar a columna */
   width: 75%;
-  height: 100%;
+  height: 100hv;
   background-color: rgb(255, 255, 255);
   right: 0%;
   position: absolute;
@@ -25,9 +25,9 @@
 
 .content {
   display: flex;
-
-  width: 1000px;
+  width: 80%;
   height: 600px;
+
 }
 
 .advice {
@@ -40,21 +40,19 @@
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 1);
   width: 450px;
-  height: 400px;
+  height: 430px;
   text-align: center; /* Centra el texto horizontalmente */
 }
 .consejo {
   font-size: 30px;
-  
-
 }
 
 .imagen img {
   display: flex;
-  width: 400px;
+  width: 430px;
   height: auto;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 1);
   padding: 3%;
-  margin-top: 30px;
+  margin-top: 28px;
 }

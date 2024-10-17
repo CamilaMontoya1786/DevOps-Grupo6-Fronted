@@ -23,7 +23,6 @@
   background-color: #b7ce63;
   transform: rotate(45deg);
   z-index: -1;
- 
 }
 
 .login_container {
@@ -33,6 +32,7 @@
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 1);
   width: 350px;
+  height: 300px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -109,7 +109,7 @@
 }
 /* Estilos del botón */
 .button {
-  margin-top: 145px;
+  margin-top: 14px;
   width: 120px;
   padding: 10px 15px;
   background-color: #8fb339;

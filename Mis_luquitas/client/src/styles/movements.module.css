@@ -1,0 +1,122 @@
+.todo_movements {
+  display: flex;
+  flex-direction: column; /* Mantener en columna */
+  width: 80%;
+  height: 100vh; /* Altura del contenedor */
+  right: 0;
+  bottom: 0;
+  margin: 0 auto; /* Centrar el contenedor si es necesario */
+  padding: 10px; /* Agregar algo de espaciado */
+  position: absolute;
+  font-family: "Inter", sans-serif;
+  align-items: center; /* Centrar horizontalmente */
+}
+
+.header {
+  display: flex;
+  justify-content: center; /* Centrar el texto en el header */
+  width: 100%; /* Asegurar que el header ocupe todo el ancho */
+}
+
+.body_movements {
+  display: flex;
+  flex-direction: row; /* Cambiar a fila para los botones */
+  align-items: center; /* Centrar verticalmente los botones */
+  justify-content: center; /* Centrar horizontalmente */
+  width: 100%; /* Asegurar que el body_movements ocupe todo el ancho */
+  gap: 20px; /* Espaciado entre botones */
+}
+
+.button_movements {
+  display: flex;
+margin-top:-10px;
+  width: 220px;
+  height: 70px;
+  background-color: #8fb339;
+  color: #000;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-items: center; /* Centra verticalmente */
+  padding-left: 35px; /* Añadir padding derecho */
+}
+
+.button_movements:hover {
+  background-color: #64831d;
+}
+
+.button_movements img {
+  width: 50px;
+  margin-left: 20px; /* Añade un margen izquierdo al ícono */
+  height: auto; /* Mantiene la proporción del ícono */
+}
+
+.h2 {
+  font-size: 34px;
+  text-align: center; /* Asegurar que el texto esté centrado */
+  margin: 15px;
+}
+
+.presupuesto{
+    margin-top: 80px;
+    background-color: #ececec; /* Cambia esto si quieres otro color */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+    width: 650px;
+    height: 350px;
+    border-radius: 10px;
+    font-weight: bold; /* Aplica negrita al texto */
+
+}
+.header h2 {
+    text-align: center;         /* Centra el texto horizontalmente */
+    margin: 0;                 /* Elimina márgenes por defecto, opcional */
+    margin: 30px;
+}
+
+
+.presupuesto input{
+    display: flex;
+    width: 250px; /* Ancho completo del input */
+    padding: 8px; /* Espaciado interno */
+    border: 1px solid #000000; /* Borde */
+    border-radius: 4px; /* Bordes redondeados */
+    margin-bottom: 25px; /* Espaciado inferior */
+    margin-top: 20px;
+    background-color: #d4ee96;
+    font-weight: bold; /* Aplica negrita al texto */
+}
+
+.presupuesto_superior {
+    display: flex;              /* Utiliza flexbox para el contenedor */
+    gap: 30px;                 /* Espacio entre los elementos */
+    justify-content: center;    /* Centra los elementos horizontalmente */
+    align-items: center;        /* Centra los elementos verticalmente */
+ 
+}
+.superior{
+    display: flex;
+    flex-direction: column;      /* Coloca el label encima del input */
+    align-items: center;         /* Centra el contenido horizontalmente */
+    width: 100%;                 /* Asegúrate de que el contenedor ocupe todo el ancho */
+}
+
+.superior label{
+    text-align: center;         /* Centra el texto dentro del label */
+    width: 100%;                /* Asegúrate de que el label ocupa el ancho completo del contenedor */
+    margin-bottom: 5px;        /* Espacio entre el label y el input */
+}
+
+
+.inferior {
+    display: flex;              /* Utiliza flexbox para el contenedor */
+    flex-direction: column;     /* Organiza el label encima del input */
+    align-items: center;        /* Centra horizontalmente los elementos */
+    justify-content: center;    /* Centra verticalmente si hay espacio */
+    margin: 20px;  
+        
+}
+
+

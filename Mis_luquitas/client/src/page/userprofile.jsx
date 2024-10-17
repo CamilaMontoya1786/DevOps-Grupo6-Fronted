@@ -2,26 +2,39 @@ import React, { useState, useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/authContext";
 import profile from "../styles/userprofile.module.css";
-import axios from 'axios';
+import axios from "axios";
 import icon from "../imagine/hogar.png";
 import icon2 from "../imagine/salir-alt.png";
 import defaultProfileImage from "../imagine/usuario.png"; // Importa la imagen predeterminada
+import { useNavigate } from "react-router-dom";
 
 function UserProfile() {
-  const { register, handleSubmit, setValue, formState: { errors } } = useForm();
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm();
   const { user, logout } = useAuth();
   const [data, setData] = useState([]);
   const [userList, setUserList] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
-  
-  const [profileImage, setProfileImage] = useState(defaultProfileImage);  // Inicia con la imagen predeterminada
+
+  const [profileImage, setProfileImage] = useState(defaultProfileImage); // Inicia con la imagen predeterminada
   const fileInputRef = useRef(null); // Referencia al input de archivo
   const [showHelperMessage, setShowHelperMessage] = useState(false); // Estado para mostrar el mensaje de ayuda
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/Home'); // Navega a /Home
+  };
 
   useEffect(() => {
     const fetchCountries = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/country/countries');
+        const response = await axios.get(
+          "http://localhost:3000/country/countries"
+        );
         setUserList(response.data);
       } catch (error) {
         console.error("Error al obtener los países:", error);
@@ -29,13 +42,14 @@ function UserProfile() {
     };
 
     fetchCountries();
-    
-    axios.get('http://localhost:3000/identification/identifications')
-      .then(response => {
+
+    axios
+      .get("http://localhost:3000/identification/identifications")
+      .then((response) => {
         setData(response.data);
       })
-      .catch(error => {
-        console.error('Error al obtener los datos:', error);
+      .catch((error) => {
+        console.error("Error al obtener los datos:", error);
       });
 
     if (user) {
@@ -55,7 +69,9 @@ function UserProfile() {
       console.log("Perfil actualizado con éxito");
     } catch (error) {
       console.error("Error al actualizar el perfil:", error);
-      setErrorMessage("Error al actualizar el perfil. Por favor, intenta de nuevo.");
+      setErrorMessage(
+        "Error al actualizar el perfil. Por favor, intenta de nuevo."
+      );
     }
   };
 
@@ -63,7 +79,7 @@ function UserProfile() {
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      setProfileImage(URL.createObjectURL(file));  // Actualiza la imagen con la seleccionada
+      setProfileImage(URL.createObjectURL(file)); // Actualiza la imagen con la seleccionada
     }
   };
 
@@ -75,38 +91,56 @@ function UserProfile() {
   return (
     <>
       <div className={profile["body-profile"]}>
-        <button type="button" className={profile["back-button"]}>
+        <button
+          type="button"
+          className={profile["back-button"]}
+          onClick={handleClick}
+        >
           Regresar
         </button>
-        <img className={profile["icon-house"]} src={icon} alt="Icono de regresar" /> {/* Icono importado */}
-
-        <button type="button" className={profile["logout-button"]} onClick={logout}>
-          Cerrar sesión  
+        <img
+          className={profile["icon-house"]}
+          src={icon}
+          alt="Icono de regresar"
+        />{" "}
+        {/* Icono importado */}
+        <button
+          type="button"
+          className={profile["logout-button"]}
+          onClick={logout}
+        >
+          Cerrar sesión
         </button>
-        <img className={profile["icon-close"]} src={icon2} alt="Icono de cerrar sesión" /> {/* Icono importado */}
-
+        <img
+          className={profile["icon-close"]}
+          src={icon2}
+          alt="Icono de cerrar sesión"
+        />{" "}
+        {/* Icono importado */}
         <div>
-          <label htmlFor="profileImage" className={profile["profile-image-label"]}>
+          <label
+            htmlFor="profileImage"
+            className={profile["profile-image-label"]}
+          >
             {/* Muestra la imagen predeterminada o la nueva cargada */}
-            <img 
-              src={profileImage} 
-              alt="Imagen de perfil" 
-              className={profile["profile-image-preview"]} 
+            <img
+              src={profileImage}
+              alt="Imagen de perfil"
+              className={profile["profile-image-preview"]}
               onClick={handleImageClick} // Maneja el clic en la imagen
-              style={{ cursor: "pointer" }}  // Añade un estilo de cursor para indicar que es clicable
+              style={{ cursor: "pointer" }} // Añade un estilo de cursor para indicar que es clicable
             />
           </label>
           <input
             type="file"
             id="profileImage"
             accept="image/*"
-            onChange={handleImageChange}  // Cambia la imagen cuando se selecciona una nueva
-            className={profile["profile-image-input"]}  // Usa la clase para ocultar el input
-            ref={fileInputRef}  // Referencia al input
-            style={{ display: "none" }}  // Oculta el input
+            onChange={handleImageChange} // Cambia la imagen cuando se selecciona una nueva
+            className={profile["profile-image-input"]} // Usa la clase para ocultar el input
+            ref={fileInputRef} // Referencia al input
+            style={{ display: "none" }} // Oculta el input
           />
         </div>
-
         <form onSubmit={handleSubmit(onSubmit)} className={profile.container}>
           <h2>Perfil de Usuario</h2>
 
@@ -119,7 +153,7 @@ function UserProfile() {
                 type="text"
                 placeholder="Nombre"
                 {...register("userName")}
-                disabled  // Campo deshabilitado
+                disabled // Campo deshabilitado
               />
             </div>
 
@@ -129,7 +163,7 @@ function UserProfile() {
                 type="text"
                 placeholder="Apellido"
                 {...register("userLastName")}
-                disabled  // Campo deshabilitado
+                disabled // Campo deshabilitado
               />
             </div>
 
@@ -150,7 +184,7 @@ function UserProfile() {
                 type="text"
                 placeholder="Número de documento"
                 {...register("idNumber")}
-                disabled  // Campo deshabilitado
+                disabled // Campo deshabilitado
               />
             </div>
 
@@ -196,7 +230,8 @@ function UserProfile() {
                   },
                   pattern: {
                     value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/,
-                    message: "La contraseña debe incluir al menos un número, una letra mayúscula, una letra minúscula y un carácter especial",
+                    message:
+                      "La contraseña debe incluir al menos un número, una letra mayúscula, una letra minúscula y un carácter especial",
                   },
                 })}
                 onFocus={() => setShowHelperMessage(true)} // Muestra el mensaje al hacer clic
@@ -204,11 +239,14 @@ function UserProfile() {
               />
               {showHelperMessage && (
                 <span className={profile.message}>
-                  La contraseña debe incluir al menos un número, una letra mayúscula, una letra minúscula y un carácter especial
+                  La contraseña debe incluir al menos un número, una letra
+                  mayúscula, una letra minúscula y un carácter especial
                 </span>
               )}
               {errors.password && (
-                <span className={`${profile["error-message"]}`}>{errors.password.message}</span>
+                <span className={`${profile["error-message"]}`}>
+                  {errors.password.message}
+                </span>
               )}
             </div>
           </div>

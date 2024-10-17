@@ -10,6 +10,8 @@ import ayuda from "../imagine/ayuda.png";
 import cerrarsesion from "../imagine/cerrarsesion.png";
 
 function Navbar() {
+  //const { signin,user} = useAuth();
+  
   return (
     <div className={styles.left}>
       <nav className={styles.navbar}>
@@ -20,15 +22,15 @@ function Navbar() {
         <hr className={styles.linea} />
         <ul className={styles.Link}>
           <li>
-            <Link to="/loguin">Inicio</Link>
+            <Link to="/home">Inicio</Link>
             <img src={home} />
           </li>
           <li>
-            <Link to="/loguin">Reportes</Link>
+            <Link to="/movimientos">Reportes</Link>
             <img src={reporte} />
           </li>
           <li>
-            <Link to="/loguin">Movimientos</Link>
+            <Link to="/movements">Movimientos</Link>
             <img src={movimiento} />
           </li>
           <li>
@@ -36,7 +38,7 @@ function Navbar() {
             <img src={lupa} />
           </li>
           <li>
-            <Link to="/loguin">Ayuda</Link>
+            <Link to="/help">Ayuda</Link>
             <img src={ayuda} />
           </li>
 
@@ -46,7 +48,7 @@ function Navbar() {
           </li>
         </ul>
         <div className={styles.User}>
-          <span className={styles.UserName}>Name user</span>
+        <Link className={styles.UserName} to="/userprofile">Pepito Perez</Link>
         </div>
       </nav>
     </div>

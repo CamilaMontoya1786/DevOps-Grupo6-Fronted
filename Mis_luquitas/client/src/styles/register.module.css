@@ -38,6 +38,7 @@
 .body_register h2 {
   text-align: center;
   font-size: 24px;
+  margin-bottom: 20px;
   
 }
 
@@ -58,6 +59,7 @@
 .title_register {
   font-size: 44px;
   color: #000000;
+
 }
 
 .inputPadre {
@@ -71,6 +73,7 @@
   flex-direction: column; /* Apila elementos verticalmente */
   position: relative; 
   margin-left: 20px;
+
 }
 
 .input_container {
@@ -138,7 +141,6 @@
   font-size: 14px;
   font-weight: bold; /* Agregar negrita */
   margin-top: 20px; /* Añadir margen superior */
-  transform: translateX(-50%);
   width: 120px;
 }
 
@@ -163,7 +165,8 @@
 .text1 {
   color: #ee3737;
   font-size: 12px;
-  margin-bottom: 40px;
+  margin-top: 15px;
+  margin-bottom: 20px;
 }
 
 .helper_message {
