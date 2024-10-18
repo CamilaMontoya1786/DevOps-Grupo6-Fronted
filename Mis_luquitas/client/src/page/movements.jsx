@@ -35,8 +35,7 @@ function Movements() {
           className={styles.button_movements}
           onClick={handleIncomeClick}
         >
-          Ingresos
-          <img src={Agregar} alt="Descripción de la imagen" />
+          Ingresos <img src={Agregar} alt="Descripción de la imagen" />
         </button>
 
         <button
@@ -44,8 +43,7 @@ function Movements() {
           className={styles.button_movements}
           onClick={handleExpensesClick}
         >
-          Gastos
-          <img src={Agregar} alt="Descripción de la imagen" />
+          Gastos<img src={Agregar} alt="Descripción de la imagen" />
         </button>
       </div>
       

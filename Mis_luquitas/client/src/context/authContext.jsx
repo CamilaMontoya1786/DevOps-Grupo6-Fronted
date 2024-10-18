@@ -14,7 +14,7 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
-  /*cuanod se hace una peticion , la apgina tiene que esperar hasta que el backend mande los datos (metodos asincronos)*/
+  /*cuando se hace una peticion , la pagina tiene que esperar hasta que el backend mande los datos (metodos asincronos)*/
   const signup = async (userData) => {
     const res = await registerRequest(userData);
     setUser(res.data);
@@ -56,3 +56,4 @@ export const AuthProvider = ({ children }) => {
   );
   
 }
+
