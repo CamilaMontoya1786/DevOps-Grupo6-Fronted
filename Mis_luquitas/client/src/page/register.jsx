@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react"; 
 import { useForm } from "react-hook-form"; 
 import { useAuth } from "../context/authContext"; 
@@ -231,3 +232,4 @@ function Register() {
 }
 
 export default Register; 
+

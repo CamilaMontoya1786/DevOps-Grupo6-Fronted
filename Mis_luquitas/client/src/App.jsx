@@ -1,3 +1,4 @@
+
 import "./App.css"; // Esto se puede quitar si no hay estilos globales
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import Register from "./page/register";
@@ -18,7 +19,6 @@ function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
-      
         <MainRoutes /> {/* Movemos la lógica de las rutas a un componente separado */}
       </BrowserRouter>
     </AuthProvider>
@@ -51,3 +51,4 @@ function MainRoutes() {
 }
 
 export default App;
+

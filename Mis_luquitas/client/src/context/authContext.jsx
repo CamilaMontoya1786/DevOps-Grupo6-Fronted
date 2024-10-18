@@ -1,5 +1,6 @@
+
 import { useContext, createContext, useState } from "react";
-import { registerRequest, loguinRequest } from "../api/auth";
+import { registerRequest, loguinRequest } from "../api/auth"
 
 const AuthContext = createContext();
 export const useAuth = () => {

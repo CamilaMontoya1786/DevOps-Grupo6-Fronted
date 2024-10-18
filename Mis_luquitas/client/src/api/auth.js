@@ -4,5 +4,5 @@ import axios  from "./axios";
 
 export const registerRequest = user => axios.post('/login/createUser',user)
 export const loguinRequest = user => axios.post('/login/login',user)
-//export const userProfileRequest = user => axios.post('/login/login',user) ???
+
 
