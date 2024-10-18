@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../styles/restorepassword.css";
+import styles from '../styles/restorePassword.module.css';
 import LogoImage from "../imagine/logo.png";
 
 function Restorepassword() {
@@ -29,22 +29,21 @@ function Restorepassword() {
   };
 
   return (
-    <div>
-      <div className="header-restorepassword">
-        <img src={LogoImage} alt="Descripción de la imagen" />
-        <h2>Mis Luquitas</h2>
+    <div className={styles.restorepassword_page}>
+      <div className={styles.header}>
+        <img className={styles.LogoImage} src={LogoImage} alt="Descripción de la imagen" />
+        <h2 className={styles.h2}>Mis Luquitas</h2>
       </div>
 
-      <form className="container-restorepassword" onSubmit={handleSubmit}>
-        <div>
-          <h1 className="titulo">Recuperar contraseña</h1>
+      <form className={styles.container} onSubmit={handleSubmit}>
+        <div >
+          <h1 className={styles.titulo}>Recuperar contraseña</h1>
           <hr></hr>
-          <p className="parrafo">
+          <p className={styles.parrafo}>
             Ingresa tu correo electrónico para recibir un enlace de
             recuperación.{" "}
           </p>
-          <input
-            className="input-restorepassword"
+          <input className={styles.input}
             type="email"
             id="email"
             placeholder="Correo Electronico"
@@ -54,11 +53,13 @@ function Restorepassword() {
           />
           <hr></hr>
         </div>
-        <div className="button-container">
-          <button className="button-restorepassword" type="submit">
+
+
+        <div className={styles.button}>
+          <button className={styles.button_1} type="submit">
             Enviar
           </button>
-          <button className="button-restorepassword" type="submit">
+          <button className={styles.button_1}  type="submit">
             Cancelar
           </button>
         </div>

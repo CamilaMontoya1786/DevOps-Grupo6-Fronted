@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+.left {
+  background-color: #b7ce63;
+  width: 20%;
+  height: 100vh;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+  font-family: "Inter", sans-serif;
+  margin: 0%;
+  padding: 0%;
+  position: absolute;
+}
+
+.Link li {
+  display: flex; /* Usar flexbox para alinear imagen y texto */
+  align-items: center; /* Centra verticalmente */
+  margin-bottom: 8px; /* Añade espacio entre los enlaces */
+  padding: 10px; /* Añade un poco de padding para crear un área clicable más grande */
+  border-radius: 5px; /* Esquinas redondeadas */
+  transition: background-color 0.3s; /* Suaviza la transición del color de fondo */
+  margin-top: 15px;
+}
+
+.Link li:hover {
+  background-color: #d7ea8f; /* Color de fondo al pasar el mouse */
+  margin-left: -10px;
+}
+
+.Link li img {
+  margin-left: 10px; /* Añade espacio a la izquierda de la imagen */
+  margin-right: 20px; /* Añade espacio a la derecha de la imagen si es necesario */
+  width: 30px;
+}
+
+.Link li a {
+  text-decoration: none; /* Quita el subrayado */
+  color: black;
+  font-size: 18px;
+  font-weight: bold; /* Aplica negrita a todo el texto */
+  font-family: "Inter", sans-serif;
+  display: block; /* Para que el área del enlace cubra todo el li */
+  width: 300px; /* Hace que el enlace ocupe todo el espacio del li */
+  margin-left: 20px;
+  
+}
+
+.UserName {
+  color: black;
+  font-size: 18px;
+  font-weight: bold; /* Aplica negrita a todo el texto */
+  font-family: "Inter", sans-serif;
+  text-align: right; /* Alinea el texto a la derecha */
+}
+
+
+.User {
+  position: absolute; /* Permite posicionar el nombre de usuario */
+  bottom: 20px; /* Espacio desde la parte inferior */
+  right: 20px; /* Espacio desde la derecha */
+}
+
+.linea {
+  height: 1px; /* Define el grosor de la línea */
+  background-color: #404040; /* Cambia el color */
+  border: none; /* Elimina el borde predeterminado */
+}
+
+.header {
+  display: flex; /* Usar Flexbox */
+  flex-direction: column; /* Organiza los elementos en una columna */
+  justify-content: center; /* Centra verticalmente */
+  align-items: center; /* Centra horizontalmente */
+  margin-bottom: 20px;
+}
+
+.header img {
+  width: 60px;
+  margin-top: 30px;
+}
+
+.header h1 {
+  font-size: 34px;
+  margin-top: 2px;
+}
+
+

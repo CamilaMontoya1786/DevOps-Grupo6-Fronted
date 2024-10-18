@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap");
+
+.completo_help {
+  display: flex;
+  flex-direction: column;
+  width: 60%; /* Ancho mantenido */
+  height: auto;
+  background-color: rgb(255, 255, 255);
+  right: 5%; 
+  position: absolute;
+  align-items: center; /* Centrar elementos del contenedor principal */
+  gap: 20px; /* Espacio entre elementos aumentado */
+  padding: 12px; /* Padding mantenido */
+}
+
+.header_help_h2 {
+  font-size: 47px !important; /* Reducido de 48px a 47px */
+  font-family: "Abril Fatface", serif;
+  font-weight: bold;
+  width: 100%;
+  margin-right: 97px; /* Reducido */
+  text-align: center; /* Centrar el título */
+}
+
+.header_help h3 {
+  font-size: 27px !important; /* Reducido de 28px a 27px */
+  font-family: "Abril Fatface", serif;
+  font-weight: 400;
+  margin-top: 5px; /* Margen superior mantenido */
+  text-align: center; /* Centrar el subtítulo */
+}
+
+.videoContainer_help {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrar el contenedor del video */
+  gap: 10px; /* Espacio entre elementos dentro del contenedor de video aumentado */
+  width: 697px; /* Reducido de 698px */
+  height: 397px; /* Reducido de 398px */
+  margin-right: 97px; /* Reducido */
+  background-color: #ececec !important;
+  border-radius: 12px; /* Bordes redondeados mantenidos */
+  padding: 9px; /* Reducido de 10px a 9px */
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1); /* Sombra mantenida */
+}
+
+.video_help {
+  margin-top: 0px; /* Margen superior del video mantenido */
+  width: 100%;
+  height: 100%;
+  margin-top: 10px;
+  max-width: 85%; /* Reducido de 83% a 82% */
+  object-fit: cover; /* Para que el video se ajuste sin deformarse */
+}
+
+.contacto_help {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Alinear el contenido a la izquierda */
+  margin-top: 20px;
+  text-align: left; /* Alinear el texto a la izquierda */
+  font-weight: bold; /* Negrita para el texto "Contáctanos" */
+  width: 100%; /* Para que el contenido ocupe todo el ancho disponible */
+}
+
+.contactInfo_help {
+  margin-top: 5px;
+  display: flex; /* Cambiado para que los elementos se alineen horizontalmente */
+  flex-direction: row; /* Cambiado para que los elementos se alineen horizontalmente */
+  align-items: center; /* Centrar verticalmente los elementos de contacto */
+  gap: 20px; /* Espacio horizontal entre los elementos de contacto */
+  width: 100%; /* Asegura que ocupe todo el ancho */
+}
+
+.contactItem_help {
+  margin-top: 5px;
+  display: flex;
+  align-items: center; /* Centrar verticalmente los íconos y el texto */
+  gap: 10px; /* Espacio entre los iconos y los textos aumentado */
+}
+
+.icon_help {
+  margin-top: 5px;
+  width: 30px; /* Aumentado para íconos más grandes */
+  height: auto;
+}

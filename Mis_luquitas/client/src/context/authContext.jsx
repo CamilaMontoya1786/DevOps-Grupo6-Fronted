@@ -1,6 +1,6 @@
 
 import { useContext, createContext, useState } from "react";
-import { registerRequest,loguinRequest } from "../api/auth";
+import { registerRequest, loguinRequest } from "../api/auth"
 
 const AuthContext = createContext();
 export const useAuth = () => {
@@ -24,8 +24,35 @@ export const AuthProvider = ({ children }) => {
     const res = await loguinRequest(userData);
     setUser(res.data);
   };
+  const updateUserProfile = async (userData) => {
+    const res = await userProfileRequest(userData);
+    setUser(res.data);
+  };
 
-  return <AuthContext.Provider value={{
-    signup,user, signin
-  }}>{children}</AuthContext.Provider>;
-};
+  const updatePassword = async (userData) => {
+    const res = await updatePasswordRequest(userData);
+    setUser(res.data);
+  };
+
+
+  const help = async (userData) => {
+    const res = await helpRequest(userData);
+    setUser(res.data);
+  };
+
+  return (
+    <AuthContext.Provider
+      value={{
+        signup,
+        user,
+        signin,
+        updateUserProfile,
+        updatePassword,
+        help
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
+  
+}
