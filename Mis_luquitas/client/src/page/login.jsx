@@ -38,7 +38,7 @@ function Login() {
   };
  
   return (
-    <div className={styles.login_page}> {/* Contenedor principal de la página de inicio de sesión */}
+    <div className={styles.login_page}> {/* Contenedor principal de la página de inicio de sesión  hola*/}
       <div className={styles.header_Loguin}> {/* Encabezado de la página */}
         <img src={LogoImage} alt="Descripción de la imagen" /> {/* Logo de la aplicación */}
         <h1 className={styles.title_register}>Mis Luquitas</h1> {/* Título de la aplicación */}
