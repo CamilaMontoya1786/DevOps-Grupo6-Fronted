@@ -23,6 +23,7 @@ function Navbar() {
         <ul className={styles.Link}>
           <li>
             <Link to="/home">Inicio</Link>
+
             <img src={home} alt="img" />
           </li>
           <li>
@@ -40,11 +41,14 @@ function Navbar() {
           <li>
             <Link to="/help">Ayuda</Link>
             <img src={ayuda} alt="img"/>
+
           </li>
 
           <li>
             <Link to="/loguin">Cerrar Sesión</Link>
+
             <img src={cerrarsesion} alt="img"/>
+
           </li>
         </ul>
         <div className={styles.User}>

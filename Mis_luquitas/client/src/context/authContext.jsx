@@ -29,6 +29,7 @@ export const AuthProvider = ({ children }) => {
     setUser(res.data);
   };
 
+
   const updatePassword = async (userData) => {
     const res = await updatePasswordRequest(userData);
     setUser(res.data);
@@ -56,4 +57,5 @@ export const AuthProvider = ({ children }) => {
   );
   
 }
+
 

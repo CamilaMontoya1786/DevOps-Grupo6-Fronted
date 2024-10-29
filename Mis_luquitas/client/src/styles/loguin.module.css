@@ -47,7 +47,6 @@
 }
 
 
-
 /* Centrar el título fuera del contenedor */
 .title_register {
   text-align: center;
@@ -61,7 +60,6 @@
 .header_Loguin img {
   vertical-align: middle; /* Alinea el icono con el texto */
   margin-right: 8px; /* Espacio entre el icono y el texto */
-  width: 80px;
 }
 
 

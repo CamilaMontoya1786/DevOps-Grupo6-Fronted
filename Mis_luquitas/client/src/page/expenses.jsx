@@ -32,7 +32,9 @@ function Expenses() {
         throw new Error("Error en la solicitud");
       }
 
+
      // const result = await response.json();
+
       alert("Gasto guardado exitosamente.");
 
       // Reiniciar el formulario

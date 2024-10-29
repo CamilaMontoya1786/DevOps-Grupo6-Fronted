@@ -20,6 +20,7 @@ function UserProfile() {
   const [userList, setUserList] = useState([]);
   const [setErrorMessage] = useState("");
 
+
   const [profileImage, setProfileImage] = useState(defaultProfileImage); // Inicia con la imagen predeterminada
   const fileInputRef = useRef(null); // Referencia al input de archivo
   const [showHelperMessage, setShowHelperMessage] = useState(false); // Estado para mostrar el mensaje de ayuda
@@ -89,6 +90,7 @@ function UserProfile() {
   };
 
   return (
+
       <div className={profile["body-profile"]}>
         <button
           type="button"
@@ -258,6 +260,7 @@ function UserProfile() {
           </div>
         </form>
       </div>
+
   );
 }
 
