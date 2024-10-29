@@ -21,7 +21,7 @@ function UserProfile() {
   const [errorMessage, setErrorMessage] = useState("");
   const [user, setUser] = useState();
   const [profileImage, setProfileImage] = useState(defaultProfileImage); // Inicia con la imagen predeterminada
-  const fileInputRef = useRef(null); // Referencia al input de archivo
+  const fileInputRef = useRef(null); // Referencia al input de archivo. 
   const [showHelperMessage, setShowHelperMessage] = useState(false); 
   
   const navigate = useNavigate();
