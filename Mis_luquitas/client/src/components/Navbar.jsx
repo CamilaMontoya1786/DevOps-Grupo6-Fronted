@@ -23,28 +23,32 @@ function Navbar() {
         <ul className={styles.Link}>
           <li>
             <Link to="/home">Inicio</Link>
-            <img src={home} />
+
+            <img src={home} alt="img" />
           </li>
           <li>
             <Link to="/movimientos">Reportes</Link>
-            <img src={reporte} />
+            <img src={reporte} alt="img"/>
           </li>
           <li>
             <Link to="/movements">Movimientos</Link>
-            <img src={movimiento} />
+            <img src={movimiento} alt="img"/>
           </li>
           <li>
             <Link to="/loguin">Historial de Movimientos</Link>
-            <img src={lupa} />
+            <img src={lupa} alt="img"/>
           </li>
           <li>
             <Link to="/help">Ayuda</Link>
-            <img src={ayuda} />
+            <img src={ayuda} alt="img"/>
+
           </li>
 
           <li>
             <Link to="/loguin">Cerrar Sesión</Link>
-            <img src={cerrarsesion} />
+
+            <img src={cerrarsesion} alt="img"/>
+
           </li>
         </ul>
         <div className={styles.User}>
