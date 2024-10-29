@@ -1,101 +1,119 @@
-import React, { useState } from "react"; // Importa React y el hook useState
-import { useForm } from "react-hook-form"; // Importa el hook useForm para manejar formularios
-import { useAuth } from "../context/authContext"; // Importa el contexto de autenticación
-import LogoImage from "../imagine/logo.png"; // Importa la imagen del logo
-import styles from "../styles/loguin.module.css"; // Importa los estilos para el componente
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useAuth } from "../context/authContext";
+import LogoImage from "../imagine/logo.png";
+import styles from "../styles/login.module.css";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Login() {
   const navigate = useNavigate();
-  // Inicializa el hook useForm para manejar la validación del formulario
   const {
-    register, // Método para registrar los inputs en el formulario
-    handleSubmit, // Método para manejar el envío del formulario
-    formState: { errors }, // Estado de los errores en el formulario
-  } = useForm({ mode: "onBlur" }); // Establece el modo de validación a "onBlur"
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ mode: "onBlur" });
+  const { signin } = useAuth();
+  const [errorMessage, setErrorMessage] = useState(""); // Estado para almacenar mensajes de error
 
-  const { signin,user} = useAuth(); // Extrae la función de inicio de sesión del contexto de autenticación
-
-  // Estado para almacenar mensajes de error
-  const [setErrorMessage] = useState("");
-
-
-  // Función que se ejecuta al enviar el formulario
   const onSubmit = async (value) => {
     try {
-      
-      await signin(value); // Llama a la función de inicio de sesión con los datos del formulario
-     
-      
-      const token = user.userToken;
-      localStorage.setItem('token', token);
-      console.log(token.userName)
-      navigate('/home');
+      console.log("Datos enviados:", value); // Datos enviados para depuración
+      const user = await signin(value);
+      console.log("Respuesta de signin:", user); // Respuesta recibida
+
+      // Verifica que el token sea válido
+      if (!user || !user.userToken) {
+        throw new Error("Datos de usuario no válidos");
+      }
+
+      localStorage.setItem("token", user.userToken);
+      await fetchUserData();
+      console.log("Token almacenado:", user.userToken);
+      navigate("/home");
     } catch (error) {
-      // Manejo de errores en caso de que el inicio de sesión falle
-      setErrorMessage("Ups, los datos no son correctos. Vuelve a intentar");
+      setErrorMessage("Ups, los datos no son correctos. Vuelve a intentar."); // Mensaje de error
+      console.log("Error al iniciar sesión:", error.message);
     }
   };
- 
+
   return (
-    <div className={styles.login_page}> {/* Contenedor principal de la página de inicio de sesión */}
-      <div className={styles.header_Loguin}> {/* Encabezado de la página */}
-        <img src={LogoImage} alt="Descripción de la imagen" /> {/* Logo de la aplicación */}
-        <h1 className={styles.title_register}>Mis Luquitas</h1> {/* Título de la aplicación */}
+    <div className={styles.login_page}>
+      <div className={styles.header_Loguin}>
+        <img src={LogoImage} alt="Descripción de la imagen" />
+        <h1 className={styles.title_register}>Mis Luquitas</h1>
       </div>
 
-      <div className={styles.login_container}> {/* Contenedor del formulario de inicio de sesión */}
-        <h2>Iniciar sesión</h2> {/* Título del formulario */}
-        <hr></hr> {/* Línea divisoria */}
+      <div className={styles.login_container}>
+        <h2>Iniciar sesión</h2>
+        <hr />
 
-        <form className={styles.Login_form} onSubmit={handleSubmit(onSubmit)}> {/* Formulario que maneja el envío */}
-          <div className={styles.inputContainer}> {/* Contenedor de los inputs */}
+        <form className={styles.Login_form} onSubmit={handleSubmit(onSubmit)}>
+          <div className={styles.inputContainer}>
             <input
-              type="email" // Tipo de input para el correo electrónico
-              placeholder="Correo electrónico" // Texto de ayuda
-              {...register("email", { // Registra el campo de correo
-                required: true, // Campo requerido
-                pattern: { // Validación del patrón de correo electrónico
+              type="email"
+              placeholder="Correo electrónico"
+              {...register("email", {
+                required: "Este campo es requerido", // Mensaje personalizado
+                pattern: {
                   value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                  message: "Formato de correo electrónico inválido", // Mensaje de error
+                  message: "Formato de correo electrónico inválido",
                 },
               })}
             />
-            {errors.email && ( // Muestra mensaje de error si hay un error en el correo
+            {errors.email && (
               <span className={styles.error_message_login}>
                 {errors.email.message}
               </span>
             )}
 
             <input
-              type="password" // Tipo de input para la contraseña
-              placeholder="Contraseña" // Texto de ayuda
-              {...register("password", { // Registra el campo de contraseña
-                required: true, // Campo requerido
-                minLength: { // Validación para la longitud mínima
+              type="password"
+              placeholder="Contraseña"
+              {...register("password", {
+                required: "Este campo es requerido", // Mensaje personalizado
+                minLength: {
                   value: 8,
-                  message: "La contraseña debe tener al menos 8 caracteres", // Mensaje de error
+                  message: "La contraseña debe tener al menos 8 caracteres",
                 },
-                pattern: { // Validación del patrón de la contraseña
+                pattern: {
                   value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/,
-                  message: "La contraseña debe incluir al menos un número, una letra mayúscula, una letra minúscula y un carácter especial", // Mensaje de error
+                  message:
+                    "La contraseña debe incluir al menos un número, una letra mayúscula, una letra minúscula y un carácter especial",
                 },
               })}
             />
-            {errors.password && ( // Muestra mensaje de error si hay un error en la contraseña
+            {errors.password && (
               <span className={styles.error_message_login}>
                 {errors.password.message}
               </span>
             )}
           </div>
-          <hr></hr> {/* Línea divisoria */}
-          <button className={styles.button} type="submit"> {/* Botón para enviar el formulario */}
+          <hr />
+          <button className={styles.button} type="submit">
             Ingresar
           </button>
+          {errorMessage && (
+            <div className={styles.error_message_login}>{errorMessage}</div>
+          )}{" "}
+          {/* Mostrar mensaje de error */}
         </form>
       </div>
     </div>
   );
 }
+const fetchUserData = async () => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await axios.get(
+      "http://localhost:3000/login/getUserProfile/" + token
+    );
+    localStorage.setItem("user", response.data);
+  } catch (error) {
+    console.error("Error al obtener los países:", error);
+  }
+};
 
-export default Login; // Exporta el componente Login
+fetchUserData();
+
+export default Login;

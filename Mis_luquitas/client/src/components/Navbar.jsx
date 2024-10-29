@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../styles/navbar.module.css";
 import { Link } from "react-router-dom";
 import LogoImage from "../imagine/logo.png";
@@ -8,11 +8,36 @@ import movimiento from "../imagine/movimiento.png";
 import lupa from "../imagine/lupa.png";
 import ayuda from "../imagine/ayuda.png";
 import cerrarsesion from "../imagine/cerrarsesion.png";
+import { useAuth } from "../context/authContext";
+import { set } from "react-hook-form";
+import axios from "axios";
 
-function Navbar() {
+ function  Navbar() {
   //const { signin,user} = useAuth();
+  const { user, logout } = useAuth();
+  const [userLocal,setUserLocal] =useState();
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const token = localStorage.getItem ("token");
+        const response = await axios.get(
+          "http://localhost:3000/login/getUserProfile/"+ token
+        );
+        setUserLocal(response.data);
+      } catch (error) {
+        console.error("Error al obtener los países:", error);
+      }
+    };
+    
+    fetchUserData();
+  },[]);
+
   
-  return (
+
+  
+  console.log('user:'+JSON.stringify( userLocal));
+  
+    return (
     <div className={styles.left}>
       <nav className={styles.navbar}>
         <div className={styles.header}>
@@ -21,6 +46,7 @@ function Navbar() {
         </div>
         <hr className={styles.linea} />
         <ul className={styles.Link}>
+        
           <li>
             <Link to="/home">Inicio</Link>
             <img src={home} />
@@ -43,13 +69,15 @@ function Navbar() {
           </li>
 
           <li>
-            <Link to="/loguin">Cerrar Sesión</Link>
+            <Link to="/login">Cerrar Sesión</Link>
             <img src={cerrarsesion} />
           </li>
         </ul>
         <div className={styles.User}>
-        <Link className={styles.UserName} to="/userprofile">Pepito Perez</Link>
-        </div>
+  <Link className={styles.UserName} to="/userprofile">
+    {userLocal ?  userLocal?.userName +' '+ userLocal.userLastName  : 'pepito perez'} 
+  </Link>
+</div>
       </nav>
     </div>
   );
