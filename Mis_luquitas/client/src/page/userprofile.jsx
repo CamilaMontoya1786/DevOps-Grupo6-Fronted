@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useForm } from "react-hook-form";
+import { get, useForm } from "react-hook-form";
 import { useAuth } from "../context/authContext";
 import profile from "../styles/userprofile.module.css";
 import axios from "axios";
@@ -15,18 +15,20 @@ function UserProfile() {
     setValue,
     formState: { errors },
   } = useForm();
-  const { user, logout } = useAuth();
+  const { user1, logout } = useAuth();
   const [data, setData] = useState([]);
   const [userList, setUserList] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
-
+  const [user, setUser] = useState();
   const [profileImage, setProfileImage] = useState(defaultProfileImage); // Inicia con la imagen predeterminada
   const fileInputRef = useRef(null); // Referencia al input de archivo
-  const [showHelperMessage, setShowHelperMessage] = useState(false); // Estado para mostrar el mensaje de ayuda
+  const [showHelperMessage, setShowHelperMessage] = useState(false); 
+  
   const navigate = useNavigate();
+  
 
   const handleClick = () => {
-    navigate('/Home'); // Navega a /Home
+    navigate("/Home"); // Navega a /Home
   };
 
   useEffect(() => {
@@ -40,6 +42,19 @@ function UserProfile() {
         console.error("Error al obtener los países:", error);
       }
     };
+    const fetchUserData = async () => {
+      try {
+        const token = localStorage.getItem ("token");
+        const response = await axios.get(
+          "http://localhost:3000/login/getUserProfile/"+ token
+        );
+        setUser(response.data);
+      } catch (error) {
+        console.error("Error al obtener los países:", error);
+      }
+    };
+    
+    fetchUserData();
 
     fetchCountries();
 
@@ -152,7 +167,7 @@ function UserProfile() {
                 name="userName"
                 type="text"
                 placeholder="Nombre"
-                {...register("userName")}
+               value={user?.userName ?? ''}
                 disabled // Campo deshabilitado
               />
             </div>
@@ -162,7 +177,7 @@ function UserProfile() {
                 name="userLastName"
                 type="text"
                 placeholder="Apellido"
-                {...register("userLastName")}
+                value={user?.userLastName ?? ''}
                 disabled // Campo deshabilitado
               />
             </div>
