@@ -1,11 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import styles from "../styles/Home.module.css";
 import cerdito from "../imagine/cerdito.jpg";
 import { useAuth } from "../context/authContext";
- 
+
 function Home() {
   const { user } = useAuth();
   console.log(user);
+
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [photo, setPhoto] = useState("");
+
+  useEffect(() => {
+    const fetchAdvice = async () => {
+      try {
+        console.log("Intentando obtener el consejo...");
+        const response = await axios.get("http://localhost:3000/tip/showRandomTip");
+        
+        setTitle(response.data.title);
+        setContent(response.data.content);
+        setPhoto(response.data.photo); // Asume que `photo` es la clave en el objeto de respuesta
+      } catch (error) {
+        console.error("Error al obtener el consejo:", error);
+      }
+    };
+    fetchAdvice();
+  }, []);
+
   return (
     <div className={styles.todo}>
       <div className={styles.header}>
@@ -14,12 +36,18 @@ function Home() {
       <div className={styles.content}>
         <div className={styles.advice}>
           <p className={styles.consejo}>
-            {" "}
-            "Ahorrar es la berraquera: Guarde plata mes a mes, así sea poquito"
+          <p>{title + "." || "Cargando consejo..." }</p>
+            <br></br>
+            <p>{ content || "Cargando consejo..." }</p>
           </p>
         </div>
         <div className={styles.imagen}>
-        <img src={cerdito} alt="Descripción de la imagen" /></div>
+          {photo ? (
+            <img src={photo} alt="Consejo visual" />
+          ) : (
+            <p>Cargando imagen...</p>
+          )}
+        </div>
       </div>
     </div>
   );

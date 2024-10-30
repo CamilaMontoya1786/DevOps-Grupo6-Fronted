@@ -37,7 +37,7 @@ function Income() {
         <form onSubmit={handleSubmit}>
           <input
             className={styles.input_income}
-            name=""
+            name="incomeDate"
             type="date"
             value={fecha}
             onChange={(e) => setFecha(e.target.value)}
@@ -46,7 +46,7 @@ function Income() {
 
           <input
             className={styles.input_income}
-            name=""
+            name="incomeAmount"
             placeholder="Monto"
             type="text" // Permitir texto para validar manualmente
             value={monto}
@@ -57,7 +57,7 @@ function Income() {
                 
           <select
             className={styles.select_income}
-            name=""
+            name="incomeMethodPaymentId"
             value={formaPago}
             onChange={(e) => setFormaPago(e.target.value)}
             required
@@ -70,7 +70,7 @@ function Income() {
 
           <select
             className={styles.select_income}
-            name=""
+            name="incomeCategoryId"
             value={categoria}
             onChange={(e) => setCategoria(e.target.value)}
             required
@@ -82,7 +82,7 @@ function Income() {
           </select>
           <input
             className={styles.input_incomeDescripcion}
-            name=""
+            name="incomeDescription"
             placeholder="Descripción"
             type="text"
             value={descripcion}

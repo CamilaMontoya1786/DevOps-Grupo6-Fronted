@@ -27,13 +27,13 @@ function App() {
 
 function MainRoutes() {
   const location = useLocation();
-  const hideNavbar = ["/register", "/login", "/restorepassword", "/userprofile", "/changePassword", "/expenses", "/income"].includes(location.pathname);
+  const hideNavbar = ["/","/register", "/login", "/restorepassword", "/userprofile", "/changePassword", "/expenses", "/income"].includes(location.pathname);
 
   return (
     <>
       {!hideNavbar && <Navbar />}
       <Routes>
-        
+      <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} /> 
         <Route path="/restorepassword" element={<Restorepassword />} />
