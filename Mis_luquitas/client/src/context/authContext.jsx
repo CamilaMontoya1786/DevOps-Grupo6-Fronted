@@ -21,9 +21,24 @@ export const AuthProvider = ({ children }) => {
   };
 
   const signin = async (userData) => {
-    const res = await loguinRequest(userData);
-    setUser(res.data);
-  };
+    try {
+        const res = await loguinRequest(userData);
+        
+        // Retornar el userToken directamente
+        if (res.message === 'Login exitoso') {
+            setUser(res); // Guarda el usuario en el estado
+            return { userToken: res.userToken }; // Retorna solo el userToken
+        } else {
+            throw new Error(res.message || 'Datos de usuario no válidos');
+        }
+    } catch (error) {
+        console.error("Error en signin:", error);
+        throw new Error(error.message || "Error en el inicio de sesión"); // Lanza un error si hay un problema
+    }
+};
+
+  
+  
   const updateUserProfile = async (userData) => {
     const res = await userProfileRequest(userData);
     setUser(res.data);
@@ -40,6 +55,11 @@ export const AuthProvider = ({ children }) => {
     const res = await helpRequest(userData);
     setUser(res.data);
   };
+  
+  const logout = () => {
+    localStorage.removeItem("user"); // Elimina el usuario del almacenamiento
+    setUser(null); // Limpia el contexto
+  };
 
   return (
     <AuthContext.Provider
@@ -49,7 +69,8 @@ export const AuthProvider = ({ children }) => {
         signin,
         updateUserProfile,
         updatePassword,
-        help
+        help,
+        logout
       }}
     >
       {children}
