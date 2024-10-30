@@ -37,10 +37,13 @@ function Login() {
   
 
   return (
+
     <div className={styles.login_page}>
       <div className={styles.header_Loguin}>
         <img src={LogoImage} alt="Descripción de la imagen" />
         <h1 className={styles.title_register}>Mis Luquitas</h1>
+
+   
       </div>
 
       <div className={styles.login_container}>

@@ -18,8 +18,10 @@ function UserProfile() {
   const { user1, logout } = useAuth();
   const [data, setData] = useState([]);
   const [userList, setUserList] = useState([]);
+
   const [errorMessage, setErrorMessage] = useState("");
   const [user, setUser] = useState();
+
   const [profileImage, setProfileImage] = useState(defaultProfileImage); // Inicia con la imagen predeterminada
   const fileInputRef = useRef(null); // Referencia al input de archivo
   const [showHelperMessage, setShowHelperMessage] = useState(false); 
@@ -104,7 +106,7 @@ function UserProfile() {
   };
 
   return (
-    <>
+
       <div className={profile["body-profile"]}>
         <button
           type="button"
@@ -274,7 +276,7 @@ function UserProfile() {
           </div>
         </form>
       </div>
-    </>
+
   );
 }
 

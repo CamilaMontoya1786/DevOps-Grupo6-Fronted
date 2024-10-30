@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react"; 
 import { useForm } from "react-hook-form"; 
 import { useAuth } from "../context/authContext"; 
@@ -56,7 +57,7 @@ function Register() {
   };
 
   return (
-    <>
+
       <div className={styles.register_page}>
         <div className={styles.header_register}>
           <img src={LogoImage} alt="Descripción de la imagen" />
@@ -166,13 +167,17 @@ function Register() {
                   {...register("idNumber", {
                     required: "Este campo es obligatorio",
                     pattern: {
-                      value: /^[0-9]{6,10}$/,
+
+                      value: /^\d{6,10}$/,
+
                       message: "El número de documento debe tener entre 6 y 10 dígitos",
                     },
                   })}
                   onBeforeInput={(event) => {
                     const char = event.data;
-                    if (!/^[0-9]$/.test(char)) {
+
+                    if (!/^\d$/.test(char)) {
+
                       event.preventDefault();
                     }
                   }}
@@ -199,13 +204,17 @@ function Register() {
                   {...register("phone", {
                     required: "Este campo es obligatorio",
                     pattern: {
-                      value: /^[0-9]{7,15}$/,
+
+                      value: /^\d{7,15}$/,
+
                       message: "El número de teléfono debe tener entre 7 y 15 dígitos",
                     },
                   })}
                   onBeforeInput={(event) => {
                     const char = event.data;
-                    if (!/^[0-9]$/.test(char)) {
+
+                    if (!/^\d$/.test(char)) {
+
                       event.preventDefault();
                     }
                   }}
@@ -214,6 +223,7 @@ function Register() {
                   <span className={styles.error_message}>{errors.phone.message}</span>
                 )}
               </div>
+
             </div>
             <hr />
             <div className={styles.button_container}>
@@ -225,9 +235,10 @@ function Register() {
             </div>
           </form>
         </div>
-      </div>
-    </>
+      </div>  
+
   );
 }
 
 export default Register; 
+
