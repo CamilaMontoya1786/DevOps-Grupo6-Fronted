@@ -3,10 +3,10 @@
 .todo {
   display: flex;
   flex-direction: column; /* Cambiar a columna */
-  width: 75%;
+  width: 79%;
+  right: 0%;
   height: 100hv;
   background-color: rgb(255, 255, 255);
-  right: 0%;
   position: absolute;
   align-items: center; /* Centra los hijos horizontalmente */
   gap: 30px;
@@ -16,18 +16,14 @@
   font-size: 60px;
   font-family: "Abril Fatface", serif;
   font-weight: 400;
-  margin-bottom: 10px;
-  margin-right: 50px;
-  width: 100%;
   margin-top: 5%;
-  
+  width: 100%;
+  right: 0%;
 }
 
 .content {
   display: flex;
   width: 80%;
-  height: 600px;
-
 }
 
 .advice {
@@ -43,6 +39,7 @@
   height: 430px;
   text-align: center; /* Centra el texto horizontalmente */
 }
+
 .consejo {
   font-size: 30px;
 }

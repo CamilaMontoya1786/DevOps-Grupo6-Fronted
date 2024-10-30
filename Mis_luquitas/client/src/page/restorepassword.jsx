@@ -6,11 +6,8 @@ function Restorepassword() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  // Efecto para gestionar la clase del body para estilos
   useEffect(() => {
-    document.body.classList.add("special-body-restorepassword"); // Agrega clase especial al montarse
-
-    // Función de limpieza para eliminar la clase al desmontarse
+    document.body.classList.add("special-body-restorepassword");
     return () => {
       document.body.classList.remove("special-body-restorepassword");
     };
@@ -19,7 +16,6 @@ function Restorepassword() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Simulación de una llamada API
     if (email) {
       setMessage("Se ha enviado un enlace de recuperación a tu correo.");
       setEmail(""); // Limpiar el campo de email
@@ -31,35 +27,35 @@ function Restorepassword() {
   return (
     <div className={styles.restorepassword_page}>
       <div className={styles.header}>
-        <img className={styles.LogoImage} src={LogoImage} alt="Descripción de la imagen" />
+        <img className={styles.LogoImage} src={LogoImage} alt="Logo" />
         <h2 className={styles.h2}>Mis Luquitas</h2>
       </div>
 
       <form className={styles.container} onSubmit={handleSubmit}>
-        <div >
+        <div>
           <h1 className={styles.titulo}>Recuperar contraseña</h1>
-          <hr></hr>
+          <hr />
           <p className={styles.parrafo}>
-            Ingresa tu correo electrónico para recibir un enlace de
-            recuperación.{" "}
+            Ingresa tu correo electrónico para recibir un enlace de recuperación.
           </p>
-          <input className={styles.input}
+          <input
+            className={styles.input}
             type="email"
             id="email"
             placeholder="Correo Electronico"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            style={{ zIndex: 10, pointerEvents: "auto" }} // Para asegurar que el input sea editable
           />
-          <hr></hr>
+          <hr />
         </div>
-
 
         <div className={styles.button}>
           <button className={styles.button_1} type="submit">
             Enviar
           </button>
-          <button className={styles.button_1}  type="submit">
+          <button className={styles.button_1} type="button" onClick={() => setMessage("Proceso cancelado")}>
             Cancelar
           </button>
         </div>

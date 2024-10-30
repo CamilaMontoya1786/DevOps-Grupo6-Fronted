@@ -12,32 +12,29 @@ import { useAuth } from "../context/authContext";
 import { set } from "react-hook-form";
 import axios from "axios";
 
- function  Navbar() {
+function Navbar() {
   //const { signin,user} = useAuth();
   const { user, logout } = useAuth();
-  const [userLocal,setUserLocal] =useState();
+  const [userLocal, setUserLocal] = useState();
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const token = localStorage.getItem ("token");
+        const token = localStorage.getItem("token");
         const response = await axios.get(
-          "http://localhost:3000/login/getUserProfile/"+ token
+          "http://localhost:3000/login/getUserProfile/" + token
         );
         setUserLocal(response.data);
       } catch (error) {
         console.error("Error al obtener los países:", error);
       }
     };
-    
+
     fetchUserData();
-  },[]);
+  }, []);
 
-  
+  console.log("user:" + JSON.stringify(userLocal));
 
-  
-  console.log('user:'+JSON.stringify( userLocal));
-  
-    return (
+  return (
     <div className={styles.left}>
       <nav className={styles.navbar}>
         <div className={styles.header}>
@@ -46,41 +43,39 @@ import axios from "axios";
         </div>
         <hr className={styles.linea} />
         <ul className={styles.Link}>
-        
           <li>
             <Link to="/home">Inicio</Link>
-
             <img src={home} alt="img" />
           </li>
           <li>
             <Link to="/movimientos">Reportes</Link>
-            <img src={reporte} alt="img"/>
+            <img src={reporte} alt="img" />
           </li>
           <li>
             <Link to="/movements">Movimientos</Link>
-            <img src={movimiento} alt="img"/>
+            <img src={movimiento} alt="img" />
           </li>
           <li>
             <Link to="/loguin">Historial de Movimientos</Link>
-            <img src={lupa} alt="img"/>
+            <img src={lupa} alt="img" />
           </li>
           <li>
             <Link to="/help">Ayuda</Link>
-            <img src={ayuda} alt="img"/>
-
+            <img src={ayuda} alt="img" />
           </li>
 
           <li>
-
             <Link to="/login">Cerrar Sesión</Link>
             <img src={cerrarsesion} />
           </li>
         </ul>
         <div className={styles.User}>
-  <Link className={styles.UserName} to="/userprofile">
-    {userLocal ?  userLocal?.userName +' '+ userLocal.userLastName  : 'pepito perez'} 
-  </Link>
-</div>
+          <Link className={styles.UserName} to="/userprofile">
+            {userLocal
+              ? userLocal?.userName + " " + userLocal.userLastName
+              : "pepito perez"}
+          </Link>
+        </div>
       </nav>
     </div>
   );
