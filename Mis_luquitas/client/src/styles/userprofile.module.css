@@ -27,23 +27,19 @@
 
 }
 
-/* Imagen de perfil centrada */
-.profile-image-label {
-  position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  cursor: pointer;
-  z-index: 2;
-  margin-top: 80px;
-}
-
 .profile-image-preview {
   width: 130px;
   height: 130px;
   object-fit: cover;
   border-radius: 50%;
   border: 3px solid #000000;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 2;
+  margin-top: 8zpx;
 }
 
 /* Botones de acción (back, logout y actualizar perfil) */

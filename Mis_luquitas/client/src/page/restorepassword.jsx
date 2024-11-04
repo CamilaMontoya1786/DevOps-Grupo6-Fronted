@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from '../styles/restorePassword.module.css';
 import LogoImage from "../imagine/logo.png";
 
+
 function Restorepassword() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
