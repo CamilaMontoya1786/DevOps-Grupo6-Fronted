@@ -125,7 +125,9 @@ function Income() {
         <form onSubmit={handleSubmit}>
           <input
             className={styles.input_income}
+
             name="fecha"
+
             type="date"
             value={formData.fecha}
             onChange={handleChange}
@@ -134,7 +136,9 @@ function Income() {
 
           <input
             className={styles.input_income}
+
             name="monto"
+
             placeholder="Monto"
             type="text"
             value={formData.monto}
@@ -144,9 +148,11 @@ function Income() {
 
           <select
             className={styles.select_income}
+
             name="formaPago"
             value={formData.formaPago}
             onChange={handleChange}
+
             required
           >
             <option value="">Forma de Pago</option>
@@ -162,9 +168,11 @@ function Income() {
 
           <select
             className={styles.select_income}
+
             name="categoria"
             value={formData.categoria}
             onChange={handleChange}
+
             required
           >
             <option value="">Categoría</option>
@@ -180,7 +188,9 @@ function Income() {
 
           <input
             className={styles.input_incomeDescripcion}
+
             name="descripcion"
+
             placeholder="Descripción"
             type="text"
             value={formData.descripcion}
