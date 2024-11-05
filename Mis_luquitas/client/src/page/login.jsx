@@ -98,12 +98,14 @@ function Login() {
           )}{" "}
           {/* Mostrar mensaje de error */}
           <div className={styles.restorePassword}>
-          <Link to="/restorepassword" className={styles.link}>
-            ¿Olvidaste tu contraseña?
-          </Link>{" "} {/* Enlace a restaurar contraseña */}
-          <Link to="/register" className={styles.link}>
-            Crear cuenta nueva
-          </Link>{" "} {/* Enlace a restaurar contraseña */}
+            <Link to="/restorepassword" className={styles.link}>
+              ¿Olvidaste tu contraseña?
+            </Link>{" "}
+            {/* Enlace a restaurar contraseña */}
+            <Link to="/register" className={styles.link}>
+              Crear cuenta nueva
+            </Link>{" "}
+            {/* Enlace a restaurar contraseña */}
           </div>
         </form>
       </div>
@@ -116,6 +118,7 @@ const fetchUserData = async () => {
     const response = await axios.get(
       "http://localhost:3000/login/getUserProfile/" + token
     );
+    console.log(token);
     localStorage.setItem("user", response.data);
   } catch (error) {
     console.error("Error al obtener el token:", error);

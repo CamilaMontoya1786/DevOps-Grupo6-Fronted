@@ -1,62 +1,118 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios"; // Importar axios
 import styles from "../styles/expenses.module.css";
+import Swal from 'sweetalert2'; // Importa SweetAlert2
 
 function Expenses() {
-  const [fecha, setFecha] = useState("");
-  const [monto, setMonto] = useState("");
-  const [formaPago, setFormaPago] = useState("");
-  const [categoria, setCategoria] = useState("");
-  const [descripcion, setDescripcion] = useState("");
+  const [formData, setFormData] = useState({
+    fecha: "",
+    monto: "",
+    formaPago: "",
+    categoria: "",
+    descripcion: "",
+  });
+  const [userList, setUserList] = useState([]);
+  const [categoryList, setCategoryList] = useState([]);
+  const [loading, setLoading] = useState(false); // Para manejar el estado de carga
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:3000/expenseMethodPayment/expenseMethodPayments"
+        );
+        setUserList(response.data);
+      } catch (error) {
+        console.error("Error al obtener los métodos de pago:", error);
+      }
+    };
+    fetchUserData();
+  }, []);
+
+  useEffect(() => {
+    const fetchCategoryData = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:3000/expenseCategory/expenseCategories"
+        );
+        setCategoryList(response.data);
+      } catch (error) {
+        console.error("Error al obtener las categorías:", error);
+      }
+    };
+    fetchCategoryData();
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true); // Activar el estado de carga
 
     const expenseData = {
-      fecha,
-      monto,
-      formaPago,
-      categoria,
-      descripcion,
+      expenseDate: formData.fecha,
+      expenseAmount: parseFloat(formData.monto),
+      expenseMethodPaymentId: formData.formaPago,
+      expenseCategoryId: formData.categoria,
+      expenseDescription: formData.descripcion,
     };
 
     try {
-      const response = await fetch("http://localhost:3000/api/expenses", {
-        method: "POST",
+      const token = localStorage.getItem("token");
+
+      const config = {
         headers: {
-          "Content-Type": "application/json",
+          authorization: `${token}`,
         },
-        body: JSON.stringify(expenseData),
-      });
+      };
 
-      if (!response.ok) {
-        throw new Error("Error en la solicitud");
+      const response = await axios.post(
+        "http://localhost:3000/expense/createExpense",
+        expenseData,
+        config
+      );
+
+      if (response.status === 201) {
+        alert("Gasto guardado exitosamente.");
+        setFormData({
+          fecha: "",
+          monto: "",
+          formaPago: "",
+          categoria: "",
+          descripcion: "",
+        });
       }
-
-
-     // const result = await response.json();
-
-      alert("Gasto guardado exitosamente.");
-
-      // Reiniciar el formulario
-      setFecha("");
-      setMonto("");
-      setFormaPago("");
-      setCategoria("");
-      setDescripcion("");
+      const successMessage =
+        response.data.message || "Gasto guardado exitosamente.";
+      Swal.fire({
+        icon: "success",
+        title: "Éxito",
+        text: successMessage,
+      }); // Muestra el mensaje de éxito
     } catch (error) {
-      console.error("Error:", error);
-      alert("Error al guardar el gasto.");
+      console.error("Error al enviar los datos:", error);
+      // Capturamos el mensaje de error
+      const errorMessage =
+        error.response?.data?.error ||
+        "Hubo un problema al guardar el gasto. Inténtalo de nuevo.";
+
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: errorMessage,
+      }); // Muestra el mensaje de error
+    } finally {
+      setLoading(false); // Desactivar el estado de carga
     }
   };
 
-  const handleMontoChange = (e) => {
-    const value = e.target.value;
-
-    // Permitir solo números y punto decimal
-    const regex = /^\d*\.?\d{0,2}$/;
-
-    if (value === "" || regex.test(value)) {
-      setMonto(value);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    if (name === "monto") {
+      const regex = /^\d*\.?\d{0,2}$/;
+      if (value === "" || regex.test(value)) {
+        setFormData({ ...formData, [name]: value });
+      }
+    } else {
+      setFormData({ ...formData, [name]: value });
     }
   };
 
@@ -67,63 +123,74 @@ function Expenses() {
         <form onSubmit={handleSubmit}>
           <input
             className={styles.input_expenses}
-            name=""
+            name="fecha"
             type="date"
-            id="fecha"
-            value={fecha}
-            onChange={(e) => setFecha(e.target.value)}
+            value={formData.fecha}
+            onChange={handleChange}
             required
           />
 
           <input
             className={styles.input_expenses}
-            name=""
+            name="monto"
             placeholder="Monto"
-            type="text" // Permitir texto para validar manualmente
-            id="monto"
-            value={monto}
-            onChange={handleMontoChange}
+            type="text"
+            value={formData.monto}
+            onChange={handleChange}
             required
           />
 
           <select
             className={styles.select_expenses}
-            name=""
-            value={formaPago}
-            onChange={(e) => setFormaPago(e.target.value)}
+            name="formaPago"
+            value={formData.formaPago}
+            onChange={handleChange}
             required
           >
             <option value="">Forma de Pago</option>
-            <option value="efectivo">Efectivo</option>
-            <option value="tarjeta">Tarjeta</option>
-            <option value="transferencia">Transferencia</option>
+            {userList.map((expenseMethodPayment) => (
+              <option
+                key={expenseMethodPayment.expenseMethodPaymentId}
+                value={expenseMethodPayment.expenseMethodPaymentId}
+              >
+                {expenseMethodPayment.expenseMethodPaymentName}
+              </option>
+            ))}
           </select>
 
           <select
             className={styles.select_expenses}
-            name=""
-            value={categoria}
-            onChange={(e) => setCategoria(e.target.value)}
+            name="categoria"
+            value={formData.categoria}
+            onChange={handleChange}
             required
           >
             <option value="">Categoría</option>
-            <option value="comida">Comida</option>
-            <option value="transporte">Transporte</option>
-            <option value="entretenimiento">Entretenimiento</option>
+            {categoryList.map((expenseCategory) => (
+              <option
+                key={expenseCategory.expenseCategoryId}
+                value={expenseCategory.expenseCategoryId}
+              >
+                {expenseCategory.categoryName}
+              </option>
+            ))}
           </select>
 
           <input
             className={styles.input_expensesDescripcion}
-            name=""
+            name="descripcion"
             placeholder="Descripción"
             type="text"
-            value={descripcion}
-            onChange={(e) => setDescripcion(e.target.value)}
+            value={formData.descripcion}
+            onChange={handleChange}
             required
           />
-
-          <button className={styles.button_expenses} type="submit">
-            Guardar
+          <button
+            className={styles.button_expenses}
+            type="submit"
+            disabled={loading}
+          >
+            {loading ? "Guardando..." : "Guardar"}
           </button>
         </form>
       </div>
