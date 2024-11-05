@@ -14,6 +14,19 @@ export const loguinRequest = async (user) => {
   }
 };
 
+export const getMovimientos = async () => {
+  const response = await axios.get(API_URL);
+  return response.data;
+};
 
-//export const userProfileRequest = user => axios.post('/login/login',user) ???
+export const updateMovimiento = async (movimiento) => {
+  const response = await axios.put(`${API_URL}/${movimiento.id}`, movimiento);
+  return response.data;
+};
+
+export const deleteMovimiento = async (id) => {
+  await axios.delete(`${API_URL}/${id}`);
+};
+
+
 

@@ -140,15 +140,7 @@ function UserProfile() {
             className={profile["profile-image-label"]}
           >
             {/* Muestra la imagen predeterminada o la nueva cargada */}
-            <img
-              src={profileImage}
-              alt="Imagen de perfil"
-              className={profile["profile-image-preview"]}
-              onClick={handleImageClick} // Maneja el clic en la imagen
-              style={{ cursor: "pointer" }} // Añade un estilo de cursor para indicar que es clicable
-            />
-          </label>
-          <input
+            <input
             type="file"
             id="profileImage"
             accept="image/*"
@@ -157,6 +149,14 @@ function UserProfile() {
             ref={fileInputRef} // Referencia al input
             style={{ display: "none" }} // Oculta el input
           />
+          </label>
+          <img
+              src={profileImage}
+              alt="Imagen de perfil"
+              className={profile["profile-image-preview"]}
+              onClick={handleImageClick} // Maneja el clic en la imagen
+              style={{ cursor: "pointer" }} // Añade un estilo de cursor para indicar que es clicable
+            />
         </div>
         <form onSubmit={handleSubmit(onSubmit)} className={profile.container}>
           <h2>Perfil de Usuario</h2>

@@ -4,7 +4,7 @@ import { useAuth } from "../context/authContext";
 import LogoImage from "../imagine/logo.png";
 import styles from "../styles/register.module.css";
 import axios from "axios";
-import Swal from "sweetalert2";
+//import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom"; // Importa useNavigate
 
 function Register() {
