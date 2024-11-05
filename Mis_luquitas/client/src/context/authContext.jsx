@@ -38,7 +38,6 @@ export const AuthProvider = ({ children }) => {
 };
 
   
-  
   const updateUserProfile = async (userData) => {
     const res = await userProfileRequest(userData);
     setUser(res.data);
