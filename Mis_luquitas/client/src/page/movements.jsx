@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Expenses from "./Expenses"; // Asegúrate de tener la ruta correcta
-import Income from "./Income"; // Importa el componente Income
+import Income from "./income"; // Importa el componente Income
 import styles from "../styles/movements.module.css";
 import Agregar from "../imagine/Agregar.png";
 

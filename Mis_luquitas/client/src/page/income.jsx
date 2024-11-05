@@ -1,32 +1,120 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import styles from "../styles/income.module.css";
+import Swal from 'sweetalert2'; // Importa SweetAlert2
 
 function Income() {
-  const [fecha, setFecha] = useState("");
-  const [monto, setMonto] = useState("");
-  const [formaPago, setFormaPago] = useState("");
-  const [categoria, setCategoria] = useState("");
-  const [descripcion, setDescripcion] = useState("");
+  const [formData, setFormData] = useState({
+    fecha: "",
+    monto: "",
+    formaPago: "",
+    categoria: "",
+    descripcion: "",
+  });
+  const [userList, setUserList] = useState([]);
+  const [categoryList, setCategoryList] = useState([]);
+  const [loading, setLoading] = useState(false); // Para manejar el estado de carga
 
-  const handleSubmit = (event) => {
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:3000/incomeMethodPayment/incomeMethodPayments"
+        );
+        setUserList(response.data);
+      } catch (error) {
+        console.error("Error al obtener los datos:", error);
+      }
+    };
+    fetchUserData();
+  }, []);
+
+  useEffect(() => {
+    const fetchCategoryData = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:3000/incomeCategory/incomeCategories"
+        );
+        setCategoryList(response.data);
+      } catch (error) {
+        console.error("Error al obtener las categorías:", error);
+      }
+    };
+    fetchCategoryData();
+  }, []);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    alert("Gasto guardado exitosamente.");
-    // Reiniciar el formulario
-    setFecha("");
-    setMonto("");
-    setFormaPago("");
-    setCategoria("");
-    setDescripcion("");
+    setLoading(true); // Activar el estado de carga
+
+    try {
+      const token = localStorage.getItem("token");
+
+      //const token = localStorage.getItem('token');
+      const config = {
+        headers: {
+          authorization: `${token}`,
+        },
+      };
+
+      const ingresoData = {
+        incomeDate: formData.fecha,
+        incomeAmount: parseFloat(formData.monto),
+        incomeMethodPaymentId: formData.formaPago,
+        incomeCategoryId: formData.categoria,
+        incomeDescription: formData.descripcion,
+      };
+      console.log(ingresoData);
+
+      const response = await axios.post(
+        "http://localhost:3000/income/createIncome",
+        ingresoData,
+        config
+      );
+
+      if (response.status === 201) {
+        alert("Ingreso guardado exitosamente.");
+        setFormData({
+          fecha: "",
+          monto: "",
+          formaPago: "",
+          categoria: "",
+          descripcion: "",
+        });
+      }
+      const successMessage = response.data.message || "Ingreso guardado exitosamente.";
+      Swal.fire({
+        icon: 'success',
+        title: 'Éxito',
+        text: successMessage,
+      }); // Muestra el mensaje de éxito
+
+    } catch (error) {
+      console.error("Error al enviar los datos:", error);
+      // Capturamos el mensaje de error
+      const errorMessage = error.response?.data?.error || "Hubo un problema al guardar el ingreso. Inténtalo de nuevo.";
+      
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: errorMessage,
+      }); // Muestra el mensaje de error
+    }finally {
+      setLoading(false); // Desactivar el estado de carga
+    }
+
+    
   };
 
-  const handleMontoChange = (e) => {
-    const value = e.target.value;
-
-    // Permitir solo números y punto decimal
-    const regex = /^\d*\.?\d{0,2}$/;
-
-    if (value === "" || regex.test(value)) {
-      setMonto(value);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    if (name === "monto") {
+      const regex = /^\d*\.?\d{0,2}$/;
+      if (value === "" || regex.test(value)) {
+        setFormData({ ...formData, [name]: value });
+      }
+    } else {
+      setFormData({ ...formData, [name]: value });
     }
   };
 
@@ -37,60 +125,84 @@ function Income() {
         <form onSubmit={handleSubmit}>
           <input
             className={styles.input_income}
-            name="incomeDate"
+
+            name="fecha"
+
             type="date"
-            value={fecha}
-            onChange={(e) => setFecha(e.target.value)}
+            value={formData.fecha}
+            onChange={handleChange}
             required
           />
 
           <input
             className={styles.input_income}
-            name="incomeAmount"
+
+            name="monto"
+
             placeholder="Monto"
-            type="text" // Permitir texto para validar manualmente
-            value={monto}
-            onChange={handleMontoChange}
+            type="text"
+            value={formData.monto}
+            onChange={handleChange}
             required
           />
 
-                
           <select
             className={styles.select_income}
-            name="incomeMethodPaymentId"
-            value={formaPago}
-            onChange={(e) => setFormaPago(e.target.value)}
+
+            name="formaPago"
+            value={formData.formaPago}
+            onChange={handleChange}
+
             required
           >
             <option value="">Forma de Pago</option>
-            <option value="efectivo">Efectivo</option>
-            <option value="tarjeta">Tarjeta</option>
-            <option value="transferencia">Transferencia</option>
+            {userList.map((incomeMethodPayment) => (
+              <option
+                key={incomeMethodPayment.incomeMethodPaymentId}
+                value={incomeMethodPayment.incomeMethodPaymentId}
+              >
+                {incomeMethodPayment.incomeMethodPaymentName}
+              </option>
+            ))}
           </select>
 
           <select
             className={styles.select_income}
-            name="incomeCategoryId"
-            value={categoria}
-            onChange={(e) => setCategoria(e.target.value)}
+
+            name="categoria"
+            value={formData.categoria}
+            onChange={handleChange}
+
             required
           >
             <option value="">Categoría</option>
-            <option value="comida">Comida</option>
-            <option value="transporte">Transporte</option>
-            <option value="entretenimiento">Entretenimiento</option>
+            {categoryList.map((category) => (
+              <option
+                key={category.incomeCategoryId}
+                value={category.incomeCategoryId}
+              >
+                {category.incomeName}
+              </option>
+            ))}
           </select>
+
           <input
             className={styles.input_incomeDescripcion}
-            name="incomeDescription"
+
+            name="descripcion"
+
             placeholder="Descripción"
             type="text"
-            value={descripcion}
-            onChange={(e) => setDescripcion(e.target.value)}
+            value={formData.descripcion}
+            onChange={handleChange}
             required
           />
-          <button className={styles.button_income} type="submit">
-            Guardar
+          <button
+            className={styles.button_income}
+            type="submit"
+            disabled={loading}
+          >
+            {loading ? "Guardando..." : "Guardar"}
           </button>
         </form>
       </div>
