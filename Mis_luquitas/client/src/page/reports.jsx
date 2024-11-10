@@ -2,8 +2,8 @@ import { useState } from 'react';
 import axios from 'axios';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, LineElement, PointElement, Title, Tooltip, Legend } from 'chart.js';
 import { Bar, Line } from 'react-chartjs-2';
-import ChartDataLabels from 'chartjs-plugin-datalabels'; // Importa el plugin
-import '../styles/reports.css';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+import styles from '../styles/Reports.module.css';
 import PropTypes from 'prop-types';
 
 // Registrar los elementos necesarios de Chart.js
@@ -16,17 +16,15 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend,
-  ChartDataLabels // Registrar el plugin de etiquetas
+  ChartDataLabels
 );
 
 const Reports = () => {
-  // Estados para las fechas y los datos obtenidos
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [financialData, setFinancialData] = useState([]);
   const [error, setError] = useState(null);
 
-  // Asignamos el ID de usuario de forma fija (puedes reemplazarlo por lo que necesites)
   const userId = 1;
 
   const fetchFinancialData = async () => {
@@ -51,7 +49,6 @@ const Reports = () => {
     }
   };
 
-  // Componente para el gráfico de barras
   const BarChart = ({ data }) => {
     const incomeData = data.filter(item => item.type === 'income');
     const expenseData = data.filter(item => item.type === 'expense');
@@ -69,9 +66,7 @@ const Reports = () => {
             color: 'black',
             align: 'center',
             anchor: 'center',
-            font: {
-              weight: 'normal',
-            },
+            font: { weight: 'normal' },
           },
         },
         {
@@ -84,9 +79,7 @@ const Reports = () => {
             color: 'black',
             align: 'center',
             anchor: 'center',
-            font: {
-              weight: 'normal',
-            },
+            font: { weight: 'normal' },
           },
         },
       ],
@@ -95,29 +88,18 @@ const Reports = () => {
     const chartOptions = {
       responsive: true,
       maintainAspectRatio: false,
-      plugins: {
-        datalabels: {
-          display: true,
-        },
-      },
-      scales: {
-        x: {
-          ticks: {
-            display: false, // Esto elimina las fechas (ticks) en el eje X
-          },
-        },
-      },
+      plugins: { datalabels: { display: true } },
+      scales: { x: { ticks: { display: false } } },
     };
 
     return (
-      <div className="chart-container">
+      <div className={styles.chartContainer}>
         <h3>Gráfico de Barras</h3>
         <Bar data={chartData} options={chartOptions} />
       </div>
     );
   };
 
-  // Componente para la gráfica de tendencia (línea)
   const LineChart = ({ data }) => {
     const incomeData = data.filter(item => item.type === 'income');
     const expenseData = data.filter(item => item.type === 'expense');
@@ -145,22 +127,12 @@ const Reports = () => {
     const chartOptions = {
       responsive: true,
       maintainAspectRatio: false,
-      plugins: {
-        datalabels: {
-          display: true,
-        },
-      },
-      scales: {
-        x: {
-          ticks: {
-            display: false, // Esto elimina las fechas (ticks) en el eje X
-          },
-        },
-      },
+      plugins: { datalabels: { display: true } },
+      scales: { x: { ticks: { display: false } } },
     };
 
     return (
-      <div className="chart-container">
+      <div className={styles.chartContainer}>
         <h3>Tendencia de Ingresos y Gastos</h3>
         <Line data={chartData} options={chartOptions} />
       </div>
@@ -184,33 +156,22 @@ const Reports = () => {
   };
 
   return (
-    <div className="container">
+    <div className={styles.container}>
       <h2>Reporte Financiero</h2>
-      
-      <div className="date-picker-container">
+      <div className={styles.datePickerContainer}>
         <div>
           <label>Desde</label>
-          <input
-            type="date"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
-          />
+          <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
         </div>
         <div>
           <label>Hasta</label>
-          <input
-            type="date"
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
-          />
+          <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
         </div>
         <button onClick={fetchFinancialData}>Buscar Datos</button>
       </div>
-
-      {error && <div style={{ color: 'red' }}>{error}</div>}
-
+      {error && <div className={styles.error}>{error}</div>}
       {financialData.length > 0 && (
-        <div className="charts-wrapper">
+        <div className={styles.chartsWrapper}>
           <BarChart data={financialData} />
           <LineChart data={financialData} />
         </div>
