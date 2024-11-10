@@ -137,13 +137,11 @@ const MovimientoItem = ({ movimiento, setMovimientos }) => {
           />
         ) : editedMovimiento.descripcion}
       </td>
-
       <td className={styles.acciones}>
         <button className={styles.editButton} onClick={isEditing ? handleSave : handleEditToggle}>
           {isEditing ? 'Guardar' : <img src={editIcon} alt="Edit" className={styles.icon} />}
         </button>
       </td>
-
       <td className={styles.acciones}>
         <button className={styles.deleteButton} onClick={handleDelete}>
           <img src={deleteIcon} alt="Delete" className={styles.icon} />

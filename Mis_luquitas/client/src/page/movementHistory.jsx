@@ -119,6 +119,7 @@ const MovementHistory = () => {
                 <td colSpan="7">No se encontraron movimientos.</td>
               </tr>
             )}
+
           </tbody>
         </table>
       </div>

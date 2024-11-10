@@ -16,7 +16,6 @@ import Income from "./page/Income";
 import MovementHistory from "./page/movementHistory";
 
 
-
 function App() {
   return (
     <AuthProvider>
