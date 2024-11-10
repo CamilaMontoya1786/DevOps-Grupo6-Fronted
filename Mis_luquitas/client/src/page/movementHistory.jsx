@@ -1,42 +1,61 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import MovimientoItem from './movementItem';
 import styles from '../styles/movementHistory.module.css';
-import SearchIcon from '../imagine/lupa.png'; // Asegúrate de que la ruta sea correcta
+import SearchIcon from '../imagine/lupa.png';
+import { fetchMovimientosConFiltro } from '../api/auth';  // Función para obtener los movimientos desde el backend
 
 const MovementHistory = () => {
-  const [movimientos, setMovimientos] = useState([]);
-  const [search, setSearch] = useState('');
-  const [dateFilter, setDateFilter] = useState('');
+  const [movimientos, setMovimientos] = useState([]);  // Estado para almacenar los movimientos
+  const [allMovimientos, setAllMovimientos] = useState([]);  // Estado para almacenar todos los movimientos
+  const [search, setSearch] = useState('');  // Estado para búsqueda
+  const [dateFilter, setDateFilter] = useState('');  // Estado para el filtro por fecha
 
-  /*// Datos de prueba
+
+  /*// Datos quemados para prueba
   const sampleData = [
-    { id: 1, fecha: '2024-01-15', monto: 150, categoria: 'Alimentos', formaPago: 'Efectivo', descripcion: 'Compra en el supermercado' },
-    { id: 2, fecha: '2024-01-20', monto: -75, categoria: 'Entretenimiento', formaPago: 'Tarjeta', descripcion: 'Cine' },
-    { id: 3, fecha: '2024-01-22', monto: 200, categoria: 'Salario', formaPago: 'Transferencia', descripcion: 'Pago de salario' },
-    { id: 4, fecha: '2024-01-25', monto: -50, categoria: 'Transporte', formaPago: 'Efectivo', descripcion: 'Taxi' },
-    { id: 5, fecha: '2024-01-30', monto: -30, categoria: 'Alimentos', formaPago: 'Tarjeta', descripcion: 'Comida rápida' },
+    { id: 1, fecha: '2024-01-15', monto: 150, categoria: 'Alimentos', formaPago: 'Efectivo', descripcion: 'Compra en el supermercado', type: 'income' },
+    { id: 2, fecha: '2024-01-20', monto: 75, categoria: 'Entretenimiento', formaPago: 'Tarjeta', descripcion: 'Cine', type: 'expense' },
+    { id: 3, fecha: '2024-01-22', monto: 200, categoria: 'Salario', formaPago: 'Transferencia', descripcion: 'Pago de salario', type: 'income' },
+    { id: 4, fecha: '2024-01-25', monto: 50, categoria: 'Transporte', formaPago: 'Efectivo', descripcion: 'Taxi', type: 'expense' },
+    { id: 5, fecha: '2024-01-30', monto: 30, categoria: 'Alimentos', formaPago: 'Tarjeta', descripcion: 'Comida rápida', type: 'expense' },
   ];
 
-  // Cargar los datos de prueba al iniciar el componente
+  // Simulamos la llamada al backend y asignamos los datos "quemados"
   useEffect(() => {
-    setMovimientos(sampleData);
-  }, []);*/
+    // En lugar de la llamada al backend, usamos los datos "quemados"
+    setAllMovimientos(sampleData);  // Guardamos todos los movimientos
+    setMovimientos(sampleData);  // Inicializamos la tabla con todos los movimientos
+  }, []);  // Se ejecuta solo una vez al cargar el componente*/
+
+
+
+  // Llamada al backend para obtener todos los movimientos
   useEffect(() => {
-    const fetchMovimientos = async () => {
-      const data = await getMovimientos();
-      setMovimientos(data);
+    const fetchData = async () => {
+      try {
+        const allData = await fetchMovimientosConFiltro();  // Llamada para obtener todos los movimientos
+        setAllMovimientos(allData);  // Guardamos todos los movimientos
+        setMovimientos(allData);  // Inicializamos la tabla con todos los movimientos
+      } catch (error) {
+        console.error("Error al obtener los movimientos:", error);
+      }
     };
-    fetchMovimientos();
-  }, []);
+    fetchData();
+  }, []);  // Se ejecuta solo una vez al cargar el componente
 
-
-  const filteredMovimientos = movimientos.filter(movimiento => 
-    (movimiento.descripcion.toLowerCase().includes(search.toLowerCase()) || 
-     movimiento.categoria.toLowerCase().includes(search.toLowerCase()) || 
-     movimiento.formaPago.toLowerCase().includes(search.toLowerCase()) ||
-     movimiento.fecha.includes(search)) &&
-    (dateFilter === '' || movimiento.fecha === dateFilter)
-  );
+  // Filtrado local de los movimientos según la búsqueda y el filtro de fecha
+  useEffect(() => {
+    const filteredData = allMovimientos.filter(movimiento => 
+      // Filtrado por búsqueda
+      (movimiento.descripcion.toLowerCase().includes(search.toLowerCase()) || 
+       movimiento.categoria.toLowerCase().includes(search.toLowerCase()) || 
+       movimiento.formaPago.toLowerCase().includes(search.toLowerCase()) ||
+       movimiento.fecha.includes(search)) &&
+      // Filtrado por fecha
+      (dateFilter === '' || movimiento.fecha === dateFilter)
+    );
+    setMovimientos(filteredData);  // Actualiza los movimientos con los filtrados
+  }, [search, dateFilter, allMovimientos]);  // Se ejecuta cuando search o dateFilter cambian
 
   return (
     <div className={styles.historialContainer}>
@@ -53,7 +72,7 @@ const MovementHistory = () => {
             placeholder="Buscar" 
             className={styles.searchInput} 
             value={search} 
-            onChange={(e) => setSearch(e.target.value)} 
+            onChange={(e) => setSearch(e.target.value)}  // Actualiza el estado de búsqueda
           />
           <img src={SearchIcon} alt="Buscar" className={styles.searchIcon} />
         </div>
@@ -63,13 +82,12 @@ const MovementHistory = () => {
           type="date" 
           className={styles.dateInput} 
           value={dateFilter} 
-          onChange={(e) => setDateFilter(e.target.value)} 
+          onChange={(e) => setDateFilter(e.target.value)}  // Actualiza el estado de la fecha
         />
       </div>
 
       {/* Contenedor de la tabla y texto informativo */}
       <div className={styles.tableContainer}>
-        {/* Texto informativo */}
         <p className={styles.infoText1}>
           Aquí encontrarás el historial de tus ingresos y gastos. Puedes gestionarlos para editarlos o eliminarlos.
         </p>
@@ -88,13 +106,20 @@ const MovementHistory = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredMovimientos.map(movimiento => (
-              <MovimientoItem 
-                key={movimiento.id} 
-                movimiento={movimiento} 
-                setMovimientos={setMovimientos} 
-              />
-            ))}
+            {movimientos.length > 0 ? (
+              movimientos.map(movimiento => (
+                <MovimientoItem 
+                  key={movimiento.id} 
+                  movimiento={movimiento} 
+                  setMovimientos={setMovimientos} 
+                />
+              ))
+            ) : (
+              <tr>
+                <td colSpan="7">No se encontraron movimientos.</td>
+              </tr>
+            )}
+
           </tbody>
         </table>
       </div>
