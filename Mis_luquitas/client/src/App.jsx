@@ -12,9 +12,9 @@ import Changepassword from "./page/changePassword";
 import Help from "./page/help";
 import Movements from "./page/movements";
 import Expenses from "./page/Expenses";
-import Income from "./page/Income";
-import MovementHistory from "./page/movementHistory";
 import Income from "./page/income";
+import MovementHistory from "./page/movementHistory";
+
 
 
 

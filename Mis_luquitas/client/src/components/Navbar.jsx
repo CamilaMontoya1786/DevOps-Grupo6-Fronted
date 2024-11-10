@@ -13,7 +13,7 @@ import { set } from "react-hook-form";
 import axios from "axios";
 
 function Navbar() {
-  //const { signin,user} = useAuth();
+  //const { signin,user} = useAuth() ;
   const { user, logout } = useAuth();
   const [userLocal, setUserLocal] = useState();
   useEffect(() => {
@@ -56,7 +56,7 @@ function Navbar() {
             <img src={movimiento} alt="img" />
           </li>
           <li>
-            <Link to="/loguin">Historial de Movimientos</Link>
+            <Link to="/movementHistory">Historial de Movimientos</Link>
             <img src={lupa} alt="img" />
           </li>
           <li>
@@ -73,7 +73,7 @@ function Navbar() {
           <Link className={styles.UserName} to="/userprofile">
             {userLocal
               ? userLocal?.userName + " " + userLocal.userLastName
-              : "pepito perez"}
+              : "Cargando..."}
           </Link>
         </div>
       </nav>
