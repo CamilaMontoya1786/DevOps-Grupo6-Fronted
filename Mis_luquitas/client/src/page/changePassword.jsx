@@ -1,3 +1,4 @@
+// Changepassword.js
 import React, { useState, useEffect } from "react";
 import password from '../styles/changePassword.module.css';
 import LogoImage from "../imagine/logo.png";
@@ -67,7 +68,7 @@ function Changepassword() {
           </button>
         </div>
       </form>
-      {message && <p>{message}</p>}
+      {message && <p className={password['p-password']}>{message}</p>}
     </div>
   );
 }

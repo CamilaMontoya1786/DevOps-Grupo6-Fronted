@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import styles from '../styles/restorePassword.module.css';
 import LogoImage from "../imagine/logo.png";
-
 
 function Restorepassword() {
   const [email, setEmail] = useState("");
@@ -14,11 +14,23 @@ function Restorepassword() {
     };
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (email) {
-      setMessage("Se ha enviado un enlace de recuperación a tu correo.");
+      try {
+        // Aquí defines la URL de tu API y envías el correo
+        const response = await axios.post("http://localhost:3000/requestReset/findEmail", { email });
+        if (response.status === 400) {
+          setMessage("Hubo un problema al enviar el correo. Inténtalo de nuevo.");
+        } else {
+          setMessage("Se ha enviado un enlace de recuperación a tu correo.");
+        }
+      } catch (error) {
+        setMessage("Error al conectar con el servidor.");
+        console.error(error);
+      }
+
       setEmail(""); // Limpiar el campo de email
     } else {
       setMessage("Por favor, ingresa un correo electrónico válido.");
@@ -43,11 +55,11 @@ function Restorepassword() {
             className={styles.input}
             type="email"
             id="email"
-            placeholder="Correo Electronico"
+            placeholder="Correo Electrónico"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            style={{ zIndex: 10, pointerEvents: "auto" }} // Para asegurar que el input sea editable
+            style={{ zIndex: 10, pointerEvents: "auto" }}
           />
           <hr />
         </div>

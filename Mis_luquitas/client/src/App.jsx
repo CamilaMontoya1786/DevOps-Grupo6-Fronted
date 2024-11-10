@@ -17,6 +17,7 @@ import MovementHistory from "./page/movementHistory";
 import Reports from "./page/reports";
 
 
+
 function App() {
   return (
     <AuthProvider>

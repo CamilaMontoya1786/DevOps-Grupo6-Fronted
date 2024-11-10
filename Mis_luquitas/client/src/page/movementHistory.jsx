@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+
+import React, { useEffect, useState } from 'react';
+import axios from 'axios'; // Asegúrate de importar axios
 import MovimientoItem from './movementItem';
 import styles from '../styles/movementHistory.module.css';
 import SearchIcon from '../imagine/lupa.png';
@@ -10,52 +12,35 @@ const MovementHistory = () => {
   const [search, setSearch] = useState('');  // Estado para búsqueda
   const [dateFilter, setDateFilter] = useState('');  // Estado para el filtro por fecha
 
+  // Función para hacer el GET y obtener los datos
+  const getMovimientos = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/income/createIncome');
+      console.log("hola" + response)
+      return response.data; // Devuelve los datos recibidos
+      
+    } catch (error) {
+      console.error("Error al obtener los movimientos:", error);
+      return []; // En caso de error, devuelve un array vacío
+    }
+  };
 
-  /*// Datos quemados para prueba
-  const sampleData = [
-    { id: 1, fecha: '2024-01-15', monto: 150, categoria: 'Alimentos', formaPago: 'Efectivo', descripcion: 'Compra en el supermercado', type: 'income' },
-    { id: 2, fecha: '2024-01-20', monto: 75, categoria: 'Entretenimiento', formaPago: 'Tarjeta', descripcion: 'Cine', type: 'expense' },
-    { id: 3, fecha: '2024-01-22', monto: 200, categoria: 'Salario', formaPago: 'Transferencia', descripcion: 'Pago de salario', type: 'income' },
-    { id: 4, fecha: '2024-01-25', monto: 50, categoria: 'Transporte', formaPago: 'Efectivo', descripcion: 'Taxi', type: 'expense' },
-    { id: 5, fecha: '2024-01-30', monto: 30, categoria: 'Alimentos', formaPago: 'Tarjeta', descripcion: 'Comida rápida', type: 'expense' },
-  ];
-
-  // Simulamos la llamada al backend y asignamos los datos "quemados"
   useEffect(() => {
-    // En lugar de la llamada al backend, usamos los datos "quemados"
-    setAllMovimientos(sampleData);  // Guardamos todos los movimientos
-    setMovimientos(sampleData);  // Inicializamos la tabla con todos los movimientos
-  }, []);  // Se ejecuta solo una vez al cargar el componente*/
-
-
-
-  // Llamada al backend para obtener todos los movimientos
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const allData = await fetchMovimientosConFiltro();  // Llamada para obtener todos los movimientos
-        setAllMovimientos(allData);  // Guardamos todos los movimientos
-        setMovimientos(allData);  // Inicializamos la tabla con todos los movimientos
-      } catch (error) {
-        console.error("Error al obtener los movimientos:", error);
-      }
+    const fetchMovimientos = async () => {
+      const data = await getMovimientos();
+      setMovimientos(data); // Establece los datos recibidos en el estado
     };
-    fetchData();
-  }, []);  // Se ejecuta solo una vez al cargar el componente
+    fetchMovimientos();
+  }, []); // Se ejecuta solo al montar el componente
 
-  // Filtrado local de los movimientos según la búsqueda y el filtro de fecha
-  useEffect(() => {
-    const filteredData = allMovimientos.filter(movimiento => 
-      // Filtrado por búsqueda
-      (movimiento.descripcion.toLowerCase().includes(search.toLowerCase()) || 
-       movimiento.categoria.toLowerCase().includes(search.toLowerCase()) || 
-       movimiento.formaPago.toLowerCase().includes(search.toLowerCase()) ||
-       movimiento.fecha.includes(search)) &&
-      // Filtrado por fecha
-      (dateFilter === '' || movimiento.fecha === dateFilter)
-    );
-    setMovimientos(filteredData);  // Actualiza los movimientos con los filtrados
-  }, [search, dateFilter, allMovimientos]);  // Se ejecuta cuando search o dateFilter cambian
+  const filteredMovimientos = movimientos.filter(movimiento => 
+    (movimiento.descripcion.toLowerCase().includes(search.toLowerCase()) || 
+     movimiento.categoria.toLowerCase().includes(search.toLowerCase()) || 
+     movimiento.formaPago.toLowerCase().includes(search.toLowerCase()) ||
+     movimiento.fecha.includes(search)) &&
+    (dateFilter === '' || movimiento.fecha === dateFilter)
+  );
+
 
   return (
     <div className={styles.historialContainer}>
