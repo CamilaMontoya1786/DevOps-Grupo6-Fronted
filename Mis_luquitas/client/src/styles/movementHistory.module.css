@@ -21,8 +21,6 @@
   margin: 10px 150px; /* Aumentado el margen a ambos lados */
 }
 
-/* Estilo para el campo de búsqueda */
-
 /* Estilo para el campo de filtro por fecha */
 .dateInput {
   padding: 8px 20px; /* Reducido padding */
@@ -132,8 +130,71 @@
   gap: 5px;
 }
 
+/* Asegurar que los campos de edición mantengan el tamaño */
+.table input{
+  width: 100%;  /* Hacer que los campos de entrada ocupen el 100% del espacio disponible */
+  padding: 8px;  /* Padding consistente */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Incluye el padding en el tamaño total */
+  height: 36px; /* Asegura que la altura de los campos sea uniforme */
+  font-size: 14px; /* Consistencia en el tamaño de fuente */
+  text-align: center; /* Alineación de texto centrado */
+  display: inline-block; /* Para asegurarse que el contenido se alinee correctamente */
+}
 
+.table select {
+  width: 100%;  /* Hacer que los campos de entrada ocupen el 100% del espacio disponible */
+  padding: 8px;  /* Padding consistente */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Incluye el padding en el tamaño total */
+  height: 36px; /* Asegura que la altura de los campos sea uniforme */
+  font-size: 14px; /* Consistencia en el tamaño de fuente */
+  text-align: center; /* Alineación de texto centrado */
+  display: inline-block; /* Para asegurarse que el contenido se alinee correctamente */
+  margin-top: 15px;
 
+}
+/* Asegurar que los campos select se comporten de la misma manera que los inputs */
+.table select {
+  appearance: none;  /* Elimina el estilo predeterminado de los navegadores */
+  -webkit-appearance: none; /* Elimina el estilo predeterminado en Safari */
+  -moz-appearance: none; /* Elimina el estilo predeterminado en Firefox */
+  background-color: white; /* Fondo blanco para los select */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el select */
+}
+
+/* Agregar íconos o flechas personalizadas a los campos select si es necesario */
+.table select:after {
+  content: '\25BC'; /* Flecha hacia abajo */
+  font-size: 18px;
+  padding-left: 5px;
+  color: #333;
+  position: absolute;
+  right: 10px; /* Ubicación de la flecha */
+  top: 50%;
+  transform: translateY(-50%); /* Centra verticalmente la flecha */
+}
+
+/* Estilo para los campos de entrada cuando se está editando */
+.table .fecha input,
+.table .monto input,
+.table .categoria select,
+.table .formaPago select,
+.table .descripcion input {
+  width: 100%; /* Asegura que los inputs se ajusten al tamaño de la celda */
+  font-size: 14px; /* Consistencia en el tamaño de fuente */
+}
+
+/* Ajustar la apariencia cuando el input o select está editando */
+.table td input:focus,
+.table td select:focus {
+  border-color: #8fb339; /* Color de borde cuando está enfocado */
+  outline: none; /* Remueve el contorno de enfoque */
+}
+
+/* Estilos del botón */
 .searchInputContainer {
   position: relative; /* Para posicionar el icono en relación al input */
   width: 25%; /* Ancho completo */

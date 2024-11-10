@@ -1,13 +1,16 @@
+
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'; // Asegúrate de importar axios
 import MovimientoItem from './movementItem';
 import styles from '../styles/movementHistory.module.css';
-import SearchIcon from '../imagine/lupa.png'; // Asegúrate de que la ruta sea correcta
+import SearchIcon from '../imagine/lupa.png';
+import { fetchMovimientosConFiltro } from '../api/auth';  // Función para obtener los movimientos desde el backend
 
 const MovementHistory = () => {
-  const [movimientos, setMovimientos] = useState([]);
-  const [search, setSearch] = useState('');
-  const [dateFilter, setDateFilter] = useState('');
+  const [movimientos, setMovimientos] = useState([]);  // Estado para almacenar los movimientos
+  const [allMovimientos, setAllMovimientos] = useState([]);  // Estado para almacenar todos los movimientos
+  const [search, setSearch] = useState('');  // Estado para búsqueda
+  const [dateFilter, setDateFilter] = useState('');  // Estado para el filtro por fecha
 
   // Función para hacer el GET y obtener los datos
   const getMovimientos = async () => {
@@ -38,6 +41,7 @@ const MovementHistory = () => {
     (dateFilter === '' || movimiento.fecha === dateFilter)
   );
 
+
   return (
     <div className={styles.historialContainer}>
       <h2 className={styles.header}>Historial de movimientos</h2>
@@ -53,7 +57,7 @@ const MovementHistory = () => {
             placeholder="Buscar" 
             className={styles.searchInput} 
             value={search} 
-            onChange={(e) => setSearch(e.target.value)} 
+            onChange={(e) => setSearch(e.target.value)}  // Actualiza el estado de búsqueda
           />
           <img src={SearchIcon} alt="Buscar" className={styles.searchIcon} />
         </div>
@@ -63,13 +67,12 @@ const MovementHistory = () => {
           type="date" 
           className={styles.dateInput} 
           value={dateFilter} 
-          onChange={(e) => setDateFilter(e.target.value)} 
+          onChange={(e) => setDateFilter(e.target.value)}  // Actualiza el estado de la fecha
         />
       </div>
 
       {/* Contenedor de la tabla y texto informativo */}
       <div className={styles.tableContainer}>
-        {/* Texto informativo */}
         <p className={styles.infoText1}>
           Aquí encontrarás el historial de tus ingresos y gastos. Puedes gestionarlos para editarlos o eliminarlos.
         </p>
@@ -88,13 +91,20 @@ const MovementHistory = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredMovimientos.map(movimiento => (
-              <MovimientoItem 
-                key={movimiento.id} 
-                movimiento={movimiento} 
-                setMovimientos={setMovimientos} 
-              />
-            ))}
+            {movimientos.length > 0 ? (
+              movimientos.map(movimiento => (
+                <MovimientoItem 
+                  key={movimiento.id} 
+                  movimiento={movimiento} 
+                  setMovimientos={setMovimientos} 
+                />
+              ))
+            ) : (
+              <tr>
+                <td colSpan="7">No se encontraron movimientos.</td>
+              </tr>
+            )}
+
           </tbody>
         </table>
       </div>
