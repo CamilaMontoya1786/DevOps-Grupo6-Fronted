@@ -48,7 +48,7 @@ function Navbar() {
             <img src={home} alt="img" />
           </li>
           <li>
-            <Link to="/movimientos">Reportes</Link>
+            <Link to="/reports">Reportes</Link>
             <img src={reporte} alt="img" />
           </li>
           <li>

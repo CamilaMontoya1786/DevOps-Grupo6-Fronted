@@ -14,7 +14,8 @@ import Movements from "./page/movements";
 import Expenses from "./page/Expenses";
 import Income from "./page/Income";
 import MovementHistory from "./page/movementHistory";
-import Income from "./page/income";
+import Reports from "./page/reports";
+
 
 
 
@@ -48,7 +49,7 @@ function MainRoutes() {
         <Route path="/expenses" element={<Expenses />} />
         <Route path="/income" element={<Income />} />
         <Route path="/movementHistory" element={<MovementHistory/>} />
-        
+        <Route path="/reports" element={<Reports/>} />
       </Routes>
     </>
   );
