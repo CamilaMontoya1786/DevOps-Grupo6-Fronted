@@ -31,8 +31,8 @@ function UserProfile() {
   useEffect(() => {
     const fetchCountries = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:3000/country/countries"
+       
+        const response = await axios.get("http://localhost:3000/country/countries"
         );
         setUserList(response.data);
       } catch (error) {
@@ -45,6 +45,7 @@ function UserProfile() {
         const response = await axios.get(
           "http://localhost:3000/login/getUserProfile/" + token
         );
+
         setUser(response.data);
       } catch (error) {
         console.error("Error al obtener los países:", error);
@@ -63,7 +64,7 @@ function UserProfile() {
         console.error("Error al obtener los datos:", error);
       });
   }, []);
-
+  
   useEffect(() => {
     if (user) {
       setValue("userName", user.userName);
@@ -160,7 +161,6 @@ function UserProfile() {
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className={profile.container}>
         <h2>Perfil de Usuario</h2>
-
         {/* Contenedor principal para todos los inputs */}
         <div className={profile["input-container"]}>
           {/* Nombre y Apellido */}
@@ -172,6 +172,7 @@ function UserProfile() {
               value={user?.userName ?? ""}
               disabled // Campo deshabilitado
             />
+
           </div>
 
           <div className={profile.left}>
@@ -230,6 +231,7 @@ function UserProfile() {
             <input type="text" placeholder="Teléfono" {...register("phone")} />
           </div>
         </div>
+
 
         {/* Botón para actualizar perfil */}
         <div>

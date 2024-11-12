@@ -18,6 +18,7 @@ import PropTypes from "prop-types";
 import Swal from "sweetalert2";
 import { color } from "chart.js/helpers";
 
+
 // Registrar los elementos necesarios de Chart.js
 ChartJS.register(
   CategoryScale,
@@ -46,6 +47,7 @@ const Reports = () => {
     }
 
     try {
+
       // Obtener el token desde el localStorage
       const token = localStorage.getItem("token");
 
@@ -59,10 +61,12 @@ const Reports = () => {
       }
 
       // Realizar la solicitud GET con los parámetros y el token en los headers
+
       const response = await axios.get("http://localhost:3000/graphic", {
         params: {
           startDate,
           endDate,
+
         },
         headers: {
           Authorization: ` ${token}`,
@@ -78,6 +82,7 @@ const Reports = () => {
         title: "Oops",
         text: "Error al obtener los datos. Intenta nuevamente.",
       });
+
       console.error("Error fetching financial data:", err);
     }
   };

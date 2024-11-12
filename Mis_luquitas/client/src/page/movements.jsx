@@ -6,6 +6,7 @@ import Agregar from "../imagine/Agregar.png";
 import axios from "axios";
 import Swal from "sweetalert2";
 
+
 function Movements() {
   const [showExpenses, setShowExpenses] = useState(false);
   const [showIncome, setShowIncome] = useState(false);

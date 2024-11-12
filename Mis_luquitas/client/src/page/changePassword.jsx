@@ -97,9 +97,11 @@ function Changepassword() {
 
       <form className={password["container-password"]} onSubmit={handleSubmit}>
         <div>
+
           <h1 className={password["titulo-password"]}>
             Crear nueva contraseña
           </h1>
+
           <hr />
           <input
             className={password["input-password"]}
