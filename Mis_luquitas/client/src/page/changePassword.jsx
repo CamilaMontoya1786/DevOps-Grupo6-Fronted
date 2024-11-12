@@ -39,22 +39,29 @@ function Changepassword() {
         // Mostrar mensaje de éxito
         Swal.fire({
           icon: "success",
-          title: "¡Éxito!",
+
+          title: "¡Súper!",
           text: response.data.message || "Contraseña cambiada exitosamente.",
         });
 
-        // Limpiar los campos
         setPasswordValue("");
         setConfirmPassword("");
-
-        // Redirigir al usuario a la página de inicio de sesión u otra página
         navigate("/login");
       } else {
         // Mostrar mensaje de error del servidor
-        setMessage(response.data.message || "Error al cambiar la contraseña.");
+        Swal.fire({
+          icon: "error",
+          title: "Oops!",
+          text: response.data.message || "Error al cambiar la contraseña.",
+        });
       }
     } catch (error) {
-      setMessage("Ocurrió un error. Inténtalo de nuevo más tarde.");
+      Swal.fire({
+        icon: "error",
+        title: "Oops!",
+        text: "Ocurrió un error. Inténtalo de nuevo más tarde.",
+      });
+
     }
   };
 
@@ -65,9 +72,17 @@ function Changepassword() {
     if (passwordValue === confirmPassword && passwordValue !== "") {
       changePassword(); // Llamar al método POST si las contraseñas coinciden
     } else if (passwordValue === "" || confirmPassword === "") {
-      setMessage("Por favor, completa ambos campos.");
+      Swal.fire({
+        icon: "warning",
+        title: "Oops!",
+        text: "Por favor, completa ambos campos.",
+      });
     } else {
-      setMessage("Las contraseñas no coinciden.");
+      Swal.fire({
+        icon: "error",
+        title: "Oops!",
+        text: "Las contraseñas no coinciden.",
+      });
     }
   };
 
@@ -84,7 +99,11 @@ function Changepassword() {
 
       <form className={password["container-password"]} onSubmit={handleSubmit}>
         <div>
-          <h1 className={password["titulo-password"]}>Crear nueva contraseña</h1>
+
+          <h1 className={password["titulo-password"]}>
+            Crear nueva contraseña
+          </h1>
+
           <hr />
           <input
             className={password["input-password"]}

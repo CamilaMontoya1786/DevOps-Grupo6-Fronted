@@ -20,7 +20,6 @@ function Help() {
         <div className={help.video_help}>
           <video controls width="100%">
             <source src="tu_video.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
           </video>
         </div>
       </div>

@@ -51,10 +51,17 @@ const Reports = () => {
           userId: userId
         },
       });
+      
       setFinancialData(response.data);
       setError(null);
     } catch (err) {
-      setError("Error al obtener los datos. Intenta nuevamente.");
+
+      Swal.fire({
+        icon: "error",
+        title: "Oops",
+        text:"Error al obtener los datos. Intenta nuevamente."
+      })
+
       console.error("Error fetching financial data:", err);
     }
   };

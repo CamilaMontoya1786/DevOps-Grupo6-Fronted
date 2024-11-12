@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios"; // Importar axios
+import axios from "axios";
 import styles from "../styles/expenses.module.css";
-import Swal from "sweetalert2"; // Importa SweetAlert2
-
+import Swal from "sweetalert2";
 
 function Expenses({ modoEdicion = false, expense = null, refresh }) {
   const [formData, setFormData] = useState({
@@ -128,9 +127,7 @@ function Expenses({ modoEdicion = false, expense = null, refresh }) {
     } catch (error) {
       console.error("Error al enviar los datos:", error);
       // Capturamos el mensaje de error
-      const errorMessage =
-        error.response?.data?.error ||
-        "Hubo un problema al guardar el gasto. Inténtalo de nuevo.";
+      const errorMessage =error.response?.data?.error ||"Hubo un problema al guardar el gasto. Inténtalo de nuevo.";
 
       Swal.fire({
         icon: "error",

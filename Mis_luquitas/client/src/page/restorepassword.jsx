@@ -3,11 +3,13 @@ import axios from "axios";
 import styles from '../styles/restorePassword.module.css';
 import LogoImage from "../imagine/logo.png";
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 
 function Restorepassword() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     document.body.classList.add("special-body-restorepassword");
@@ -60,6 +62,11 @@ function Restorepassword() {
     }
   };
 
+  const handleCancel = () => {
+    setMessage("Proceso cancelado");
+    navigate('/login');
+  };
+
   return (
     <div className={styles.restorepassword_page}>
       <div className={styles.header}>
@@ -91,7 +98,9 @@ function Restorepassword() {
           <button className={styles.button_1} type="submit">
             Enviar
           </button>
-          <button className={styles.button_1} type="button" onClick={() => setMessage("Proceso cancelado")}>
+          <button className={styles.button_1} 
+          type="button" 
+          onClick={(handleCancel) }>
             Cancelar
           </button>
         </div>
