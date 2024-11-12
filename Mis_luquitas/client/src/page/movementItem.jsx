@@ -32,7 +32,7 @@ const MovimientoItem = ({ movimiento, refresh }) => {
       </Modal>
 
       {/* Fila de movimiento */}
-      <tr>
+      <tr className={style.Texto}>
         <td>
           {movimiento.expenseDate
             ? movimiento.expenseDate

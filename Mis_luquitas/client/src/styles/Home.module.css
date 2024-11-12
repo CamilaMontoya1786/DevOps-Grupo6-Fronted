@@ -33,23 +33,38 @@
   margin: 3%;
   align-items: center; /* Opcional: centra el contenido verticalmente */
   justify-content: center; /* Opcional: centra el contenido horizontalmente */
+  text-align: center; /* Centra el texto horizontalmente */
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 1);
   width: 450px;
   height: 430px;
-  text-align: center; /* Centra el texto horizontalmente */
 }
 
 .consejo {
   font-size: 30px;
 }
 
+.imagen{
+  display: flex;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+  border-radius: 10px;
+  height: 430px;
+  width: 450px;
+  margin-top: 28px;
+  font-size: 30px;
+  align-items: center; 
+  justify-content: center;
+  text-align: center; 
+}
+
 .imagen img {
   display: flex;
-  width: 430px;
-  height: auto;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+  width: 450px;
+  height: 430px;
   padding: 3%;
-  margin-top: 28px;
+
+}
+
+.imagen p{
+display: flex;
 }

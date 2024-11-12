@@ -1,21 +1,9 @@
-.row {
-  background-color: #f9f9f9;
-  transition: background-color 0.3s ease;
-}
 
-.row:hover {
-  background-color: #e9e9e9;
-}
-
-.amountNegative {
-  color: red;
-}
 
 /* Botón de editar (verde) */
 .editButton {
   background-color: #8FB339; /* Verde */
   border: none;
-  color: white;
   cursor: pointer;
   padding: 8px 12px;
   border-radius: 5px;
@@ -28,7 +16,7 @@
 }
 
 .editButton:hover {
-  background-color: #0da32e; /* Verde oscuro */
+  background-color: #b4da5a; /* Verde oscuro */
 }
 
 /* Botón de eliminar (rojo) */
@@ -48,7 +36,7 @@
 }
 
 .deleteButton:hover {
-  background-color: #a31826; /* Rojo oscuro */
+  background-color: #f45858; /* Rojo oscuro */
 }
 
 /* Tamaño de los iconos */
@@ -62,4 +50,8 @@
 
 .redText {
   color: rgb(255, 0, 0);
+}
+
+.Texto td{
+  font-size: 100px;
 }

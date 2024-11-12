@@ -8,7 +8,6 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom"; // Importa useNavigate
 
 function Register() {
-  
   const [data, setData] = useState([]);
   const [userList, setUserList] = useState([]);
   const [showHelperMessage, setShowHelperMessage] = useState(false);
@@ -28,17 +27,29 @@ function Register() {
         setData(response.data);
       })
       .catch((error) => {
-        console.error("Error al obtener los datos:", error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops!",
+          text: "Error al obtener el tipo de identificación",
+          error,
+        });
       });
   }, []);
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get( "http://localhost:3000/country/countries");
+        const response = await axios.get(
+          "http://localhost:3000/country/countries"
+        );
         setUserList(response.data);
       } catch (error) {
-        console.error("Error al obtener los datos:", error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops!",
+          text: "Error al obtener el listado de paises",
+          error,
+        });
       }
     };
     fetchUserData();
@@ -264,4 +275,3 @@ function Register() {
 }
 
 export default Register;
-
