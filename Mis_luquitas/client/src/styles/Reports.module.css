@@ -82,12 +82,11 @@
 /* Estilo individual para cada gráfico */
 .chartContainer {
   width: 100%;
-  max-width: 500px;
-  height: 300px;
+  max-width: 550px;
+  height: 350px;
   display: flex;
   flex-direction: column;
   align-items: center;
-
   color: #000000;
 }
 

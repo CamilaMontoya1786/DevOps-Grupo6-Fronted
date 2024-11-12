@@ -15,6 +15,8 @@ import { Bar, Line } from "react-chartjs-2";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import styles from "../styles/Reports.module.css";
 import PropTypes from "prop-types";
+import Swal from "sweetalert2";
+import { color } from "chart.js/helpers";
 
 // Registrar los elementos necesarios de Chart.js
 ChartJS.register(
@@ -35,7 +37,7 @@ const Reports = () => {
   const [financialData, setFinancialData] = useState([]);
   const [error, setError] = useState(null);
 
-  const userId = 1;
+  // const userId = 1;
 
   const fetchFinancialData = async () => {
     if (!startDate || !endDate) {
@@ -44,22 +46,38 @@ const Reports = () => {
     }
 
     try {
+      // Obtener el token desde el localStorage
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        Swal.fire({
+          icon: "error",
+          title: "Error de autenticación",
+          text: "No se ha encontrado un token. Por favor inicia sesión.",
+        });
+        return;
+      }
+
+      // Realizar la solicitud GET con los parámetros y el token en los headers
       const response = await axios.get("http://localhost:3000/graphic", {
         params: {
           startDate,
           endDate,
-          userId: userId
+        },
+        headers: {
+          Authorization: ` ${token}`,
         },
       });
-      
+
+      // Actualizar el estado con los datos financieros obtenidos
       setFinancialData(response.data);
       setError(null);
     } catch (err) {
       Swal.fire({
         icon: "error",
         title: "Oops",
-        text:"Error al obtener los datos. Intenta nuevamente."
-      })
+        text: "Error al obtener los datos. Intenta nuevamente.",
+      });
       console.error("Error fetching financial data:", err);
     }
   };
@@ -108,7 +126,11 @@ const Reports = () => {
     const chartOptions = {
       responsive: true,
       maintainAspectRatio: false,
-      plugins: { datalabels: { display: true } },
+      plugins: {
+        datalabels: {
+          display: true,
+        },
+      },
       scales: { x: { ticks: { display: false } } },
     };
 
