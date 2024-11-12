@@ -227,6 +227,7 @@ function Expenses({ modoEdicion = false, expense = null, refresh }) {
             disabled={loading}
           >
             {loading ? "Guardando..." : "Guardar"}
+            
           </button>
         </form>
       </div>

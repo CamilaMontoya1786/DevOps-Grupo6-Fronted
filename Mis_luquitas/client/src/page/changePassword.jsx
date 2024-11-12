@@ -39,6 +39,7 @@ function Changepassword() {
         // Mostrar mensaje de éxito
         Swal.fire({
           icon: "success",
+
           title: "¡Súper!",
           text: response.data.message || "Contraseña cambiada exitosamente.",
         });
@@ -60,6 +61,7 @@ function Changepassword() {
         title: "Oops!",
         text: "Ocurrió un error. Inténtalo de nuevo más tarde.",
       });
+
     }
   };
 
@@ -97,9 +99,11 @@ function Changepassword() {
 
       <form className={password["container-password"]} onSubmit={handleSubmit}>
         <div>
+
           <h1 className={password["titulo-password"]}>
             Crear nueva contraseña
           </h1>
+
           <hr />
           <input
             className={password["input-password"]}

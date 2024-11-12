@@ -26,13 +26,14 @@ function UserProfile() {
 
   const handleClick = () => {
     navigate("/Home");
+
   };
 
   useEffect(() => {
     const fetchCountries = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:3000/country/countries"
+       
+        const response = await axios.get("http://localhost:3000/country/countries"
         );
         setUserList(response.data);
       } catch (error) {
@@ -41,10 +42,12 @@ function UserProfile() {
     };
     const fetchUserData = async () => {
       try {
+
         const token = localStorage.getItem("token");
         const response = await axios.get(
           "http://localhost:3000/login/getUserProfile/" + token
         );
+
         setUser(response.data);
       } catch (error) {
         console.error("Error al obtener los países:", error);
@@ -63,6 +66,7 @@ function UserProfile() {
         console.error("Error al obtener los datos:", error);
       });
   }, []);
+
 
   useEffect(() => {
     if (user) {
@@ -95,6 +99,7 @@ function UserProfile() {
         Authorization: localStorage.getItem("token"),
         "Content-Type": "multipart/form-data",
       },
+
     });
 
     console.log("Actualizando perfil:", data);
@@ -120,8 +125,10 @@ function UserProfile() {
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (file) {
+
       setProfileImage(file);
       setPreview(URL.createObjectURL(file));
+
     }
   };
 
@@ -131,6 +138,7 @@ function UserProfile() {
   };
 
   return (
+
     <div className={profile["body-profile"]}>
      
       {/* Icono importado */}
@@ -138,6 +146,7 @@ function UserProfile() {
         <label
           htmlFor="profileImage"
           className={profile["profile-image-label"]}
+
         >
           {/* Muestra la imagen predeterminada o la nueva cargada */}
           <input
@@ -149,6 +158,7 @@ function UserProfile() {
             ref={fileInputRef} // Referencia al input
             style={{ display: "none" }} // Oculta el input
           />
+
         </label>
         <img
           src={preview}
@@ -160,6 +170,7 @@ function UserProfile() {
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className={profile.container}>
         <h2>Perfil de Usuario</h2>
+
 
         {/* Contenedor principal para todos los inputs */}
         <div className={profile["input-container"]}>
@@ -174,6 +185,7 @@ function UserProfile() {
             />
           </div>
 
+
           <div className={profile.left}>
             <input
               name="userLastName"
@@ -183,6 +195,7 @@ function UserProfile() {
               disabled // Campo deshabilitado
             />
           </div>
+
 
           {/* Tipo de documento y número de documento */}
           <div className={profile.right}>
@@ -204,6 +217,7 @@ function UserProfile() {
               disabled // Campo deshabilitado
             />
           </div>
+
 
           {/* Correo electrónico y país */}
           <div className={profile.left}>
@@ -228,6 +242,7 @@ function UserProfile() {
           {/* Teléfono */}
           <div className={profile.right}>
             <input type="text" placeholder="Teléfono" {...register("phone")} />
+
           </div>
         </div>
 

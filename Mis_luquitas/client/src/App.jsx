@@ -33,11 +33,11 @@ function MainRoutes() {
     "/register",
     "/login",
     "/restorepassword",
-    // "/userprofile",
     "/changePassword",
     "/expenses",
     "/income",
   
+
   ].some((route) => location.pathname === route || location.pathname.startsWith(route + "/"));
   
   

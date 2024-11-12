@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom"; // Importa useNavigate
 
 function Register() {
+  
   const [data, setData] = useState([]);
   const [userList, setUserList] = useState([]);
   const [showHelperMessage, setShowHelperMessage] = useState(false);
@@ -39,9 +40,7 @@ function Register() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:3000/country/countries"
-        );
+        const response = await axios.get( "http://localhost:3000/country/countries");
         setUserList(response.data);
       } catch (error) {
         Swal.fire({

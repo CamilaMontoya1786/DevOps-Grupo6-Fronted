@@ -55,11 +55,13 @@ const Reports = () => {
       setFinancialData(response.data);
       setError(null);
     } catch (err) {
+
       Swal.fire({
         icon: "error",
         title: "Oops",
         text:"Error al obtener los datos. Intenta nuevamente."
       })
+
       console.error("Error fetching financial data:", err);
     }
   };
