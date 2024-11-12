@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "../styles/income.module.css";
-import Swal from 'sweetalert2'; // Importa SweetAlert2
+import Swal from "sweetalert2"; // Importa SweetAlert2
 
-function Income() {
+function Income({ modoEdicion = false, income = null, refresh }) {
   const [formData, setFormData] = useState({
     fecha: "",
     monto: "",
@@ -14,6 +14,19 @@ function Income() {
   const [userList, setUserList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
   const [loading, setLoading] = useState(false); // Para manejar el estado de carga
+
+  useEffect(() => {
+    if (income) {
+      setFormData({
+        formaPago: income.incomeMethodPaymentId,
+        categoria: income.incomeCategoryId,
+        descripcion: income.incomeDescription,
+        fecha: income.
+        incomeDate,
+        monto: income.incomeAmount,
+      });
+    }
+  }, [income]);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -32,8 +45,7 @@ function Income() {
   useEffect(() => {
     const fetchCategoryData = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:3000/incomeCategory/incomeCategories"
+        const response = await axios.get("http://localhost:3000/incomeCategory/incomeCategories"
         );
         setCategoryList(response.data);
       } catch (error) {
@@ -49,8 +61,6 @@ function Income() {
 
     try {
       const token = localStorage.getItem("token");
-
-      //const token = localStorage.getItem('token');
       const config = {
         headers: {
           authorization: `${token}`,
@@ -66,44 +76,68 @@ function Income() {
       };
       console.log(ingresoData);
 
-      const response = await axios.post(
-        "http://localhost:3000/income/createIncome",
-        ingresoData,
-        config
-      );
+      if (modoEdicion) {
+        const response = await axios.post("http://localhost:3000/income/updateIncome/" + income.incomeId,
+          ingresoData,
+          config
+        );
 
-      if (response.status === 201) {
-        alert("Ingreso guardado exitosamente.");
-        setFormData({
-          fecha: "",
-          monto: "",
-          formaPago: "",
-          categoria: "",
-          descripcion: "",
-        });
+        if (response.status === 200) {
+          setFormData({
+            fecha: "",
+            monto: "",
+            formaPago: "",
+            categoria: "",
+            descripcion: "",
+          });
+        }
+        const successMessage =
+          response.data.message || "Ingreso actualizado exitosamente.";
+        Swal.fire({
+          icon: "success",
+          title: "Éxito",
+          text: successMessage,
+        }); // Muestra el mensaje de éxito
+      } else {
+        const response = await axios.post(
+          "http://localhost:3000/income/createIncome",
+          ingresoData,
+          config
+        );
+
+        if (response.status === 200) {
+          setFormData({
+            fecha: "",
+            monto: "",
+            formaPago: "",
+            categoria: "",
+            descripcion: "",
+          });
+        }
+        const successMessage =
+          response.data.message || "Ingreso guardado exitosamente.";
+        Swal.fire({
+          icon: "success",
+          title: "Éxito",
+          text: successMessage,
+        }); // Muestra el mensaje de éxito
       }
-      const successMessage = response.data.message || "Ingreso guardado exitosamente.";
-      Swal.fire({
-        icon: 'success',
-        title: 'Éxito',
-        text: successMessage,
-      }); // Muestra el mensaje de éxito
-
     } catch (error) {
       console.error("Error al enviar los datos:", error);
       // Capturamos el mensaje de error
-      const errorMessage = error.response?.data?.error || "Hubo un problema al guardar el ingreso. Inténtalo de nuevo.";
-      
+      const errorMessage =
+        error.response?.data?.error ||
+        "Hubo un problema al guardar el ingreso. Inténtalo de nuevo.";
+
       Swal.fire({
-        icon: 'error',
-        title: 'Error',
+        icon: "error",
+        title: "Error",
         text: errorMessage,
       }); // Muestra el mensaje de error
-    }finally {
+    } finally {
+      refresh()
       setLoading(false); // Desactivar el estado de carga
     }
-
-    
   };
 
   const handleChange = (e) => {
@@ -125,9 +159,7 @@ function Income() {
         <form onSubmit={handleSubmit}>
           <input
             className={styles.input_income}
-
             name="fecha"
-
             type="date"
             value={formData.fecha}
             onChange={handleChange}
@@ -136,9 +168,7 @@ function Income() {
 
           <input
             className={styles.input_income}
-
             name="monto"
-
             placeholder="Monto"
             type="text"
             value={formData.monto}
@@ -148,11 +178,9 @@ function Income() {
 
           <select
             className={styles.select_income}
-
             name="formaPago"
             value={formData.formaPago}
             onChange={handleChange}
-
             required
           >
             <option value="">Forma de Pago</option>
@@ -168,11 +196,9 @@ function Income() {
 
           <select
             className={styles.select_income}
-
             name="categoria"
             value={formData.categoria}
             onChange={handleChange}
-
             required
           >
             <option value="">Categoría</option>
@@ -188,9 +214,7 @@ function Income() {
 
           <input
             className={styles.input_incomeDescripcion}
-
             name="descripcion"
-
             placeholder="Descripción"
             type="text"
             value={formData.descripcion}

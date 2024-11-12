@@ -13,8 +13,7 @@ import { set } from "react-hook-form";
 import axios from "axios";
 
 function Navbar() {
-  //const { signin,user} = useAuth() ;
-  const { user, logout } = useAuth();
+
   const [userLocal, setUserLocal] = useState();
   useEffect(() => {
     const fetchUserData = async () => {
@@ -31,8 +30,6 @@ function Navbar() {
 
     fetchUserData();
   }, []);
-
-  console.log("user:" + JSON.stringify(userLocal));
 
   return (
     <div className={styles.left}>

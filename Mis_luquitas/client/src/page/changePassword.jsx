@@ -1,6 +1,8 @@
-// Changepassword.js
 import React, { useState, useEffect } from "react";
-import password from '../styles/changePassword.module.css';
+import { useParams, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import axios from "axios"; // Asegúrate de que axios esté instalado
+import password from "../styles/changePassword.module.css";
 import LogoImage from "../imagine/logo.png";
 
 function Changepassword() {
@@ -8,23 +10,60 @@ function Changepassword() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
 
+  // Capturar token y email desde los parámetros de la URL
+  const { tokenEmail, email } = useParams();
+
+  const navigate = useNavigate();
+
   // Efecto para gestionar la clase del body para estilos
   useEffect(() => {
     document.body.classList.add("special-body-restorepassword");
 
-    // Limpieza al desmontar
     return () => {
       document.body.classList.remove("special-body-restorepassword");
     };
   }, []);
 
+  // Función para enviar la nueva contraseña al servidor
+  const changePassword = async () => {
+    try {
+      const response = await axios.post(
+        `http://localhost:3000/reset/resetPassword/${tokenEmail}`,
+        {
+          email: email,
+          newPassword: passwordValue,
+        }
+      );
+
+      if (response.status === 200) {
+        // Mostrar mensaje de éxito
+        Swal.fire({
+          icon: "success",
+          title: "¡Éxito!",
+          text: response.data.message || "Contraseña cambiada exitosamente.",
+        });
+
+        // Limpiar los campos
+        setPasswordValue("");
+        setConfirmPassword("");
+
+        // Redirigir al usuario a la página de inicio de sesión u otra página
+        navigate("/login");
+      } else {
+        // Mostrar mensaje de error del servidor
+        setMessage(response.data.message || "Error al cambiar la contraseña.");
+      }
+    } catch (error) {
+      setMessage("Ocurrió un error. Inténtalo de nuevo más tarde.");
+    }
+  };
+
+  // Función para manejar el envío del formulario
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (passwordValue === confirmPassword && passwordValue !== "") {
-      setMessage("Contraseña cambiada exitosamente.");
-      setPasswordValue(""); // Limpiar el campo de contraseña
-      setConfirmPassword(""); // Limpiar campo de confirmación
+      changePassword(); // Llamar al método POST si las contraseñas coinciden
     } else if (passwordValue === "" || confirmPassword === "") {
       setMessage("Por favor, completa ambos campos.");
     } else {
@@ -33,18 +72,22 @@ function Changepassword() {
   };
 
   return (
-    <div className={password['restorepassword_page-password']}>
-      <div className={password['header-password']}>
-        <img className={password['LogoImage-password']} src={LogoImage} alt="Logo" />
-        <h2 className={password['h2-password']}>Mis Luquitas</h2>
+    <div className={password["restorepassword_page-password"]}>
+      <div className={password["header-password"]}>
+        <img
+          className={password["LogoImage-password"]}
+          src={LogoImage}
+          alt="Logo"
+        />
+        <h2 className={password["h2-password"]}>Mis Luquitas</h2>
       </div>
 
-      <form className={password['container-password']} onSubmit={handleSubmit}>
+      <form className={password["container-password"]} onSubmit={handleSubmit}>
         <div>
-          <h1 className={password['titulo-password']}>Crear nueva contraseña</h1>
+          <h1 className={password["titulo-password"]}>Crear nueva contraseña</h1>
           <hr />
           <input
-            className={password['input-password']}
+            className={password["input-password"]}
             type="password"
             placeholder="Nueva contraseña"
             value={passwordValue}
@@ -52,7 +95,7 @@ function Changepassword() {
             required
           />
           <input
-            className={password['input-password']}
+            className={password["input-password"]}
             type="password"
             placeholder="Confirmar nueva contraseña"
             value={confirmPassword}
@@ -62,13 +105,13 @@ function Changepassword() {
           <hr />
         </div>
 
-        <div className={password['button-password']}>
-          <button className={password['button_1-password']} type="submit">
+        <div className={password["button-password"]}>
+          <button className={password["button_1-password"]} type="submit">
             Cambiar Contraseña
           </button>
         </div>
       </form>
-      {message && <p className={password['p-password']}>{message}</p>}
+      {message && <p className={password["p-password"]}>{message}</p>}
     </div>
   );
 }

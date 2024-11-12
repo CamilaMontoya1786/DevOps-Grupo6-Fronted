@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from '../styles/restorePassword.module.css';
 import LogoImage from "../imagine/logo.png";
+import Swal from 'sweetalert2';
+
 
 function Restorepassword() {
   const [email, setEmail] = useState("");
@@ -21,19 +23,40 @@ function Restorepassword() {
       try {
         // Aquí defines la URL de tu API y envías el correo
         const response = await axios.post("http://localhost:3000/requestReset/findEmail", { email });
+    
         if (response.status === 400) {
-          setMessage("Hubo un problema al enviar el correo. Inténtalo de nuevo.");
+          Swal.fire({
+            icon: 'error',
+            title: '¡Error!',
+            text: 'Hubo un problema al enviar el correo. Inténtalo de nuevo.',
+            confirmButtonText: 'Aceptar',
+          });
         } else {
-          setMessage("Se ha enviado un enlace de recuperación a tu correo.");
+          Swal.fire({
+            icon: 'success',
+            title: '¡Éxito!',
+            text: 'Se ha enviado un enlace de recuperación a tu correo.',
+            confirmButtonText: 'Aceptar',
+          });
         }
       } catch (error) {
-        setMessage("Error al conectar con el servidor.");
+        Swal.fire({
+          icon: 'error',
+          title: 'Error de conexión',
+          text: 'Error al conectar con el servidor.',
+          confirmButtonText: 'Aceptar',
+        });
         console.error(error);
       }
 
       setEmail(""); // Limpiar el campo de email
-    } else {
-      setMessage("Por favor, ingresa un correo electrónico válido.");
+    } else 
+    {Swal.fire({
+      icon: 'error',
+          title: '¡Error!',
+          text: 'Por favor, ingresa un correo electrónico válido.',
+          confirmButtonText: 'Aceptar',
+    });
     }
   };
 

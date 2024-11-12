@@ -53,7 +53,13 @@
 
 /* Tamaño de los iconos */
 .icon {
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   vertical-align: middle;
+  color: #f9f9f9;
+}
+
+
+.redText {
+  color: rgb(255, 0, 0);
 }

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios"; // Importar axios
 import styles from "../styles/expenses.module.css";
-import Swal from 'sweetalert2'; // Importa SweetAlert2
+import Swal from "sweetalert2"; // Importa SweetAlert2
 
-function Expenses() {
+
+function Expenses({ modoEdicion = false, expense = null, refresh }) {
   const [formData, setFormData] = useState({
     fecha: "",
     monto: "",
@@ -11,6 +12,7 @@ function Expenses() {
     categoria: "",
     descripcion: "",
   });
+
   const [userList, setUserList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
   const [loading, setLoading] = useState(false); // Para manejar el estado de carga
@@ -43,6 +45,18 @@ function Expenses() {
     fetchCategoryData();
   }, []);
 
+  useEffect(() => {
+    if (expense) {
+      setFormData({
+        formaPago: expense.expenseMethodPaymentId,
+        categoria: expense.expenseCategoryId,
+        descripcion: expense.expenseDescription,
+        fecha: expense.expenseDate,
+        monto: expense.expenseAmount,
+      });
+    }
+  }, [expense]);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true); // Activar el estado de carga
@@ -63,30 +77,54 @@ function Expenses() {
           authorization: `${token}`,
         },
       };
+      if (modoEdicion) {
+        const response = await axios.post(
+          "http://localhost:3000/expense/updateExpense/" + expense.expenseId,
+          expenseData,
+          config
+        );
 
-      const response = await axios.post(
-        "http://localhost:3000/expense/createExpense",
-        expenseData,
-        config
-      );
+        if (response.status === 200) {
+          setFormData({
+            fecha: "",
+            monto: "",
+            formaPago: "",
+            categoria: "",
+            descripcion: "",
+          });
+        }
+        const successMessage =
+          response.data.message || "Gasto actaulizado exitosamente.";
+        Swal.fire({
+          icon: "success",
+          title: "Éxito",
+          text: successMessage,
+        }); // Muestra el mensaje de éxito
+      } else {
+        const response = await axios.post(
+          "http://localhost:3000/expense/createExpense",
+          expenseData,
+          config
+        );
 
-      if (response.status === 201) {
-        alert("Gasto guardado exitosamente.");
-        setFormData({
-          fecha: "",
-          monto: "",
-          formaPago: "",
-          categoria: "",
-          descripcion: "",
-        });
+        if (response.status === 201) {
+          alert("Gasto guardado exitosamente.");
+          setFormData({
+            fecha: "",
+            monto: "",
+            formaPago: "",
+            categoria: "",
+            descripcion: "",
+          });
+        }
+        const successMessage =
+          response.data.message || "Gasto guardado exitosamente.";
+        Swal.fire({
+          icon: "success",
+          title: "Éxito",
+          text: successMessage,
+        }); // Muestra el mensaje de éxito
       }
-      const successMessage =
-        response.data.message || "Gasto guardado exitosamente.";
-      Swal.fire({
-        icon: "success",
-        title: "Éxito",
-        text: successMessage,
-      }); // Muestra el mensaje de éxito
     } catch (error) {
       console.error("Error al enviar los datos:", error);
       // Capturamos el mensaje de error
@@ -100,6 +138,7 @@ function Expenses() {
         text: errorMessage,
       }); // Muestra el mensaje de error
     } finally {
+      refresh();
       setLoading(false); // Desactivar el estado de carga
     }
   };
@@ -191,6 +230,7 @@ function Expenses() {
             disabled={loading}
           >
             {loading ? "Guardando..." : "Guardar"}
+            
           </button>
         </form>
       </div>

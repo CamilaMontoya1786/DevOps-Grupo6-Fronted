@@ -1,27 +1,68 @@
-import React, { useState } from "react";
-import Expenses from "./Expenses"; // Asegúrate de tener la ruta correcta
+import React, { useEffect, useState } from "react";
+import Expenses from "./expenses"; // Asegúrate de tener la ruta correcta
 import Income from "./income"; // Importa el componente Income
 import styles from "../styles/movements.module.css";
 import Agregar from "../imagine/Agregar.png";
+import axios from "axios";
 
 function Movements() {
   const [showExpenses, setShowExpenses] = useState(false);
   const [showIncome, setShowIncome] = useState(false);
-  const [showPresupuesto, setShowPresupuesto] = useState(true); // Nuevo estado para el presupuesto
-  const ingresos = 1000; // Ejemplo de valor
-  const gastos = 500; // Ejemplo de valor
-  const disponible = ingresos - gastos; // Cálculo del disponible
+  const [showPresupuesto, setShowPresupuesto] = useState(true);
+
+  const [ingresos, setIngresos] = useState(0);
+  const [gastos, setGastos] = useState(0);
+  const disponible = ingresos - gastos;
+
+  // Función para obtener los ingresos
+  const fetchIngresos = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/subtract/getSubtract", {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      });
+      setIngresos(response.data.totalIncomes);
+    } catch (error) {
+      console.error("Error al obtener ingresos:", error);
+    }
+  };
+
+  // Función para obtener los gastos
+  const fetchGastos = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/subtract/getSubtract", {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      });
+      setGastos(response.data.totalExpenses);
+    } catch (error) {
+      console.error("Error al obtener los gastos:", error);
+    }
+  };
+
+  // Función de refresh para actualizar ingresos y gastos
+  const refresh = async () => {
+    await fetchIngresos();
+    await fetchGastos();
+  };
+
+  useEffect(() => {
+    fetchIngresos();
+    fetchGastos();
+  }, []);
 
   const handleExpensesClick = () => {
     setShowExpenses(true);
     setShowIncome(false);
-    setShowPresupuesto(false); // Ocultar el presupuesto al mostrar gastos
+    setShowPresupuesto(false);
   };
 
   const handleIncomeClick = () => {
     setShowIncome(true);
     setShowExpenses(false);
-    setShowPresupuesto(false); // Ocultar el presupuesto al mostrar ingresos
+    setShowPresupuesto(false);
   };
 
   return (
@@ -35,9 +76,7 @@ function Movements() {
           className={styles.button_movements}
           onClick={handleIncomeClick}
         >
-
           Ingresos <img src={Agregar} alt="Descripción de la imagen" />
-
         </button>
 
         <button
@@ -45,16 +84,16 @@ function Movements() {
           className={styles.button_movements}
           onClick={handleExpensesClick}
         >
-
-          Gastos<img src={Agregar} alt="Descripción de la imagen" />
-
+          Gastos <img src={Agregar} alt="Descripción de la imagen" />
         </button>
       </div>
-      
-      {showIncome && <Income />} {/* Renderiza el componente Income */}
-      {showExpenses && <Expenses />} {/* Renderiza el componente Expenses */}
 
-      {showPresupuesto && ( // Muestra el presupuesto solo si showPresupuesto es true
+      {/* Renderiza el componente Expenses pasando la función refresh */}
+      {showExpenses && <Expenses modoEdicion={false} refresh={refresh} />}
+      
+      {showIncome && <Income modoEdicion={false} refresh={refresh} />} {/* Renderiza el componente Income */}
+
+      {showPresupuesto && (
         <div className={styles.presupuesto}>
           <div className={styles.header}>
             <h2>Plan Presupuestal</h2>

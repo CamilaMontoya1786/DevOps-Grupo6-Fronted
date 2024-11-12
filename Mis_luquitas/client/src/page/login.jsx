@@ -114,9 +114,11 @@ function Login() {
     </div>
   );
 }
+
 const fetchUserData = async () => {
   try {
     const token = localStorage.getItem("token");
+    console.trace("identificando")
     const response = await axios.get(
       "http://localhost:3000/login/getUserProfile/" + token
     );
@@ -128,6 +130,6 @@ const fetchUserData = async () => {
   }
 };
 
-fetchUserData();
+// fetchUserData();
 
 export default Login;
