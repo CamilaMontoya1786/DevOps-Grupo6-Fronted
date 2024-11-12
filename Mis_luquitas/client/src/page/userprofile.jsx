@@ -18,26 +18,25 @@ function UserProfile() {
   const { user1, logout } = useAuth();
   const [data, setData] = useState([]);
   const [userList, setUserList] = useState([]);
-
   const [errorMessage, setErrorMessage] = useState("");
   const [user, setUser] = useState();
+  const fileInputRef = useRef(null); // Referencia al input de archivo
+  const navigate = useNavigate();
+
 
   const [profileImage, setProfileImage] = useState(defaultProfileImage); // Inicia con la imagen predeterminada
-  const fileInputRef = useRef(null); // Referencia al input de archivo
-  const [showHelperMessage, setShowHelperMessage] = useState(false); 
-  
-  const navigate = useNavigate();
+  const [preview, setPreview] = useState(defaultProfileImage);
   
 
   const handleClick = () => {
-    navigate("/Home"); // Navega a /Home
+    navigate("/Home"); 
   };
 
   useEffect(() => {
     const fetchCountries = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:3000/country/countries"
+       
+        const response = await axios.get("http://localhost:3000/country/countries"
         );
         setUserList(response.data);
       } catch (error) {
@@ -47,17 +46,14 @@ function UserProfile() {
     const fetchUserData = async () => {
       try {
         const token = localStorage.getItem ("token");
-        const response = await axios.get(
-          "http://localhost:3000/login/getUserProfile/"+ token
-        );
+        const response = await axios.get( "http://localhost:3000/login/getUserProfile/"+ token );
         setUser(response.data);
       } catch (error) {
         console.error("Error al obtener los países:", error);
       }
     };
-    
-    fetchUserData();
 
+    fetchUserData();
     fetchCountries();
 
     axios
@@ -69,18 +65,44 @@ function UserProfile() {
         console.error("Error al obtener los datos:", error);
       });
 
-    if (user) {
-      setValue("userName", user.userName);
-      setValue("userLastName", user.userLastName);
-      setValue("idNumber", user.idNumber);
-      setValue("email", user.email);
-      setValue("countryId", user.countryId);
-      setValue("phone", user.phone);
-      setValue("typeId", user.typeId);
-    }
-  }, [user, setValue]);
+  }, []);
+
+
+useEffect (()=> {
+  if (user) {
+    setValue("userName", user.userName);
+    setValue("userLastName", user.userLastName);
+    setValue("idNumber", user.idNumber);
+    setValue("email", user.email);
+    setValue("countryId", user.countryId);
+    setValue("phone", user.phone);
+    setValue("typeId", user.typeId);
+    setPreview(user.photoUser ? user.photoUser : defaultProfileImage);
+  }
+},[user])
+
 
   const onSubmit = async (data) => {
+    const formData = new FormData ()
+    formData.append("typeId", data.typeId)
+    formData.append("email", data.email)
+    formData.append("countryId", data.countryId)
+    formData.append("phone", data.phone)
+    formData.append("userName", data.userName)
+    formData.append("userLastName", data.userLastName)
+    formData.append("idNumber", data.idNumber)
+    if (profileImage ){
+      formData.append("photo",profileImage)
+    }
+
+    axios.post("http://localhost:3000/login/updateUser", formData,  {
+      headers:{
+        Authorization:localStorage.getItem("token"),
+        'Content-Type': 'multipart/form-data'
+      }
+
+    });
+
     console.log("Actualizando perfil:", data);
     try {
       console.log("Perfil actualizado con éxito");
@@ -96,7 +118,9 @@ function UserProfile() {
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      setProfileImage(URL.createObjectURL(file)); // Actualiza la imagen con la seleccionada
+     setProfileImage(file)
+     setPreview(URL.createObjectURL(file))
+      
     }
   };
 
@@ -106,7 +130,6 @@ function UserProfile() {
   };
 
   return (
-
       <div className={profile["body-profile"]}>
         <button
           type="button"
@@ -151,7 +174,7 @@ function UserProfile() {
           />
           </label>
           <img
-              src={profileImage}
+              src={preview}
               alt="Imagen de perfil"
               className={profile["profile-image-preview"]}
               onClick={handleImageClick} // Maneja el clic en la imagen
@@ -196,6 +219,7 @@ function UserProfile() {
               </select>
             </div>
 
+
             <div className={profile.right}>
               <input
                 type="text"
@@ -233,44 +257,14 @@ function UserProfile() {
                 {...register("phone")}
               />
             </div>
-
-            {/* Contraseña */}
-            <div className={profile.left}>
-              <input
-                type="password"
-                placeholder="Contraseña"
-                {...register("password", {
-                  required: true,
-                  minLength: {
-                    value: 8,
-                    message: "La contraseña debe tener al menos 8 caracteres",
-                  },
-                  pattern: {
-                    value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/,
-                    message:
-                      "La contraseña debe incluir al menos un número, una letra mayúscula, una letra minúscula y un carácter especial",
-                  },
-                })}
-                onFocus={() => setShowHelperMessage(true)} // Muestra el mensaje al hacer clic
-                onBlur={() => setShowHelperMessage(false)} // Oculta el mensaje al salir del campo
-              />
-              {showHelperMessage && (
-                <span className={profile.message}>
-                  La contraseña debe incluir al menos un número, una letra
-                  mayúscula, una letra minúscula y un carácter especial
-                </span>
-              )}
-              {errors.password && (
-                <span className={`${profile["error-message"]}`}>
-                  {errors.password.message}
-                </span>
-              )}
-            </div>
+            
           </div>
 
           {/* Botón para actualizar perfil */}
           <div>
-            <button type="submit" className={profile["button-profile"]}>
+            <button  onClick={()=> {
+
+            }} type="submit" className={profile["button-profile"]}>
               Actualizar Perfil
             </button>
           </div>

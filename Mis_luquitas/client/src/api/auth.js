@@ -16,20 +16,24 @@ export const loguinRequest = async (user) => {
 };
 
 export const getMovimientos = async () => {
-  const response = await axios.get(API_URL);
+  const response = await axios.get('http://localhost:3000/');
   return response.data;
 };
 
 export const updateMovimiento = async (movimiento) => {
   const { id, type } = movimiento;
   const endpoint = type === "income" ? "/income" : "/expense";
-  const response = await axios.put(`${API_URL}${endpoint}/${id}`, movimiento);
+  const response = await axios.post(`http://localhost:3000/${endpoint}/${id}`, movimiento);
   return response.data;
 };
 
 export const deleteMovimiento = async (id, type) => {
-  const endpoint = type === "income" ? "/income" : "/expense";
-  await axios.delete(`${API_URL}${endpoint}/${id}`);
+  const endpoint = type === "income" ? "income/deleteIncome" : "expense/deleteExpense";
+  await axios.post(`http://localhost:3000/${endpoint}/${id}`,{
+    headers:{
+      Authorization:localStorage.getItem("token")
+    }
+  });
 };
 
 export const getCategorias = async () => {
@@ -57,22 +61,48 @@ export const getFormasPago = async () => {
 export const fetchMovimientosConFiltro = async (search, dateFilter) => {
   try {
     // Construir los parámetros de consulta (query params)
-    const params = {};
+    let params = "?";
 
     if (search) {
-      params.search = search;  // Si hay búsqueda, agregar al filtro
+      params = params + "keyword=" + search;  // Si hay búsqueda, agregar al filtro
+  
+      if (dateFilter && dateFilter?.toString()!=="Invalid Date") {
+        params = params + "&"
+        
+      }
     }
-    if (dateFilter) {
-      params.dateFilter = dateFilter;  // Si hay filtro por fecha, agregar
+
+    if (dateFilter && dateFilter?.toString()!=="Invalid Date") {
+      params = params + "date=" + dateFilter.toISOString().split('T')[0];  // Si hay filtro por fecha, agregar
     }
+      if(params==="?"){
+        params=""
+      }
+      
+    const requests = [
+      axios.get("http://localhost:3000/income/getIncome"+ params, {
+        headers:{
+          Authorization:localStorage.getItem("token")
+        }
+      }),
+      axios.get("http://localhost:3000/expense/getExpense"+ params, {
+        headers:{
+          Authorization:localStorage.getItem("token")
+        }
+      })
+
+    ]
+
+    const results = await Promise.allSettled(requests)
 
     // Hacer la petición GET con los parámetros de consulta
-    const response = await axios.get(`${BASE_URL}/movimientos`, { params });
-
+    const incomes = results[0].status === 'fulfilled' ?  results[0].value.data : [] ;
+    const expenses =results[1].status === 'fulfilled' ?  results[1].value.data : [] ; 
+       return [...incomes,...expenses]
     // Retornar los datos filtrados recibidos del backend
-    return response.data;
+    //return response.data;
   } catch (error) {
     console.error('Error al obtener los movimientos filtrados:', error);
-    throw error;  // Lanza el error para que lo maneje el componente
+    return []  // Lanza el error para que lo maneje el componente
   }
 };

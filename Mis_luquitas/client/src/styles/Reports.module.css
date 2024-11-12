@@ -3,6 +3,21 @@
   text-align: center;
   padding: 20px;
   margin-left: 300px;
+  font-family: "Inter", sans-serif;
+}
+
+.container h2 {
+  font-size: 44px;
+}
+
+.desde,
+.hasta {
+  display: flex;
+  gap: 30px;
+  justify-content: center;  
+  align-items: center;      
+  text-align: center;      
+
 }
 
 /* Contenedor para los selectores de fecha */
@@ -10,10 +25,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 50px;
   margin-bottom: 20px;
   margin-left: 100px;
-  margin-top: 15px;
+  margin-top: 55px;
+ 
 }
 
 /* Estilo para los inputs de fecha */
@@ -22,13 +38,13 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
-  color: #333;
+  color: #000000;
   outline: none;
   transition: border-color 0.3s ease;
 }
 
 .datePickerContainer input[type="date"]:focus {
-  border-color: #4caf50;
+  border-color: #000000;
 }
 
 /* Estilo para el botón de búsqueda */
@@ -36,7 +52,7 @@
   padding: 10px 20px;
   font-size: 16px;
   color: #fff;
-  background-color: #4caf50;
+  background-color: #8fb339;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -58,7 +74,9 @@
   justify-content: space-around;
   gap: 30px;
   flex-wrap: wrap;
-  margin-top: 20px;
+  margin-top: 70px;
+  color: #000000;
+
 }
 
 /* Estilo individual para cada gráfico */
@@ -69,10 +87,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  color: #000000;
 }
 
 /* Estilo para el mensaje de error */
 .error {
   color: red;
-  margin-top: 10px;
+
 }

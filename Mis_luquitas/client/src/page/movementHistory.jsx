@@ -1,45 +1,38 @@
 
 import React, { useEffect, useState } from 'react';
-import axios from 'axios'; // Asegúrate de importar axios
 import MovimientoItem from './movementItem';
 import styles from '../styles/movementHistory.module.css';
 import SearchIcon from '../imagine/lupa.png';
 import { fetchMovimientosConFiltro } from '../api/auth';  // Función para obtener los movimientos desde el backend
 
+
 const MovementHistory = () => {
   const [movimientos, setMovimientos] = useState([]);  // Estado para almacenar los movimientos
-  const [allMovimientos, setAllMovimientos] = useState([]);  // Estado para almacenar todos los movimientos
   const [search, setSearch] = useState('');  // Estado para búsqueda
   const [dateFilter, setDateFilter] = useState('');  // Estado para el filtro por fecha
 
+const refresh = async () => {
+  setSearch ('')
+  setDateFilter('')
+  const movement = await fetchMovimientosConFiltro (null,null)
+  setMovimientos (movement)
+}
+
+
+
   // Función para hacer el GET y obtener los datos
-  const getMovimientos = async () => {
-    try {
-      const response = await axios.get('http://localhost:3000/income/createIncome');
-      console.log("hola" + response)
-      return response.data; // Devuelve los datos recibidos
-      
-    } catch (error) {
-      console.error("Error al obtener los movimientos:", error);
-      return []; // En caso de error, devuelve un array vacío
-    }
-  };
+  console.log(dateFilter)
 
   useEffect(() => {
     const fetchMovimientos = async () => {
-      const data = await getMovimientos();
-      setMovimientos(data); // Establece los datos recibidos en el estado
+      //console.log(dateFilter)
+      if(!search && (!dateFilter || dateFilter === "" )){
+        const movement = await fetchMovimientosConFiltro (null,null)
+        setMovimientos (movement)
+      }
     };
     fetchMovimientos();
-  }, []); // Se ejecuta solo al montar el componente
-
-  const filteredMovimientos = movimientos.filter(movimiento => 
-    (movimiento.descripcion.toLowerCase().includes(search.toLowerCase()) || 
-     movimiento.categoria.toLowerCase().includes(search.toLowerCase()) || 
-     movimiento.formaPago.toLowerCase().includes(search.toLowerCase()) ||
-     movimiento.fecha.includes(search)) &&
-    (dateFilter === '' || movimiento.fecha === dateFilter)
-  );
+  }, [search, dateFilter]); // Se ejecuta solo al montar el componente
 
 
   return (
@@ -57,7 +50,13 @@ const MovementHistory = () => {
             placeholder="Buscar" 
             className={styles.searchInput} 
             value={search} 
-            onChange={(e) => setSearch(e.target.value)}  // Actualiza el estado de búsqueda
+            onChange={async(e) => {
+              setSearch  (e.target.value)
+              const movimientosPorPalabra = await fetchMovimientosConFiltro(e.target.value,new Date (dateFilter))
+              setMovimientos(movimientosPorPalabra)
+       
+            }
+          }  // Actualiza el estado de búsqueda
           />
           <img src={SearchIcon} alt="Buscar" className={styles.searchIcon} />
         </div>
@@ -67,7 +66,13 @@ const MovementHistory = () => {
           type="date" 
           className={styles.dateInput} 
           value={dateFilter} 
-          onChange={(e) => setDateFilter(e.target.value)}  // Actualiza el estado de la fecha
+          onChange={async(e) => {
+            setDateFilter(e.target.value)
+            const movimientosPorFecha = await fetchMovimientosConFiltro(search,new Date (e.target.value))
+           
+            setMovimientos(movimientosPorFecha)
+          }}
+          
         />
       </div>
 
@@ -91,10 +96,11 @@ const MovementHistory = () => {
             </tr>
           </thead>
           <tbody>
+
             {movimientos.length > 0 ? (
               movimientos.map(movimiento => (
-                <MovimientoItem 
-                  key={movimiento.id} 
+                <MovimientoItem refresh={refresh}
+                  
                   movimiento={movimiento} 
                   setMovimientos={setMovimientos} 
                 />
