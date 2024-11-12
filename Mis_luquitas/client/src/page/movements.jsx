@@ -18,7 +18,6 @@ function Movements() {
   // Función para obtener los ingresos
   const fetchIngresos = async () => {
     try {
-
       const response = await axios.get(
         "http://localhost:3000/subtract/getSubtract",
         {
@@ -35,14 +34,12 @@ function Movements() {
         text: "Error al obtener los ingresos",
         error,
       });
-
     }
   };
 
   // Función para obtener los gastos
   const fetchGastos = async () => {
     try {
-
       const response = await axios.get(
         "http://localhost:3000/subtract/getSubtract",
         {
@@ -59,7 +56,6 @@ function Movements() {
         text: "Error al obtener los gastos",
         error,
       });
-
     }
   };
 
@@ -108,12 +104,10 @@ function Movements() {
           Gastos <img src={Agregar} alt="Descripción de la imagen" />
         </button>
       </div>
-
       {/* Renderiza el componente Expenses pasando la función refresh */}
       {showExpenses && <Expenses modoEdicion={false} refresh={refresh} />}
       {showIncome && <Income modoEdicion={false} refresh={refresh} />}{" "}
       {/* Renderiza el componente Income */}
-
       {showPresupuesto && (
         <div className={styles.presupuesto}>
           <div className={styles.header}>

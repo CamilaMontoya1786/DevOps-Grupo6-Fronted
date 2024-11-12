@@ -39,7 +39,6 @@ function Changepassword() {
         // Mostrar mensaje de éxito
         Swal.fire({
           icon: "success",
-
           title: "¡Súper!",
           text: response.data.message || "Contraseña cambiada exitosamente.",
         });
@@ -61,7 +60,6 @@ function Changepassword() {
         title: "Oops!",
         text: "Ocurrió un error. Inténtalo de nuevo más tarde.",
       });
-
     }
   };
 

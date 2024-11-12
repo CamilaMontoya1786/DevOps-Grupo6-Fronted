@@ -5,7 +5,6 @@ import LogoImage from "../imagine/logo.png";
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 
-
 function Restorepassword() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
