@@ -15,6 +15,9 @@ import { Bar, Line } from "react-chartjs-2";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import styles from "../styles/Reports.module.css";
 import PropTypes from "prop-types";
+import Swal from "sweetalert2";
+import { color } from "chart.js/helpers";
+
 
 // Registrar los elementos necesarios de Chart.js
 ChartJS.register(
@@ -35,7 +38,7 @@ const Reports = () => {
   const [financialData, setFinancialData] = useState([]);
   const [error, setError] = useState(null);
 
-  const userId = 1;
+  // const userId = 1;
 
   const fetchFinancialData = async () => {
     if (!startDate || !endDate) {
@@ -44,17 +47,42 @@ const Reports = () => {
     }
 
     try {
+
+      // Obtener el token desde el localStorage
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        Swal.fire({
+          icon: "error",
+          title: "Error de autenticación",
+          text: "No se ha encontrado un token. Por favor inicia sesión.",
+        });
+        return;
+      }
+
+      // Realizar la solicitud GET con los parámetros y el token en los headers
+
       const response = await axios.get("http://localhost:3000/graphic", {
         params: {
           startDate,
           endDate,
-          userId: userId
+
+        },
+        headers: {
+          Authorization: ` ${token}`,
         },
       });
+
+      // Actualizar el estado con los datos financieros obtenidos
       setFinancialData(response.data);
       setError(null);
     } catch (err) {
-      setError("Error al obtener los datos. Intenta nuevamente.");
+      Swal.fire({
+        icon: "error",
+        title: "Oops",
+        text: "Error al obtener los datos. Intenta nuevamente.",
+      });
+
       console.error("Error fetching financial data:", err);
     }
   };
@@ -62,7 +90,7 @@ const Reports = () => {
   const BarChart = ({ data }) => {
     const incomeData = data.filter((item) => item.type === "income");
     const expenseData = data.filter((item) => item.type === "expense");
-
+  
     const chartData = {
       labels: [
         ...new Set([
@@ -70,43 +98,74 @@ const Reports = () => {
           ...expenseData.map((item) => item.date),
         ]),
       ],
+  
       datasets: [
         {
           label: "Ingresos",
           data: incomeData.map((item) => item.amount),
-          backgroundColor: "rgba(75, 192, 192, 0.2)",
+          backgroundColor: "rgba(75, 192, 192, 0.6)",
           borderColor: "rgba(75, 192, 192, 1)",
           borderWidth: 1,
           datalabels: {
             color: "black",
             align: "center",
             anchor: "center",
-            font: { weight: "normal" },
+            font: { weight: "bold", size: 10 },
+            padding: 5,
           },
+          // Ajustar el espacio entre las barras de ingresos y gastos
+          barPercentage: 0.6,  // Este valor controla la proporción del ancho de las barras dentro de la categoría
         },
         {
           label: "Gastos",
           data: expenseData.map((item) => item.amount),
-          backgroundColor: "rgba(255, 99, 132, 0.2)",
+          backgroundColor: "rgba(255, 99, 132, 0.6)",
           borderColor: "rgba(255, 99, 132, 1)",
           borderWidth: 1,
           datalabels: {
             color: "black",
             align: "center",
             anchor: "center",
-            font: { weight: "normal" },
+            font: { weight: "bold", size: 10 },
+            padding: 5,
           },
+          // Ajustar el espacio entre las barras de ingresos y gastos
+          barPercentage: 0.6,  // Igual para las barras de gastos
         },
       ],
     };
-
+  
     const chartOptions = {
       responsive: true,
       maintainAspectRatio: false,
-      plugins: { datalabels: { display: true } },
-      scales: { x: { ticks: { display: false } } },
+      plugins: {
+        datalabels: {
+          display: true,
+          color: "black",
+        },
+      },
+      scales: {
+        x: {
+          ticks: {
+            display: false, // Ocultar los ticks del eje X
+          },
+          // Ajustar el espacio entre las barras de diferentes colores
+          stacked: false, // Asegúrate de que no estén apiladas
+        },
+        y: {
+          beginAtZero: true,
+        },
+      },
+      layout: {
+        padding: {
+          left: 10,
+          right: 10,
+          top: 10,
+          bottom: 10,
+        },
+      },
     };
-
+  
     return (
       <div className={styles.chartContainer}>
         <h3>Gráfico de Barras</h3>
@@ -114,6 +173,8 @@ const Reports = () => {
       </div>
     );
   };
+  
+    
 
   const LineChart = ({ data }) => {
     const incomeData = data.filter((item) => item.type === "income");
@@ -133,6 +194,7 @@ const Reports = () => {
           borderColor: "rgba(75, 192, 192, 1)",
           fill: false,
           tension: 0.1,
+          pointRadius: 3,
         },
         {
           label: "Gastos",
@@ -140,16 +202,63 @@ const Reports = () => {
           borderColor: "rgba(255, 99, 132, 1)",
           fill: false,
           tension: 0.1,
+          pointRadius: 3
         },
       ],
     };
 
     const chartOptions = {
       responsive: true,
-      maintainAspectRatio: false,
-      plugins: { datalabels: { display: true } },
-      scales: { x: { ticks: { display: false } } },
+      maintainAspectRatio: false,  
+      plugins: {
+        datalabels: {
+          display: true,
+          align: "right",     
+          anchor: "bottom",  
+          color: "black",
+          padding: 3,        
+          font: {
+            size: 10,
+            weight: "bold",
+            family: "Arial",      
+          },
+        
+        },
+      },
+      scales: {
+        x: {
+          ticks: {
+            display: false,  
+          },
+        },
+        y: {
+          ticks: {
+            padding: 15,     // Espacio entre las etiquetas del eje Y y los puntos
+          },
+        },
+      },
+      elements: {
+        line: {
+          tension: 0.1, // Suavizar la línea si es necesario
+        },
+        point: {
+          radius: 20, // Tamaño de los puntos
+        },
+      },
+      layout: {
+        padding: {
+          left: 5,
+          right: 5,
+          top: 5,
+          bottom: 5,  // Espacio adicional alrededor del gráfico
+        },
+      },
+      hover: {
+        mode: "nearest",
+        intersect: true,
+      },
     };
+    
 
     return (
       <div className={styles.chartContainer}>
