@@ -1,5 +1,6 @@
 import axios from "./axios";
 
+
 // Conexión backend - frontend
 
 export const registerRequest = (user) => axios.post('/login/createUser', user);

@@ -5,6 +5,7 @@ import LogoImage from "../imagine/logo.png";
 import styles from "../styles/loguin.module.css";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 function Login() {
   const navigate = useNavigate();
@@ -32,8 +33,13 @@ function Login() {
       console.log("Token almacenado:", user.userToken);
       navigate("/home");
     } catch (error) {
-      setErrorMessage("Ups, los datos no son correctos. Vuelve a intentar."); // Mensaje de error
       console.log("Error al iniciar sesión:", error.message);
+      Swal.fire({
+        icon: "error",
+        title: "Oops!",
+         text:"Los datos no son correctos.Vuelve a intentar.",
+        confirmButtonText: "Aceptar",
+      });
     }
   };
 
@@ -98,7 +104,6 @@ function Login() {
           )}{" "}
           {/* Mostrar mensaje de error */}
           <div className={styles.restorePassword}>
-
             <Link to="/restorepassword" className={styles.link}>
               ¿Olvidaste tu contraseña?
             </Link>{" "}
@@ -107,7 +112,6 @@ function Login() {
               Crear cuenta nueva
             </Link>{" "}
             {/* Enlace a restaurar contraseña */}
-
           </div>
         </form>
       </div>
@@ -118,11 +122,12 @@ function Login() {
 const fetchUserData = async () => {
   try {
     const token = localStorage.getItem("token");
-    console.trace("identificando")
+
+    console.trace("identificando");
+
     const response = await axios.get(
       "http://localhost:3000/login/getUserProfile/" + token
     );
-
 
     localStorage.setItem("user", response.data);
   } catch (error) {

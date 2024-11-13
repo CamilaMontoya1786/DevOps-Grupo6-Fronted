@@ -28,7 +28,12 @@ function Register() {
         setData(response.data);
       })
       .catch((error) => {
-        console.error("Error al obtener los datos:", error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops!",
+          text: "Error al obtener el tipo de identificación",
+          error,
+        });
       });
   }, []);
 
@@ -38,7 +43,12 @@ function Register() {
         const response = await axios.get( "http://localhost:3000/country/countries");
         setUserList(response.data);
       } catch (error) {
-        console.error("Error al obtener los datos:", error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops!",
+          text: "Error al obtener el listado de paises",
+          error,
+        });
       }
     };
     fetchUserData();
@@ -264,4 +274,3 @@ function Register() {
 }
 
 export default Register;
-

@@ -41,10 +41,7 @@ function Home() {
           </p>
         </div>
         <div className={styles.imagen}>
-          {photo ? (
-            <img src={photo} alt="Consejo visual" />
-          ) : (
-            <p>Cargando imagen...</p>
+          {photo ? ( <img src={photo} alt="Consejo visual" />) : (<p>Cargando imagen...</p>
           )}
         </div>
       </div>

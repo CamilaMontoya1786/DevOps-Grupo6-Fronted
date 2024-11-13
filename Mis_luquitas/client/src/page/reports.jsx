@@ -141,6 +141,7 @@ const Reports = () => {
       plugins: {
         datalabels: {
           display: true,
+
           color: "black",
         },
       },
@@ -164,6 +165,7 @@ const Reports = () => {
           bottom: 10,
         },
       },
+
     };
   
     return (
