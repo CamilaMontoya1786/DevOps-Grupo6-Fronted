@@ -82,7 +82,7 @@
   margin-bottom: 550px; /* Ajusta la distancia desde el botón */
   position: absolute; /* Cambia a posición absoluta para moverlo */
   right: 119px; /* Ajusta este valor según sea necesario para posicionarlo cerca del botón de logout */
-  z-index: 2;
+  z-index: 2; 
 }
 
 /* Contenedor de los inputs */

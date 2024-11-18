@@ -2,36 +2,39 @@
 
 .todo {
   display: flex;
+  position: absolute;
   flex-direction: column; /* Cambiar a columna */
   width: 79%;
   right: 0%;
-  height: 100hv;
-  background-color: rgb(255, 255, 255);
-  position: absolute;
-  align-items: center; /* Centra los hijos horizontalmente */
-  gap: 30px;
+  height: 100vh;
+  gap: 10%;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  justify-items: center;
 }
 
 .header h2 {
   font-size: 60px;
   font-family: "Abril Fatface", serif;
   font-weight: 400;
-  margin-top: 5%;
   width: 100%;
   right: 0%;
 }
 
 .content {
   display: flex;
-  width: 80%;
+  width: auto;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  gap:30px;
 }
 
 .advice {
   display: flex;
   background-color: #ffffff;
   padding: 3%;
-  margin: 3%;
-  align-items: center; /* Opcional: centra el contenido verticalmente */
+
+    align-items: center; /* Opcional: centra el contenido verticalmente */
   justify-content: center; /* Opcional: centra el contenido horizontalmente */
   text-align: center; /* Centra el texto horizontalmente */
   border-radius: 10px;
@@ -50,7 +53,6 @@
   border-radius: 10px;
   height: 430px;
   width: 450px;
-  margin-top: 28px;
   font-size: 30px;
   align-items: center; 
   justify-content: center;
@@ -67,4 +69,112 @@
 
 .imagen p{
 display: flex;
+}
+
+
+@media (max-width: 1024px) {
+  .header h2 {
+    width: 70%;
+    font-size: 70px;
+    margin-left: 70px;
+  }
+
+  /* Cambio el layout de .content para que los elementos se acomoden en columna */
+  .content {
+    flex-direction: column; /* Pone los elementos en una columna */
+    align-items: center; /* Centra los elementos */
+  }
+
+  /* Asegurarse que la imagen siempre esté debajo del advice */
+  .imagen {
+    width: 450px;
+    height: 430px;
+    margin: 10px 0;
+    order: 2; /* Coloca la imagen después del bloque de consejo */
+    margin-left: 70px;
+  }
+
+  
+  .advice {
+    width: 450px;
+    height: 430px;
+    margin: 10px 0;
+    order: 1; /* Coloca el bloque de consejo antes de la imagen */
+    margin-left: 70px;
+  }
+}
+
+@media  (min-width: 768px) and (max-width:825px) {
+  .header h2 {
+    font-size: 40px;
+    margin-left: 100px;
+  }
+
+  .advice, .imagen {
+    width: 90%;
+    height: auto;
+    margin: 15px; /* Espaciado más pequeño en pantallas pequeñas */
+    margin-left: 160px;
+  }
+
+  .content {
+    flex-direction: column; /* Cambiar a columna en pantallas pequeñas */
+  }
+
+  .imagen img {
+    width: 100%; /* La imagen se ajusta al ancho completo del contenedor */
+    height: auto;
+  }
+}
+
+ /* Centrado del título */
+.header {
+  display: flex;
+  justify-content: center; /* Centra el título horizontalmente */
+  align-items: center; /* Centra verticalmente si es necesario */
+  text-align: center; /* Asegura que los elementos dentro de <h2> estén centrados */
+}
+
+/* Título */
+header h2 {
+  font-size: 30px;
+  display: flex;
+  flex-direction: column; /* Si es necesario dividir el título en varias líneas */
+  gap: 5px;
+}
+
+/* Media query para pantallas pequeñas */
+@media (min-width: 360px) and (max-width: 430px) {
+  .header h2 {
+    font-size: 30px;
+    text-align: center;  
+    margin: 30px auto; /* Centra el título */
+    margin-left: 70px;
+  }
+
+  /* Centrar consejos y la imagen */
+  .advice, .imagen {
+    width: 90%; /* Ajuste para que no ocupen todo el ancho */
+    height: auto;
+    margin: 10px auto; /* Centra los elementos y da margen superior e inferior */
+    display: flex;
+    flex-direction: column; /* Apila el contenido en columnas */
+    align-items: center; /* Centra el contenido horizontalmente */
+    justify-content: center; /* Centra el contenido verticalmente si es necesario */
+    margin-left: 30px;
+  }
+
+  /* Ajuste del tamaño del consejo */
+  .consejo {
+    font-size: 20px;
+    text-align: center; /* Asegura que el texto del consejo esté centrado */
+  }
+
+  /* Ajuste para la imagen */
+  .imagen img {
+    width: 100%; /* La imagen se ajusta al 100% del contenedor */
+    height: auto;
+    display: block; /* Asegura que la imagen no tenga espacio en blanco */
+    margin: 0 auto; /* Centra la imagen */
+  }
 }

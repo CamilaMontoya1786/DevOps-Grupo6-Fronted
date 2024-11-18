@@ -9,12 +9,12 @@ import lupa from "../imagine/lupa.png";
 import ayuda from "../imagine/ayuda.png";
 import cerrarsesion from "../imagine/cerrarsesion.png";
 import { useAuth } from "../context/authContext";
-import { set } from "react-hook-form";
 import axios from "axios";
 
 function Navbar() {
-
+  const { user, logout } = useAuth();
   const [userLocal, setUserLocal] = useState();
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -41,29 +41,40 @@ function Navbar() {
         <hr className={styles.linea} />
         <ul className={styles.Link}>
           <li>
-            <Link to="/home">Inicio</Link>
-            <img src={home} alt="img" />
+            <Link to="/home">
+              <img src={home} alt="Inicio" />
+              <span>Inicio</span>
+            </Link>
           </li>
           <li>
-            <Link to="/reports">Reportes</Link>
-            <img src={reporte} alt="img" />
+            <Link to="/reports">
+              <img src={reporte} alt="Reportes" />
+              <span>Reportes</span>
+            </Link>
           </li>
           <li>
-            <Link to="/movements">Movimientos</Link>
-            <img src={movimiento} alt="img" />
+            <Link to="/movements">
+              <img src={movimiento} alt="Movimientos" />
+              <span>Movimientos</span>
+            </Link>
           </li>
           <li>
-            <Link to="/movementHistory">Historial de Movimientos</Link>
-            <img src={lupa} alt="img" />
+            <Link to="/movementHistory">
+              <img src={lupa} alt="Historial de Movimientos" />
+              <span>Historial de Movimientos</span>
+            </Link>
           </li>
           <li>
-            <Link to="/help">Ayuda</Link>
-            <img src={ayuda} alt="img" />
+            <Link to="/help">
+              <img src={ayuda} alt="Ayuda" />
+              <span>Ayuda</span>
+            </Link>
           </li>
-
           <li>
-            <Link to="/login">Cerrar Sesión</Link>
-            <img src={cerrarsesion} />
+            <Link to="/login">
+              <img src={cerrarsesion} alt="Cerrar Sesión" />
+              <span>Cerrar Sesión</span>
+            </Link>
           </li>
         </ul>
         <div className={styles.User}>

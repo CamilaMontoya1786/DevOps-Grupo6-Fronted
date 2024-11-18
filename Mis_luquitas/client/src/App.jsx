@@ -14,6 +14,7 @@ import Expenses from "./page/expenses";
 import Income from "./page/income";
 import MovementHistory from "./page/movementHistory";
 import Reports from "./page/reports";
+import Descarga from "./page/descarga";
 
 function App() {
   return (
@@ -60,6 +61,7 @@ function MainRoutes() {
         <Route path="/income" element={<Income />} />
         <Route path="/movementHistory" element={<MovementHistory />} />
         <Route path="/reports" element={<Reports />} />
+        <Route path="/descarga" element={<Descarga />} />
       </Routes>
     </>
   );

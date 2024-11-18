@@ -34,17 +34,16 @@ const MovimientoItem = ({ movimiento, refresh }) => {
       {/* Fila de movimiento */}
 
       <tr className={style.Texto}>
-
         <td>
           {movimiento.expenseDate
             ? movimiento.expenseDate
             : movimiento.incomeDate}
         </td>
-        <td className={movimiento.expenseAmount ? styles.redText : ''}>
-  {movimiento.expenseAmount
-    ? `-$ ${movimiento.expenseAmount.toLocaleString('es-CO')}`
-    : `$ ${movimiento.incomeAmount.toLocaleString('es-CO')}`} 
-</td>
+        <td className={movimiento.expenseAmount ? styles.redText : ""}>
+          {movimiento.expenseAmount
+            ? `-$ ${movimiento.expenseAmount.toLocaleString("es-CO")}`
+            : `$ ${movimiento.incomeAmount.toLocaleString("es-CO")}`}
+        </td>
         <td>
           {movimiento.expenseCategory
             ? movimiento.expenseCategory
