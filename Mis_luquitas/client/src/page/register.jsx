@@ -5,7 +5,7 @@ import LogoImage from "../imagine/logo.png";
 import styles from "../styles/register.module.css";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom"; // Importa useNavigate
+import { Link,useNavigate } from "react-router-dom"; // Importa useNavigate
 
 function Register() {
   
@@ -266,6 +266,15 @@ function Register() {
             </button>
 
             <p className={styles.text1}> Todos los campos son obligatorios</p>
+          </div>
+
+          <div className={styles.linktodo}>
+            <p className={styles.text1}>
+              ¿Ya tienes una cuenta?{" "}</p>
+              <Link to="/login" className={styles.link}>
+                Inicia sesión aquí
+              </Link>
+
           </div>
         </form>
       </div>

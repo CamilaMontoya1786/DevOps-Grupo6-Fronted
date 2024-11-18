@@ -41,10 +41,10 @@ const MovimientoItem = ({ movimiento, refresh }) => {
             : movimiento.incomeDate}
         </td>
         <td className={movimiento.expenseAmount ? styles.redText : ''}>
-          {movimiento.expenseAmount
-            ? "-" + movimiento.expenseAmount
-            : movimiento.incomeAmount}
-        </td>
+  {movimiento.expenseAmount
+    ? `-$ ${movimiento.expenseAmount.toLocaleString('es-CO')}`
+    : `$ ${movimiento.incomeAmount.toLocaleString('es-CO')}`} 
+</td>
         <td>
           {movimiento.expenseCategory
             ? movimiento.expenseCategory
