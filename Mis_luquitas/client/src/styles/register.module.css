@@ -16,12 +16,12 @@
 .register_page::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: -300px;
-  width: 800px;
-  height: 800px;
+  top: 50%; /* Centra verticalmente */
+  left: 0%; /* Centra horizontalmente */
+  width: 1000px;
+  height: 1000px;
   background-color: #b7ce63;
-  transform: rotate(45deg);
+  transform: translate(-50%, -50%) rotate(45deg); /* Desplaza al centro y rota */
   z-index: -1;
 }
 
@@ -161,4 +161,285 @@
   font-size: 12px;
 }
 
+/* Responsivo para pantallas medianas */
+@media (max-width: 1024px) {
+  .body_register {
+    width: 90%;
+    padding: 15px;
+  }
+  
+  .body_register h2 {
+    font-size: 50px; /* Aumenta el tamaño del h2 */
+  }
+  
+  .title_register {
+    font-size: 80px;
+  }
 
+  .inputPadre {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+   /* Aumentar el tamaño del texto del placeholder */
+   .inputContainer input::placeholder,
+   .input_container input::placeholder {
+     font-size: 25px; /* Ajusta el tamaño del texto del placeholder */
+   }
+
+   .input_container select{
+    width: 90%; /* Reducir un poco el ancho */
+    padding: 10px; /* Reducir el padding para hacer el input más pequeño */
+    margin-left: 35px;
+    font-size: 24px;
+   }
+
+   /* Aumentar el tamaño del texto dentro de los inputs y selects */
+   .inputContainer input,
+   .input_container input {
+     font-size: 20px;
+     width: 90%; /* Reducir un poco el ancho */
+     padding: 10px; /* Reducir el padding para hacer el input más pequeño */
+     margin-left: 35px;
+   
+   }
+   .button_register {
+    width: auto;
+    font-size: 30px;
+    
+  }
+
+  .text1 {
+    font-size: 20px;
+  }
+
+  .helper_message {
+    font-size: 25px;
+    width: 90%;
+    box-sizing: border-box;
+    margin: 0;
+    margin-left: 35px;
+  }
+
+  .error_message {
+    font-size: 20px;
+    margin-bottom: 5px;
+    margin-left: 35px;
+  }
+
+  .link{
+    font-size: 18px;
+
+  }
+}
+
+/* Responsivo para pantallas medianas más pequeñas */
+@media (min-width: 750px) and (max-width: 850px) {
+  .title_register {
+    font-size: 50px;
+  }
+
+  .body_register h2 {
+    font-size: 45px;
+  }
+  
+  .body_register {
+    width: 95%;
+  }
+
+  .inputPadre {
+    gap: 10px;
+  }
+
+  .button_register {
+    width: 180px;
+    font-size: 25px;
+  }
+
+  .text1 {
+    font-size: 20px;
+  }
+
+  .helper_message {
+    font-size: 20px;
+    width: 90%;
+    box-sizing: border-box;
+    margin: 0;
+    margin-left: 35px;
+  }
+
+  .error_message {
+    font-size: 20px;
+    margin-bottom: 10px;
+    margin-left: 35px;
+  }
+
+
+  /* Aumentar el tamaño del texto del placeholder */
+  .inputContainer input::placeholder,
+  .input_container input::placeholder,
+  .input_container select {
+    font-size: 22px; /* Ajusta el tamaño del texto del placeholder */
+  }
+  
+  /* Aumentar el tamaño del texto dentro de los inputs y selects */
+  .inputContainer input,
+  .input_container input,
+  .input_container select {
+    font-size: 20px;
+    width: 90%; /* Reducir un poco el ancho */
+    padding: 6px; /* Reducir el padding para hacer el input más pequeño */
+    margin-left: 35px;
+  
+  }
+}
+/* Responsivo para pantallas medianas más pequeñas */
+@media (min-width: 431px) and (max-width: 749px) {
+  .title_register {
+    font-size: 30px;
+  }
+
+  .body_register h2 {
+    font-size: 25px;
+  }
+  
+  .body_register {
+    width: 70%;
+  }
+
+  .inputPadre {
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .button_register {
+    width: auto;
+    font-size: 15px;
+  }
+
+  .text1 {
+    font-size: 15px;
+  }
+
+  .helper_message {
+    font-size: 20px;
+    width: 90%;
+    box-sizing: border-box;
+    margin: 0;
+    margin-left: 35px;
+  }
+
+  .error_message {
+    font-size: 20px;
+    margin-bottom: 10px;
+    margin-left: 35px;
+  }
+
+
+  /* Aumentar el tamaño del texto del placeholder */
+  .inputContainer input::placeholder,
+  .input_container input::placeholder,
+  .input_container select {
+    font-size: 15px; /* Ajusta el tamaño del texto del placeholder */
+  }
+  
+  /* Aumentar el tamaño del texto dentro de los inputs y selects */
+  .inputContainer input,
+  .input_container input,
+  .input_container select {
+    font-size: 20px;
+    width: 90%; /* Reducir un poco el ancho */
+    padding: 3px; /* Reducir el padding para hacer el input más pequeño */
+  }
+
+  
+  .link{
+    font-size: 12px;
+
+  }
+}
+
+/* Responsivo para pantallas muy pequeñas entre 375px y 430px */
+@media  (max-width: 430px) {
+  .title_register {
+    font-size: 30px; /* Reducir el tamaño del título */
+    margin-top: 25px;
+  }
+
+  .body_register {
+    width: 85%; /* Reducir el ancho del contenedor */
+    height:auto;
+    margin-top: -15px;
+    padding: 8px; /* Reducir el padding general */
+   
+  }
+
+  .header_register img {
+    margin-top: 20px;
+    width: 50px; /* Reducir el tamaño de la imagen en el encabezado */
+    height: auto;
+  }
+
+  .body_register h2 {
+    font-size: 18px; /* Reducir el tamaño del subtítulo */
+    margin-bottom: 15px; /* Reducir el margen inferior */
+  }
+
+  .inputPadre {
+    margin-top: 20px; /* Reducir el margen superior */
+    gap: 10px; /* Reducir el espacio entre los inputs */
+    flex-direction: column;
+    align-items: center;
+
+  }
+
+  .inputContainer input,
+  .input_container input,
+  .input_container select {
+    margin-right: 30px;
+    font-size: 14px; /* Reducir el tamaño del texto */
+    padding: 6px; /* Reducir el padding interno */
+    margin-bottom: 10px; /* Reducir el margen inferior */
+  }
+
+  .inputContainer input,
+  .input_container input,
+  .input_container select {
+    width: 270px;
+  }
+
+  .inputContainer input::placeholder,
+  .input_container input::placeholder,
+  .input_container select {
+    font-size: 14px; /* Ajusta el tamaño del texto del placeholder */
+  }
+
+  .button_register {
+    font-size: 12px;
+    padding: 6px 8px;
+    width: 90px;
+    margin-top: 20px; /* Ajustar margen superior del botón */
+  }
+
+  .button_container {
+    margin-top: -20px;
+  }
+
+  .text1 {
+    font-size: 12px; /* Reducir el tamaño de la fuente */
+  }
+
+  .helper_message,
+  .text,
+  .error_message {
+    font-size: 10px; /* Reducir el tamaño de fuente de mensajes de ayuda y error */
+    text-align: center; /* Centrar el texto */
+    margin: 0;
+    padding: 0;
+    width: 100%; /* Asegurar que ocupa todo el ancho disponible */
+  }
+  .link{
+    font-size: 12px;
+  }
+}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "../styles/expenses.module.css";
 import Swal from "sweetalert2";
@@ -76,6 +76,7 @@ function Expenses({ modoEdicion = false, expense = null, refresh }) {
           authorization: `${token}`,
         },
       };
+      
       if (modoEdicion) {
         const response = await axios.post(
           "http://localhost:3000/expense/updateExpense/" + expense.expenseId,

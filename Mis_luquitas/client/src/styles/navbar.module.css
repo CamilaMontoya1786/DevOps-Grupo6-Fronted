@@ -1,76 +1,82 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
+/* Barra lateral izquierda */
 .left {
   background-color: #b7ce63;
   width: 20%;
   height: 100vh;
   box-shadow: 0 0 10px rgba(0, 0, 0, 1);
   font-family: "Inter", sans-serif;
-  margin: 0%;
-  padding: 0%;
-  position: absolute;
+  position: fixed;
+  transition: width 0.3s ease, padding 0.3s ease;
+  z-index: 1;
 }
 
 .Link li {
-  display: flex; /* Usar flexbox para alinear imagen y texto */
-  align-items: center; /* Centra verticalmente */
-  margin-bottom: 8px; /* Añade espacio entre los enlaces */
-  padding: 10px; /* Añade un poco de padding para crear un área clicable más grande */
-  border-radius: 5px; /* Esquinas redondeadas */
-  transition: background-color 0.3s; /* Suaviza la transición del color de fondo */
-  margin-top: 15px;
+  display: flex;
+  align-items: center; /* Alinea verticalmente la imagen y el texto */
+  justify-content: flex-start; /* Alinea los elementos hacia la izquierda */
+  padding: 5%; /* Ajusta el padding para centrar mejor */
+  border-radius: 5px;
+  transition: background-color 0.3s, margin-left 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+  margin-left: 5%;
 }
 
 .Link li:hover {
-  background-color: #d7ea8f; /* Color de fondo al pasar el mouse */
+  background-color: #d7ea8f;
   margin-left: -10px;
+  width: 90%;
 }
 
 .Link li img {
-  margin-left: 10px; /* Añade espacio a la izquierda de la imagen */
-  margin-right: 20px; /* Añade espacio a la derecha de la imagen si es necesario */
   width: 30px;
+  height: 30px; /* Asegura que la imagen sea cuadrada */
+  margin-right: 10px; /* Espacio entre la imagen y el texto */
+  object-fit: cover; /* Asegura que la imagen no se deforme */
 }
 
 .Link li a {
-  text-decoration: none; /* Quita el subrayado */
+  text-decoration: none;
   color: black;
   font-size: 18px;
-  font-weight: bold; /* Aplica negrita a todo el texto */
+  font-weight: bold;
   font-family: "Inter", sans-serif;
-  display: block; /* Para que el área del enlace cubra todo el li */
-  width: 300px; /* Hace que el enlace ocupe todo el espacio del li */
-  margin-left: 20px;
-  
+  display: flex; /* Hace que el enlace sea un contenedor flexible */
+  align-items: center; /* Alinea el texto verticalmente con la imagen */
+  width: 100%;
 }
 
+/* Estilo para el nombre de usuario */
 .UserName {
   color: black;
   font-size: 18px;
-  font-weight: bold; /* Aplica negrita a todo el texto */
+  font-weight: bold;
   font-family: "Inter", sans-serif;
-  text-align: right; /* Alinea el texto a la derecha */
+  text-align: right;
 }
 
-
 .User {
-  position: absolute; /* Permite posicionar el nombre de usuario */
-  bottom: 20px; /* Espacio desde la parte inferior */
-  right: 20px; /* Espacio desde la derecha */
+  position: absolute;
+  right: 5%;
+  bottom: 2%;
 }
 
 .linea {
-  height: 1px; /* Define el grosor de la línea */
-  background-color: #404040; /* Cambia el color */
-  border: none; /* Elimina el borde predeterminado */
+  height: 1px;
+  background-color: #404040;
+  border: none;
+  margin-bottom: 8%;
 }
 
 .header {
-  display: flex; /* Usar Flexbox */
-  flex-direction: column; /* Organiza los elementos en una columna */
-  justify-content: center; /* Centra verticalmente */
-  align-items: center; /* Centra horizontalmente */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 20px;
+  width: 100%;
 }
 
 .header img {
@@ -80,7 +86,61 @@
 
 .header h1 {
   font-size: 34px;
-  margin-top: 2px;
+  margin-top: 20px;
+}
+@media (max-width: 800px) {
+  .left {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+  }
+
+  .Link li a span {
+    font-size: 70%;
+  }
+
+  .Link li {
+    padding: 10px; /* Ajusta el padding si es necesario */
+  }
+
+  .UserName {
+    font-size: 70%;
+  }
+
+  /* Ajustes del encabezado */
+  .header img {
+    width: 50px; /* Ajustar el tamaño de la imagen */
+  }
+
+  .header h1 {
+    display: none; /* Ocultar el título en pantallas pequeñas */
+  }
 }
 
+/* Estilos responsivos para pantallas pequeñas */
+@media (max-width: 576px) {
+  .left {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+  }
 
+  .Link li a span {
+    display: none; /* Oculta el texto */
+  }
+
+  .Link li {
+    padding: 10px; /* Ajusta el padding si es necesario */
+  }
+
+  .UserName {
+    font-size: 70%;
+  }
+
+  /* Ajustes del encabezado */
+  .header img {
+    width: 50px; /* Ajustar el tamaño de la imagen */
+  }
+
+  .header h1 {
+    display: none; /* Ocultar el título en pantallas pequeñas */
+  }
+}

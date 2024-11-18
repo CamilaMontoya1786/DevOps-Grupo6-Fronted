@@ -2,31 +2,29 @@
 
 .completo_help {
   display: flex;
+  width: 79%;
+  height: 100vh;
   flex-direction: column;
-  width: 60%; /* Ancho mantenido */
-  height: auto;
-  background-color: rgb(255, 255, 255);
-  right: 5%; 
-  position: absolute;
+  background-color: rgba(255, 255, 255, 0.637);
   align-items: center; /* Centrar elementos del contenedor principal */
   gap: 20px; /* Espacio entre elementos aumentado */
   padding: 12px; /* Padding mantenido */
+  font-family: "Inter", sans-serif;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  margin-left: auto;
 }
 
 .header_help_h2 {
-  font-size: 47px !important; /* Reducido de 48px a 47px */
-  font-family: "Abril Fatface", serif;
+  font-size: 47px; /* Reducido de 48px a 47px */
   font-weight: bold;
   width: 100%;
-  margin-right: 97px; /* Reducido */
   text-align: center; /* Centrar el título */
 }
 
 .header_help h3 {
-  font-size: 27px !important; /* Reducido de 28px a 27px */
-  font-family: "Abril Fatface", serif;
+  font-size: 27px; /* Reducido de 28px a 27px */
   font-weight: 400;
-  margin-top: 5px; /* Margen superior mantenido */
   text-align: center; /* Centrar el subtítulo */
 }
 
@@ -34,14 +32,14 @@
   display: flex;
   flex-direction: column;
   align-items: center; /* Centrar el contenedor del video */
-  gap: 10px; /* Espacio entre elementos dentro del contenedor de video aumentado */
+  
   width: 697px; /* Reducido de 698px */
   height: 397px; /* Reducido de 398px */
-  margin-right: 97px; /* Reducido */
-  background-color: #ececec !important;
+ 
+  background-color: #ececec ;
   border-radius: 12px; /* Bordes redondeados mantenidos */
-  padding: 9px; /* Reducido de 10px a 9px */
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1); /* Sombra mantenida */
+  padding: 9px; 
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 1); /* Sombra mantenida */
 }
 
 .video_help {
@@ -55,11 +53,11 @@
 .contacto_help {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Alinear el contenido a la izquierda */
   margin-top: 20px;
   text-align: left; /* Alinear el texto a la izquierda */
   font-weight: bold; /* Negrita para el texto "Contáctanos" */
-  width: 100%; /* Para que el contenido ocupe todo el ancho disponible */
+  width: 45%; /* Para que el contenido ocupe todo el ancho disponible */
+  
 }
 
 .contactInfo_help {

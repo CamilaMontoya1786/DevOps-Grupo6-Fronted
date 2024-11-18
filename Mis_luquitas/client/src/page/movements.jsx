@@ -5,7 +5,7 @@ import styles from "../styles/movements.module.css";
 import Agregar from "../imagine/Agregar.png";
 import axios from "axios";
 import Swal from "sweetalert2";
-
+import { Link } from "react-router-dom";
 
 function Movements() {
   const [showExpenses, setShowExpenses] = useState(false);
@@ -28,12 +28,12 @@ function Movements() {
       );
       setIngresos(response.data.totalIncomes);
     } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops",
-        text: "Error al obtener los ingresos",
-        error,
-      });
+      // Swal.fire({
+      //   icon: "error",
+      //   title: "Oops",
+      //   text: "Error al obtener los ingresos",
+      //   error,
+      // });
     }
   };
 
@@ -50,12 +50,12 @@ function Movements() {
       );
       setGastos(response.data.totalExpenses);
     } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops",
-        text: "Error al obtener los gastos",
-        error,
-      });
+      // Swal.fire({
+      //   icon: "error",
+      //   title: "Oops",
+      //   text: "Error al obtener los gastos",
+      //   error,
+      // });
     }
   };
 
@@ -121,22 +121,33 @@ function Movements() {
                 type="text"
                 name="ingresos"
                 readOnly
-                value={`$ ${ingresos.toLocaleString('es-CO')}`}
+                value={`$ ${ingresos.toLocaleString("es-CO")}`}
               />
             </div>
 
             <div className={styles.superior}>
               <label htmlFor="gastos">Gastos:</label>
-              <input type="text" name="gastos" readOnly 
-              value={`$ ${gastos.toLocaleString('es-CO' )}`} />
+              <input
+                type="text"
+                name="gastos"
+                readOnly
+                value={`$ ${gastos.toLocaleString("es-CO")}`}
+              />
             </div>
           </div>
 
           <div className={styles.inferior}>
             <label htmlFor="disponible">Disponible:</label>
-            <input type="text" name="disponible" readOnly
-             value={`$ ${disponible.toLocaleString('es-CO' )}`} />
+            <input
+              type="text"
+              name="disponible"
+              readOnly
+              value={`$ ${disponible.toLocaleString("es-CO")}`}
+            />
           </div>
+          <Link to="/login" className={styles.link}>
+            Descargar Plan presupuestal detallado aquí
+          </Link>
         </div>
       )}
     </div>
