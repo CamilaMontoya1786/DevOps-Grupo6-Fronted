@@ -121,21 +121,21 @@ function Movements() {
                 type="text"
                 name="ingresos"
                 readOnly
-                value={`$ ${ingresos.toLocaleString("es-MX")}`}
+                value={`$ ${ingresos.toLocaleString('es-CO')}`}
               />
             </div>
 
             <div className={styles.superior}>
               <label htmlFor="gastos">Gastos:</label>
               <input type="text" name="gastos" readOnly 
-              value={`$ ${gastos.toLocaleString("es-MX" )}`} />
+              value={`$ ${gastos.toLocaleString('es-CO' )}`} />
             </div>
           </div>
 
           <div className={styles.inferior}>
             <label htmlFor="disponible">Disponible:</label>
             <input type="text" name="disponible" readOnly
-             value={`$ ${disponible.toLocaleString("es-MX" )}`} />
+             value={`$ ${disponible.toLocaleString('es-CO' )}`} />
           </div>
         </div>
       )}
