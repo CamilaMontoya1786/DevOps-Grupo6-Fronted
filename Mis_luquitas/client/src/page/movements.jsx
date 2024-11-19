@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import  { useEffect, useState } from "react";
 import Expenses from "./expenses"; // Asegúrate de tener la ruta correcta
 import Income from "./income"; // Importa el componente Income
 import styles from "../styles/movements.module.css";
