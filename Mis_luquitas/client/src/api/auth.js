@@ -81,12 +81,12 @@ export const fetchMovimientosConFiltro = async (search, dateFilter) => {
       }
       
     const requests = [
-      axios.get("https://devops-backend-grupo6.onrender.com/income/getIncome"+ params, {
+      axios.get("https://devops-backend-grupo6.onrender.com/income/getIncome/"+ params, {
         headers:{
           Authorization:localStorage.getItem("token")
         }
       }),
-      axios.get("https://devops-backend-grupo6.onrender.com/expense/getExpense"+ params, {
+      axios.get("https://devops-backend-grupo6.onrender.com/expense/getExpense/"+ params, {
         headers:{
           Authorization:localStorage.getItem("token")
         }

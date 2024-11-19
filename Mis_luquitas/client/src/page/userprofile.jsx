@@ -1,10 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
-import { get, useForm } from "react-hook-form";
-import { useAuth } from "../context/authContext";
+import  { useState, useEffect, useRef } from "react";
+import {  useForm } from "react-hook-form";
 import profile from "../styles/userprofile.module.css";
 import axios from "axios";
 import defaultProfileImage from "../imagine/usuario.png"; // Importa la imagen predeterminada
-import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 function UserProfile() {
@@ -14,19 +12,15 @@ function UserProfile() {
     setValue,
     formState: { errors },
   } = useForm();
-  const { user1, logout } = useAuth();
   const [data, setData] = useState([]);
   const [userList, setUserList] = useState([]);
-  const [errorMessage, setErrorMessage] = useState("");
   const [user, setUser] = useState();
   const fileInputRef = useRef(null); // Referencia al input de archivo
-  const navigate = useNavigate();
+ 
   const [profileImage, setProfileImage] = useState(defaultProfileImage); // Inicia con la imagen predeterminada
   const [preview, setPreview] = useState(defaultProfileImage);
 
-  const handleClick = () => {
-    navigate("/Home");
-  };
+ 
 
   useEffect(() => {
     const fetchCountries = async () => {

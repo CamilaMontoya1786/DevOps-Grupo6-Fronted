@@ -16,7 +16,7 @@ import ChartDataLabels from "chartjs-plugin-datalabels";
 import styles from "../styles/Reports.module.css";
 import PropTypes from "prop-types";
 import Swal from "sweetalert2";
-import { color } from "chart.js/helpers";
+
 
 
 // Registrar los elementos necesarios de Chart.js
@@ -295,20 +295,20 @@ const Reports = () => {
       <h2>Reporte Financiero</h2>
       <div className={styles.datePickerContainer}>
         <div className={styles.desde}>
-          <label>Desde</label>
+          <label>Desde
           <input
             type="date"
             value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
-          />
+          /></label>
         </div>
         <div className={styles.hasta}>
-          <label>Hasta</label>
+          <label>Hasta
           <input
             type="date"
             value={endDate}
             onChange={(e) => setEndDate(e.target.value)}
-          />
+          /></label>
         </div>
         <button onClick={fetchFinancialData}>Buscar Datos</button>
       </div>

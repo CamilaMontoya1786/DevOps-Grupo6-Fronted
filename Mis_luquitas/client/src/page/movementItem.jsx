@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { deleteMovimiento } from "../api/auth";
 import Expenses from "./expenses";
 import Income from "./income";
