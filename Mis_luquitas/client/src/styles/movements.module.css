@@ -1,7 +1,7 @@
 /* Estilo por defecto para pantallas grandes (1280px en adelante) */
 .todo_movements {
   display: flex;
-  width: calc(100% - 250px);
+  width: 80%;
   flex-direction: column;
   height: 100vh;
   right: 0;
@@ -27,6 +27,7 @@
   justify-content: center;
   width: 100%;
   gap: 20px;
+
 }
 
 .button_movements {
@@ -64,12 +65,10 @@
 
 .presupuesto {
   margin-top: 80px;
-  background-color: #ececec;
   box-shadow: 0 0 10px rgba(0, 0, 0, 1);
-  width: 650px;
-  height: 350px;
   border-radius: 10px;
   font-weight: bold;
+  
 }
 
 .header h2 {
@@ -123,6 +122,175 @@
   margin: 20px;
 }
 
+/* Modal - Estilos */
+.modalContent {
+  padding: 30px;
+  background-color: #e5e2e2;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  font-family: "Inter", sans-serif;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between; /* Mueve el botón al extremo derecho */
+  align-items: center;           /* Asegura que el contenido esté alineado verticalmente */
+}
+.link {
+  display: block; /* Convierte el enlace en un bloque para centrarlo fácilmente */
+  text-align: center; /* Centra el texto del enlace */
+  font-size: 12px; /* Ajusta el tamaño de la fuente a un tamaño más pequeño */
+  color: inherit; /* Mantiene el color del texto según el estilo del tema */
+  margin: 10px 0; /* Añade espacio alrededor si es necesario */
+}
+
+
+.closeButton {
+  background: none;   /* Opcional: elimina el fondo si es necesario */
+  border: none;       /* Elimina el borde predeterminado */
+  cursor: pointer;    /* Cambia el cursor al pasar sobre el botón */
+}
+
+
+.modalOverlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  font-family: "Inter", sans-serif;
+}
+
+/* Contenedor de los campos de fecha en columna */
+.datePickerContainer {
+  display: flex;
+  flex-direction: column; /* Establecer la dirección a columna */
+  justify-content: center;
+  align-items: center;
+  gap: 20px; /* Espaciado entre los elementos */
+  margin-bottom: 20px;
+  margin-top: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 1);
+  font-family: "Inter", sans-serif;
+  background-color: #ccc;
+  padding: 10px;
+}
+
+/* Estilo para los inputs de fecha en el modal */
+.datePickerContainer input[type="date"] {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+  color: #000000;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.datePickerContainer input[type="date"]:focus {
+  border-color: #000000;
+}
+
+/* Estilo para el botón de búsqueda en el modal */
+.datePickerContainer button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #000000;
+  background-color: #8fb339;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.hasta label {
+  display: block; /* Asegura que el label ocupe toda la línea */
+  margin-bottom: 10px; /* Espacio entre el label y el input */
+  font-size: 16px; /* Opcional: tamaño de la fuente */
+}
+
+.hasta input[type="date"] {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #000;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.desde label {
+  display: block; /* Asegura que el label ocupe toda la línea */
+  margin-bottom: 10px; /* Espacio entre el label y el input */
+  font-size: 16px; /* Opcional: tamaño de la fuente */
+}
+
+.desde input[type="date"] {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #000;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.datePickerContainer button {
+  width: auto;
+  padding: 10px 15px;
+  background-color: #8fb339;
+  color: #000;
+  font-weight: bold;
+  border: none;
+  border-radius: 50px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* .button:hover: Estilo del botón al pasar el ratón */
+.datePickerContainer button:hover {
+  background-color: #64831d;
+}
+
+/* Estilo para el mensaje de error */
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.informe {
+  display: flex;
+  flex-direction: column; /* Organiza los elementos en columna */
+  justify-content: center;
+  align-items: center;
+  padding: 20px; /* Puedes agregar padding para más espacio alrededor */
+  gap: 30px;
+}
+.informe input[type="text"] {
+  font-size: 15px; /* Aumenta el tamaño de la fuente */
+  padding: 12px 20px; /* Aumenta el padding para hacer el campo más grande */
+  width: 100%; /* Ocupa el 100% del contenedor o ajusta con un valor específico */
+  max-width: 250px; /* Limita el tamaño máximo */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  color: #000;
+  text-align: center;
+  transition: border-color 0.3s ease;
+}
+
+.informe input[type="text"]:focus {
+  border-color: #4546a0; /* Cambia el color del borde cuando el input está enfocado */
+}
+
 /* Responsividad */
 
 /* Pantallas 1280px hasta 1279px */
@@ -132,9 +300,10 @@
     height: 350px; /* Ajusta la altura del contenedor */
     margin-left: 0px !important;
     margin-top: 20px;
+   
   }
 
-  .header h2{
+  .header h2 {
     margin-top: 15px;
   }
   .button_movements {
@@ -155,13 +324,13 @@
   }
 }
 
-
 /* Pantallas 1280px hasta 1279px */
-@media (min-width: 1024px) {
+@media (max-width: 1024px) {
   .presupuesto {
     width: 600px; /* Disminuye el tamaño del contenedor */
     height: 450px; /* Ajusta la altura del contenedor */
     margin-left: 50px;
+    
   }
 
   .button_movements {
@@ -176,20 +345,20 @@
   }
 
   .presupuesto input {
-    width: 80%; /* Disminuye el tamaño de los inputs */
+    width: 60%; /* Disminuye el tamaño de los inputs */
     padding: 6px; /* Ajusta el padding de los inputs */
     font-size: 20px; /* Ajusta el tamaño de la fuente de los inputs */
   }
-  
-  .superior label, .inferior label{
+
+  .superior label,
+  .inferior label {
     font-size: 30px;
   }
 
-  .header h2{
+  .header h2 {
     font-size: 50px;
   }
 }
-
 
 /* Pantallas pequeñas 481px hasta 769px */
 @media (max-width: 825px) {
@@ -228,8 +397,6 @@
     margin-left: -40px;
   }
 }
-
-
 
 /* Pantallas muy pequeñas 0px hasta 480px */
 @media (max-width: 480px) {
