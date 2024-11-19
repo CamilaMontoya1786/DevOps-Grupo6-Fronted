@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import Expenses from "./expenses"; // Asegúrate de tener la ruta correcta
 import Income from "./income"; // Importa el componente Income
 import styles from "../styles/movements.module.css";
@@ -28,12 +28,12 @@ function Movements() {
       );
       setIngresos(response.data.totalIncomes);
     } catch (error) {
-      // Swal.fire({
-      //   icon: "error",
-      //   title: "Oops",
-      //   text: "Error al obtener los ingresos",
-      //   error,
-      // });
+      Swal.fire({
+        icon: "error",
+        title: "Oops",
+        text: "Error al obtener los ingresos",
+        error,
+      });
     }
   };
 
@@ -50,12 +50,12 @@ function Movements() {
       );
       setGastos(response.data.totalExpenses);
     } catch (error) {
-      // Swal.fire({
-      //   icon: "error",
-      //   title: "Oops",
-      //   text: "Error al obtener los gastos",
-      //   error,
-      // });
+      Swal.fire({
+        icon: "error",
+        title: "Oops",
+        text: "Error al obtener los gastos",
+        error,
+      });
     }
   };
 

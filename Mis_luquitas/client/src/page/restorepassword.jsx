@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import styles from '../styles/restorePassword.module.css';
 import LogoImage from "../imagine/logo.png";
