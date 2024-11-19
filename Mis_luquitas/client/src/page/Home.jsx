@@ -15,7 +15,7 @@ function Home() {
     const fetchAdvice = async () => {
       try {
         console.log("Intentando obtener el consejo...");
-        const response = await axios.get("http://localhost:3000/tip/showRandomTip");
+        const response = await axios.get("https://devops-backend-grupo6.onrender.com/tip/showRandomTip");
         
         setTitle(response.data.title);
         setContent(response.data.content);

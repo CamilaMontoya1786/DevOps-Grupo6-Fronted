@@ -17,20 +17,20 @@ export const loguinRequest = async (user) => {
 };
 
 export const getMovimientos = async () => {
-  const response = await axios.get('http://localhost:3000/');
+  const response = await axios.get('https://devops-backend-grupo6.onrender.com/');
   return response.data;
 };
 
 export const updateMovimiento = async (movimiento) => {
   const { id, type } = movimiento;
   const endpoint = type === "income" ? "/income" : "/expense";
-  const response = await axios.post(`http://localhost:3000/${endpoint}/${id}`, movimiento);
+  const response = await axios.post(`https://devops-backend-grupo6.onrender.com/${endpoint}/${id}`, movimiento);
   return response.data;
 };
 
 export const deleteMovimiento = async (id, type) => {
   const endpoint = type === "income" ? "income/deleteIncome" : "expense/deleteExpense";
-  await axios.post(`http://localhost:3000/${endpoint}/${id}`,{
+  await axios.post(`https://devops-backend-grupo6.onrender.com/${endpoint}/${id}`,{
     headers:{
       Authorization:localStorage.getItem("token")
     }
@@ -81,12 +81,12 @@ export const fetchMovimientosConFiltro = async (search, dateFilter) => {
       }
       
     const requests = [
-      axios.get("http://localhost:3000/income/getIncome"+ params, {
+      axios.get("https://devops-backend-grupo6.onrender.com/income/getIncome"+ params, {
         headers:{
           Authorization:localStorage.getItem("token")
         }
       }),
-      axios.get("http://localhost:3000/expense/getExpense"+ params, {
+      axios.get("https://devops-backend-grupo6.onrender.com/expense/getExpense"+ params, {
         headers:{
           Authorization:localStorage.getItem("token")
         }

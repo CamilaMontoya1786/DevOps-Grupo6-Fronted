@@ -32,7 +32,7 @@ function UserProfile() {
     const fetchCountries = async () => {
       try {
        
-        const response = await axios.get("http://localhost:3000/country/countries"
+        const response = await axios.get("https://devops-backend-grupo6.onrender.com/country/countries"
         );
         setUserList(response.data);
       } catch (error) {
@@ -43,7 +43,7 @@ function UserProfile() {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          "http://localhost:3000/login/getUserProfile/" + token
+          "https://devops-backend-grupo6.onrender.com/login/getUserProfile/" + token
         );
 
         setUser(response.data);
@@ -56,7 +56,7 @@ function UserProfile() {
     fetchCountries();
 
     axios
-      .get("http://localhost:3000/identification/identifications")
+      .get("https://devops-backend-grupo6.onrender.com/identification/identifications")
       .then((response) => {
         setData(response.data);
       })
@@ -91,7 +91,7 @@ function UserProfile() {
       formData.append("photo", profileImage);
     }
 
-    axios.post("http://localhost:3000/login/updateUser", formData, {
+    axios.post("https://devops-backend-grupo6.onrender.com/login/updateUser", formData, {
       headers: {
         Authorization: localStorage.getItem("token"),
         "Content-Type": "multipart/form-data",

@@ -17,7 +17,7 @@ function Changepassword() {
 
   // Efecto para gestionar la clase del body para estilos
   useEffect(() => {
-    document.body.classList.add("special-body-restorepassword");
+    document.body.classList.add("special-body-restorepassword");  
 
     return () => {
       document.body.classList.remove("special-body-restorepassword");
@@ -28,7 +28,7 @@ function Changepassword() {
   const changePassword = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:3000/reset/resetPassword/${tokenEmail}`,
+        `https://devops-backend-grupo6.onrender.com/reset/resetPassword/${tokenEmail}`,
         {
           email: email,
           newPassword: passwordValue,

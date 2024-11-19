@@ -1,35 +1,37 @@
+/* Estilo por defecto para pantallas grandes (1280px en adelante) */
 .todo_movements {
   display: flex;
-  flex-direction: column; /* Mantener en columna */
-  width: 80%;
-  height: 100vh; /* Altura del contenedor */
+  width: calc(100% - 250px);
+  flex-direction: column;
+  height: 100vh;
   right: 0;
   bottom: 0;
-  margin: 0 auto; /* Centrar el contenedor si es necesario */
-  padding: 10px; /* Agregar algo de espaciado */
+  margin: 0 auto;
+  padding: 10px;
   position: absolute;
   font-family: "Inter", sans-serif;
-  align-items: center; /* Centrar horizontalmente */
+  align-items: center;
+  background-color: #fff;
 }
 
 .header {
   display: flex;
-  justify-content: center; /* Centrar el texto en el header */
-  width: 100%; /* Asegurar que el header ocupe todo el ancho */
+  justify-content: center;
+  width: 100%;
 }
 
 .body_movements {
   display: flex;
-  flex-direction: row; /* Cambiar a fila para los botones */
-  align-items: center; /* Centrar verticalmente los botones */
-  justify-content: center; /* Centrar horizontalmente */
-  width: 100%; /* Asegurar que el body_movements ocupe todo el ancho */
-  gap: 20px; /* Espaciado entre botones */
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 20px;
 }
 
 .button_movements {
   display: flex;
-margin-top:-10px;
+  margin-top: -10px;
   width: 220px;
   height: 70px;
   background-color: #8fb339;
@@ -40,8 +42,8 @@ margin-top:-10px;
   font-size: 24px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  align-items: center; /* Centra verticalmente */
-  padding-left: 35px; /* Añadir padding derecho */
+  align-items: center;
+  padding-left: 35px;
 }
 
 .button_movements:hover {
@@ -50,105 +52,242 @@ margin-top:-10px;
 
 .button_movements img {
   width: 50px;
-  margin-left: 20px; /* Añade un margen izquierdo al ícono */
-  height: auto; /* Mantiene la proporción del ícono */
+  margin-left: 20px;
+  height: auto;
 }
 
 .h2 {
   font-size: 34px;
-  text-align: center; /* Asegurar que el texto esté centrado */
+  text-align: center;
   margin: 15px;
 }
 
-.presupuesto{
-    margin-top: 80px;
-    background-color: #ececec; /* Cambia esto si quieres otro color */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
-    width: 650px;
-    height: 350px;
-    border-radius: 10px;
-    font-weight: bold; /* Aplica negrita al texto */
-
+.presupuesto {
+  margin-top: 80px;
+  background-color: #ececec;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+  width: 650px;
+  height: 350px;
+  border-radius: 10px;
+  font-weight: bold;
 }
+
 .header h2 {
-    text-align: center;         /* Centra el texto horizontalmente */
-    margin: 0;                 /* Elimina márgenes por defecto, opcional */
-    margin: 30px;
+  text-align: center;
+  margin: 0;
+  margin: 30px;
 }
 
-
-.presupuesto input{
-    display: flex;
-    width: 250px; /* Ancho completo del input */
-    padding: 8px; /* Espaciado interno */
-    border: 1px solid #000000; /* Borde */
-    border-radius: 4px; /* Bordes redondeados */
-    margin-bottom: 25px; /* Espaciado inferior */
-    margin-top: 20px;
-    background-color: #d4ee96;
-    font-weight: bold; /* Aplica negrita al texto */
+.presupuesto input {
+  display: flex;
+  width: 250px;
+  padding: 8px;
+  border: 1px solid #000000;
+  border-radius: 4px;
+  margin-bottom: 25px;
+  margin-top: 20px;
+  background-color: #d4ee96;
+  font-weight: bold;
 }
 
 .presupuesto_superior {
-    display: flex;              /* Utiliza flexbox para el contenedor */
-    gap: 30px;                 /* Espacio entre los elementos */
-    justify-content: center;    /* Centra los elementos horizontalmente */
-    align-items: center;        /* Centra los elementos verticalmente */
- 
-}
-.superior{
-    display: flex;
-    flex-direction: column;      /* Coloca el label encima del input */
-    align-items: center;         /* Centra el contenido horizontalmente */
-    width: 100%;                 /* Asegúrate de que el contenedor ocupe todo el ancho */
-}
-
-.superior label,
-.inferior label{
-    text-align: center;         /* Centra el texto dentro del label */
-    width: 100%;                /* Asegúrate de que el label ocupa el ancho completo del contenedor */
-    margin-bottom: 5px;        /* Espacio entre el label y el input */
-    font-size: 24px;
-}
-
-.superior input,
-.inferior input{
-    text-align: center;         /* Centra el texto dentro del label */
-    font-size: 15px;
-}
-
-.inferior {
-    display: flex;              /* Utiliza flexbox para el contenedor */
-    flex-direction: column;     /* Organiza el label encima del input */
-    align-items: center;        /* Centra horizontalmente los elementos */
-    justify-content: center;    /* Centra verticalmente si hay espacio */
-    margin: 20px;  
-        
-}
-
-
-.modal-content {
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  max-width: 400px;
-  margin: auto;
-}
-
-.modal-overlay {
-  background-color: rgba(0, 0, 0, 0.5);
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
   display: flex;
+  gap: 30px;
   justify-content: center;
   align-items: center;
 }
 
-button {
-  padding: 10px;
-  margin-top: 10px;
-  cursor: pointer;
+.superior,
+.inferior {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.superior label,
+.inferior label {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 5px;
+  font-size: 24px;
+}
+
+.superior input,
+.inferior input {
+  text-align: center;
+  font-size: 15px;
+}
+
+.inferior {
+  margin: 20px;
+}
+
+/* Responsividad */
+
+/* Pantallas 1280px hasta 1279px */
+@media (max-width: 1280px) {
+  .presupuesto {
+    width: 480px; /* Disminuye el tamaño del contenedor */
+    height: 350px; /* Ajusta la altura del contenedor */
+    margin-left: 0px !important;
+    margin-top: 20px;
+  }
+
+  .header h2{
+    margin-top: 15px;
+  }
+  .button_movements {
+    width: 180px; /* Ajusta el ancho de los botones */
+    height: 55px; /* Ajusta la altura de los botones */
+    font-size: 20px; /* Disminuye el tamaño de la fuente de los botones */
+  }
+
+  .button_movements img {
+    width: 40px; /* Ajusta el tamaño de las imágenes dentro de los botones */
+    margin-left: 10px;
+  }
+
+  .presupuesto input {
+    width: 80%; /* Disminuye el tamaño de los inputs */
+    padding: 6px; /* Ajusta el padding de los inputs */
+    font-size: 14px; /* Ajusta el tamaño de la fuente de los inputs */
+  }
+}
+
+
+/* Pantallas 1280px hasta 1279px */
+@media (min-width: 1024px) {
+  .presupuesto {
+    width: 600px; /* Disminuye el tamaño del contenedor */
+    height: 450px; /* Ajusta la altura del contenedor */
+    margin-left: 50px;
+  }
+
+  .button_movements {
+    width: 240px; /* Ajusta el ancho de los botones */
+    height: 55px; /* Ajusta la altura de los botones */
+    font-size: 35px; /* Disminuye el tamaño de la fuente de los botones */
+  }
+
+  .button_movements img {
+    width: 40px; /* Ajusta el tamaño de las imágenes dentro de los botones */
+    margin-left: 10px;
+  }
+
+  .presupuesto input {
+    width: 80%; /* Disminuye el tamaño de los inputs */
+    padding: 6px; /* Ajusta el padding de los inputs */
+    font-size: 20px; /* Ajusta el tamaño de la fuente de los inputs */
+  }
+  
+  .superior label, .inferior label{
+    font-size: 30px;
+  }
+
+  .header h2{
+    font-size: 50px;
+  }
+}
+
+
+/* Pantallas pequeñas 481px hasta 769px */
+@media (max-width: 825px) {
+  .presupuesto {
+    width: 420px; /* Mantiene el ancho del contenedor */
+    height: 350px; /* Aumenta la altura del contenedor para incluir el input inferior */
+    margin-left: 50px; /* Corre el contenedor un poco a la izquierda */
+  }
+
+  .button_movements {
+    width: 160px;
+    height: 50px;
+    font-size: 18px;
+    margin-left: 50px; /* Corre los botones un poco a la derecha */
+  }
+
+  .button_movements img {
+    width: 35px;
+    margin-left: 8px;
+  }
+
+  .h2 {
+    font-size: 45px;
+    text-align: center;
+    margin-left: 30px; /* Corre el título más a la derecha */
+  }
+
+  .presupuesto input {
+    width: 80%; /* Disminuye el tamaño de los inputs */
+    padding: 6px;
+    font-size: 14px; /* Ajusta el tamaño de fuente si es necesario */
+  }
+
+  .inferior input {
+    display: block;
+    margin-left: -40px;
+  }
+}
+
+
+
+/* Pantallas muy pequeñas 0px hasta 480px */
+@media (max-width: 480px) {
+  .todo_movements {
+    width: 85%;
+    padding: 4px;
+    padding-left: 30px; /* Mantiene el desplazamiento hacia la derecha */
+    align-items: center;
+  }
+
+  .presupuesto input {
+    width: 95%;
+    box-sizing: border-box;
+    padding: 6px;
+  }
+
+  .presupuesto {
+    width: 250px;
+    height: 420px;
+    margin: 0 auto;
+    padding: 8px;
+    margin-top: 40px;
+    margin-left: 30px; /* Ajuste para correr el contenedor a la derecha */
+  }
+
+  .button_movements {
+    width: 250px; /* Asegura el mismo ancho para ambos botones */
+    height: 35px;
+    font-size: 14px;
+    justify-content: flex-start; /* Alinea el contenido a la izquierda */
+    padding-left: 15px; /* Desplaza el contenido interno hacia la derecha */
+    padding-right: 8px;
+    margin-left: 15px;
+  }
+
+  .button_movements img {
+    width: 20px;
+    margin-left: 2px;
+  }
+
+  .h2 {
+    font-size: 26px; /* Disminuye el tamaño de fuente del título */
+    text-align: center;
+    margin-left: 30px; /* Desplaza el título un poco a la derecha */
+  }
+
+  .presupuesto_superior,
+  .superior,
+  .inferior {
+    gap: 8px;
+  }
+
+  .inferior {
+    width: 200px;
+  }
+
+  .body_movements {
+    width: 80%;
+    gap: 10px;
+  }
 }

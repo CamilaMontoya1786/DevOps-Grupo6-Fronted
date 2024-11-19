@@ -20,7 +20,7 @@ function Expenses({ modoEdicion = false, expense = null, refresh }) {
     const fetchUserData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/expenseMethodPayment/expenseMethodPayments"
+          "https://devops-backend-grupo6.onrender.com/expenseMethodPayment/expenseMethodPayments"
         );
         setUserList(response.data);
       } catch (error) {
@@ -34,7 +34,7 @@ function Expenses({ modoEdicion = false, expense = null, refresh }) {
     const fetchCategoryData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/expenseCategory/expenseCategories"
+          "https://devops-backend-grupo6.onrender.com/expenseCategory/expenseCategories"
         );
         setCategoryList(response.data);
       } catch (error) {
@@ -79,7 +79,7 @@ function Expenses({ modoEdicion = false, expense = null, refresh }) {
       
       if (modoEdicion) {
         const response = await axios.post(
-          "http://localhost:3000/expense/updateExpense/" + expense.expenseId,
+          "https://devops-backend-grupo6.onrender.com/expense/updateExpense/" + expense.expenseId,
           expenseData,
           config
         );
@@ -102,7 +102,7 @@ function Expenses({ modoEdicion = false, expense = null, refresh }) {
         }); // Muestra el mensaje de éxito
       } else {
         const response = await axios.post(
-          "http://localhost:3000/expense/createExpense",
+          "https://devops-backend-grupo6.onrender.com/expense/createExpense",
           expenseData,
           config
         );

@@ -32,7 +32,7 @@ function Income({ modoEdicion = false, income = null, refresh }) {
     const fetchUserData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/incomeMethodPayment/incomeMethodPayments"
+          "https://devops-backend-grupo6.onrender.com/incomeMethodPayment/incomeMethodPayments"
         );
         setUserList(response.data);
       } catch (error) {
@@ -45,7 +45,7 @@ function Income({ modoEdicion = false, income = null, refresh }) {
   useEffect(() => {
     const fetchCategoryData = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/incomeCategory/incomeCategories"
+        const response = await axios.get("https://devops-backend-grupo6.onrender.com/incomeCategory/incomeCategories"
         );
         setCategoryList(response.data);
       } catch (error) {
@@ -77,7 +77,7 @@ function Income({ modoEdicion = false, income = null, refresh }) {
       console.log(ingresoData);
 
       if (modoEdicion) {
-        const response = await axios.post("http://localhost:3000/income/updateIncome/" + income.incomeId,
+        const response = await axios.post("https://devops-backend-grupo6.onrender.com/income/updateIncome/" + income.incomeId,
           ingresoData,
           config
         );
@@ -100,7 +100,7 @@ function Income({ modoEdicion = false, income = null, refresh }) {
         }); // Muestra el mensaje de éxito
       } else {
         const response = await axios.post(
-          "http://localhost:3000/income/createIncome",
+          "https://devops-backend-grupo6.onrender.com/income/createIncome",
           ingresoData,
           config
         );

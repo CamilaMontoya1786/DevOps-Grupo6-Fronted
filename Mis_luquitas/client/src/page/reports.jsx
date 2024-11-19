@@ -62,7 +62,7 @@ const Reports = () => {
 
       // Realizar la solicitud GET con los parámetros y el token en los headers
 
-      const response = await axios.get("http://localhost:3000/graphic", {
+      const response = await axios.get("https://devops-backend-grupo6.onrender.com/graphic", {
         params: {
           startDate,
           endDate,

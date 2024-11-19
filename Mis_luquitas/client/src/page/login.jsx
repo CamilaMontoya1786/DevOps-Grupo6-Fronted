@@ -126,7 +126,7 @@ const fetchUserData = async () => {
     console.trace("identificando");
 
     const response = await axios.get(
-      "http://localhost:3000/login/getUserProfile/" + token
+      "https://devops-backend-grupo6.onrender.com/login/getUserProfile/" + token
     );
 
     localStorage.setItem("user", response.data);
