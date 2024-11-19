@@ -127,29 +127,29 @@ const Descarga = () => {
       <h2>Plan Presupuestal</h2>
       <div className={styles.datePickerContainer}>
         <div className={styles.desde}>
-          <label>Desde</label>
+          <label>Desde
           <input
             type="date"
             value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
-          />
+          /></label>
         </div>
         <div className={styles.hasta}>
-          <label>Hasta</label>
+          <label>Hasta
           <input
             type="date"
             value={endDate}
             onChange={(e) => setEndDate(e.target.value)}
-          />
+          /></label>
         </div>
         <div className={styles.presupuesto}>
-          <label>Gasto Presupuestado</label>
+          <label>Gasto Presupuestado
           <input
             type="text"
             value={budgetedExpense}
             onChange={(e) => setBudgetedExpense(e.target.value)}
             placeholder="Monto"
-          />
+          /></label>
         </div>
       
         <button onClick={fetchFinancialData}>Generar Informe</button>
