@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap");
 
+/* Estilos generales */
 .todo_income {
   display: flex;
   flex-direction: column; /* Cambiar a columna */
@@ -8,32 +9,24 @@
   bottom: 0%;
   position: absolute;
   font-family: "Inter", sans-serif;
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center;    /* Centra verticalmente */
 }
 
 .container_income {
   display: flex;
-  background-color: #ececec;
   box-shadow: 0 0 10px rgba(0, 0, 0, 1);
   width: 500px;
   height: auto;
-  margin: 20px auto; /* Centrar el div */
-  border-radius: 15px; /* Redondear bordes */
-  padding: 20px; /* Espaciado interno, opcional */
-  flex-direction: column; /* Mantener en columna */
-  align-items: center; /* Centrar horizontalmente el contenido */
-}
-    
-.input_income {
-  display: flex;
-  width: 350px; /* Ancho completo del input */
-  padding: 8px; /* Espaciado interno */
-  border: 1px solid #000000; /* Borde */
-  border-radius: 4px; /* Bordes redondeados */
-  margin: 20px;
+  position: absolute;
+  bottom: 20px; /* Ajusta la distancia desde el borde inferior */
+  left: 50%;
+  transform: translateX(-50%); /* Centrar horizontalmente */
+  border-radius: 15px;
+  padding: 20px;
+  flex-direction: column;
+  align-items: center;
 }
 
+.input_income,
 .select_income {
   display: flex;
   width: 350px; /* Ancho completo del input */
@@ -62,8 +55,7 @@
   margin-left: auto; /* Centrar el botón dentro del contenedor */
   margin-right: auto; /* Centrar el botón dentro del contenedor */
   width: 120px;
-  padding: 10px 15px;
-  background-color: #8fb339;
+  padding: 10px 15px; 
   color: #000;
   font-weight: bold;
   border: none;
@@ -74,4 +66,114 @@
 
 .button_income:hover {
   background-color: #64831d;
+}
+
+/* Responsividad */
+
+
+/* Pantallas medianas 769px hasta 1280px */
+@media (max-width: 1280px) {
+  .container_income {
+    width: 650px; /* Ajusta el ancho del contenedor */
+    padding: 10px; /* Ajusta el padding */
+  }
+
+  .input_income,
+  .select_income,
+  .input_incomeDescripcion {
+    width: 300px; /* Disminuye el tamaño de los inputs */
+    font-size: 20px;
+  }
+
+  .button_income {
+    width: 130px; /* Ajusta el tamaño del botón */
+    font-size: 24px; /* Ajusta el tamaño de la fuente del botón */
+  }
+
+  /* Pantallas medianas 769px hasta 1280px */
+@media (max-width: 1280px) {
+  .container_income {
+    width: 450px; /* Ajusta el ancho del contenedor */
+    padding: 10px; /* Ajusta el padding */
+  }
+
+  .input_income,
+  .select_income,
+  .input_incomeDescripcion {
+    width: 300px; /* Disminuye el tamaño de los inputs */
+  }
+
+  .button_income {
+    width: 130px; /* Ajusta el tamaño del botón */
+    font-size: 24px; /* Ajusta el tamaño de la fuente del botón */
+  }
+
+}
+}
+
+@media (max-width: 1024px) {
+  .container_income {
+    width: 500px; /* Ajusta el ancho del contenedor */
+    padding: 10px; /* Ajusta el padding */
+  }
+
+  .input_income,
+  .select_income,
+  .input_incomeDescripcion {
+    width: 400px; /* Disminuye el tamaño de los inputs */
+    font-size: 25px;
+  }
+
+  .button_income {
+    width: 130px; /* Ajusta el tamaño del botón */
+    font-size: 28px; /* Ajusta el tamaño de la fuente del botón */
+  }
+}
+
+/* Pantallas pequeñas 481px hasta 769px */
+@media (max-width: 825px) {
+  .container_income {
+    width: 80%; /* Ajusta el ancho del contenedor */
+    padding: 10px; /* Ajusta el padding */
+    margin: 10px auto; /* Centra el contenedor */
+    margin-left: 80px;
+  }
+
+  .input_income,
+  .select_income,
+  .input_incomeDescripcion {
+    width: 100%; /* Ajusta el tamaño de los inputs */
+    font-size: 20px; /* Ajusta el tamaño de la fuente de los inputs */
+    margin-left: -5px;
+  }
+
+
+
+  .button_income {
+    width: 150px; /* Ajusta el tamaño del botón */
+    font-size: 22px; /* Ajusta el tamaño de la fuente del botón */
+  }
+}
+
+/* Pantallas muy pequeñas 0px hasta 480px */
+@media (max-width: 480px) {
+  .container_income {
+    width: 80%; /* Ajusta el ancho del contenedor */
+    padding: 8px; /* Ajusta el padding */
+    margin: 10px auto; /* Centra el contenedor */
+    margin-left: 40px;
+  }
+
+  .input_income,
+  .select_income,
+  .input_incomeDescripcion {
+    width: 100%; /* Ajusta el tamaño de los inputs */
+    font-size: 13px; /* Ajusta el tamaño de la fuente de los inputs */
+    margin-left: -2px;
+  }
+
+  .button_income {
+    width: 100%; /* Asegura que el botón ocupe todo el ancho */
+    font-size: 14px; /* Ajusta el tamaño de la fuente del botón */
+  }
 }

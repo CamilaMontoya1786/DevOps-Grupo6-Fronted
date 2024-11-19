@@ -19,7 +19,7 @@ function Movements() {
   const fetchIngresos = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/subtract/getSubtract",
+        "https://devops-backend-grupo6.onrender.com/subtract/getSubtract",
         {
           headers: {
             Authorization: localStorage.getItem("token"),
@@ -41,7 +41,7 @@ function Movements() {
   const fetchGastos = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/subtract/getSubtract",
+        "https://devops-backend-grupo6.onrender.com/subtract/getSubtract",
         {
           headers: {
             Authorization: localStorage.getItem("token"),

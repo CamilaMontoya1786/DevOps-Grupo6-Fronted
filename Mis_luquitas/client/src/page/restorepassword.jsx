@@ -23,7 +23,7 @@ function Restorepassword() {
     if (email) {
       try {
         // Aquí defines la URL de tu API y envías el correo
-        const response = await axios.post("http://localhost:3000/requestReset/findEmail", { email });
+        const response = await axios.post("https://devops-backend-grupo6.onrender.com/requestReset/findEmail", { email });
     
         if (response.status === 400) {
           Swal.fire({

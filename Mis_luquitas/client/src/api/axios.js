@@ -4,7 +4,7 @@ creamos una contante para tener la URL del backend*/
 
 
 const instace = axios.create({
- baseURL : 'http://localhost:3000'
+ baseURL : 'https://devops-backend-grupo6.onrender.com'
 
 })
 

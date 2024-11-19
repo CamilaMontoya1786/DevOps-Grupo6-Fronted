@@ -13,15 +13,18 @@
 
 .container_expenses {
   display: flex;
-  background-color: #ececec;
   box-shadow: 0 0 10px rgba(0, 0, 0, 1);
   width: 500px;
   height: auto;
-  margin: 20px auto; /* Centrar el div */
-  border-radius: 15px; /* Redondear bordes */
-  padding: 20px; /* Espaciado interno, opcional */
-  flex-direction: column; /* Mantener en columna */
-  align-items: center; /* Centrar horizontalmente el contenido */
+  position: absolute;
+  bottom: 20px; /* Ajusta la distancia desde el borde inferior */
+  left: 50%;
+  transform: translateX(-50%); /* Centrar horizontalmente */
+  border-radius: 15px;
+  padding: 20px;
+  flex-direction: column;
+  align-items: center;
+ 
 }
 
 .input_expenses {
@@ -78,7 +81,7 @@
 /* Responsividad */
 
 /* Pantallas medianas 769px hasta 1280px */
-@media (min-width: 1280px) {
+@media (max-width: 1280px) {
   .container_expenses {
     width: 650px; /* Ajusta el ancho del contenedor */
     padding: 10px; /* Ajusta el padding */
@@ -140,7 +143,7 @@
     justify-content: center; /* Centra horizontalmente */
     align-items: center; /* Centra verticalmente */
     flex-direction: column; /* Coloca los elementos en columna */
-    background-color: #83791d;
+   
   }
 
   .input_expenses,
