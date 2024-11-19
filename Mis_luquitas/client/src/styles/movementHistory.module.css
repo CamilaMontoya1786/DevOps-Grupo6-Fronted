@@ -1,0 +1,223 @@
+/* Contenedor principal de historial */
+.historialContainer {
+  padding: 20px;
+  margin-left: 300px; /* Aumentado para mover todo más a la derecha */
+  font-family: "Inter", sans-serif;
+}
+
+/* Título */
+.header {
+  font-size: 47px !important;
+  font-family: "Abril Fatface", serif;
+  font-weight: bold;
+  width: 100%;
+  text-align: center;
+  font-family: "Inter", sans-serif;
+}
+
+/* Contenedor de búsqueda y filtro */
+.searchFilterContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 150px; /* Aumentado el margen a ambos lados */
+}
+
+/* Estilo para el campo de filtro por fecha */
+.dateInput {
+  padding: 8px 20px; /* Reducido padding */
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 14px;
+  margin-right: 10px; /* Aumentado el margen derecho */
+  margin-top: 8px;
+  border: 2px solid #000;
+}
+
+/* Contenedor de la tabla */
+.tableContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1100px; /* Reducido el ancho máximo */
+  margin: 0 auto;
+  margin-top: 40px;
+  padding: 10px; /* Reducido padding */
+  background-color: #f5f5f5;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1); /* Ajustado */
+  border-radius: 10px;
+}
+
+/* Tabla */
+.table {
+  max-width: 1100px;
+  border-collapse: collapse;
+}
+
+/* Cabecera de la tabla */
+.table thead {
+  background-color: #8fb339;
+}
+
+/* Celdas de la tabla */
+.table th,
+.table td {
+  padding: 8px; /* Reducido padding */
+  text-align: center;
+  border-bottom: 2px solid #ddd;
+}
+
+/* Encabezados de tabla */
+.table th {
+  color: #0a0a0a;
+  font-weight: bold;
+}
+
+/* Filas de la tabla */
+.table tbody tr {
+  background-color: #f9f9f9;
+  transition: background-color 0.3s;
+}
+
+.table tbody tr:hover {
+  background-color: #e9e9e9;
+}
+
+/* Columna de montos negativos */
+.amountNegative {
+  color: red;
+}
+
+/* Texto informativo superior e inferior */
+.infoText1 {
+  font-size: 16px;
+  color: #000;
+  margin-bottom: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.infoText2 {
+  font-size: 16px;
+  color: #000;
+  margin-left: 10px; /* Aumentado para que esté más cerca del borde */
+}
+
+/* Columnas individuales para asegurar el espacio adecuado */
+.table .fecha {
+  width: 15%;
+}
+
+.table .monto {
+  width: 10%;
+}
+
+.table .categoria {
+  width: 20%;
+}
+
+.table .formaPago {
+  width: 15%;
+}
+
+.table .descripcion {
+  width: 30%;
+}
+
+.table .acciones {
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+/* Asegurar que los campos de edición mantengan el tamaño */
+.table input{
+  width: 100%;  /* Hacer que los campos de entrada ocupen el 100% del espacio disponible */
+  padding: 8px;  /* Padding consistente */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Incluye el padding en el tamaño total */
+  height: 36px; /* Asegura que la altura de los campos sea uniforme */
+  font-size: 14px; /* Consistencia en el tamaño de fuente */
+  text-align: center; /* Alineación de texto centrado */
+  display: inline-block; /* Para asegurarse que el contenido se alinee correctamente */
+}
+
+.table select {
+  width: 100%;  /* Hacer que los campos de entrada ocupen el 100% del espacio disponible */
+  padding: 8px;  /* Padding consistente */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Incluye el padding en el tamaño total */
+  height: 36px; /* Asegura que la altura de los campos sea uniforme */
+  font-size: 14px; /* Consistencia en el tamaño de fuente */
+  text-align: center; /* Alineación de texto centrado */
+  display: inline-block; /* Para asegurarse que el contenido se alinee correctamente */
+  margin-top: 15px;
+
+}
+/* Asegurar que los campos select se comporten de la misma manera que los inputs */
+.table select {
+  appearance: none;  /* Elimina el estilo predeterminado de los navegadores */
+  -webkit-appearance: none; /* Elimina el estilo predeterminado en Safari */
+  -moz-appearance: none; /* Elimina el estilo predeterminado en Firefox */
+  background-color: white; /* Fondo blanco para los select */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el select */
+}
+
+/* Agregar íconos o flechas personalizadas a los campos select si es necesario */
+.table select:after {
+  content: '\25BC'; /* Flecha hacia abajo */
+  font-size: 18px;
+  padding-left: 5px;
+  color: #333;
+  position: absolute;
+  right: 10px; /* Ubicación de la flecha */
+  top: 50%;
+  transform: translateY(-50%); /* Centra verticalmente la flecha */
+}
+
+/* Estilo para los campos de entrada cuando se está editando */
+.table .fecha input,
+.table .monto input,
+.table .categoria select,
+.table .formaPago select,
+.table .descripcion input {
+  width: 100%; /* Asegura que los inputs se ajusten al tamaño de la celda */
+  font-size: 14px; /* Consistencia en el tamaño de fuente */
+}
+
+/* Ajustar la apariencia cuando el input o select está editando */
+.table td input:focus,
+.table td select:focus {
+  border-color: #8fb339; /* Color de borde cuando está enfocado */
+  outline: none; /* Remueve el contorno de enfoque */
+}
+
+/* Estilos del botón */
+.searchInputContainer {
+  position: relative; /* Para posicionar el icono en relación al input */
+  width: 25%; /* Ancho completo */
+  margin-top: 10px; /* Espacio entre el texto informativo y el input */
+  margin-right: 15px;
+}
+
+.searchInput {
+  width: 100%; /* Ancho completo */
+  padding: 8px 30px; /* Espacio interno a la derecha para la lupa */
+  border: 2px solid #000;
+  border-radius: 20px;
+  margin-right: 10px; /* Espacio entre el input y la lupa */
+}
+
+.searchIcon {
+  position: absolute;
+  right: 10px; /* Coloca la lupa a la derecha del input */
+  top: 50%; /* Centra verticalmente */
+  transform: translateY(-50%); /* Centra el ícono */
+  width: 20px; /* Ajusta el tamaño según necesites */
+  height: 20px; /* Ajusta el tamaño según necesites */
+  pointer-events: none; /* Evita que el ícono capture eventos de clic */
+}

@@ -1,0 +1,97 @@
+/* Contenedor principal */
+.container {
+  text-align: center;
+  padding: 20px;
+  margin-left: 300px;
+  font-family: "Inter", sans-serif;
+}
+
+.container h2 {
+  font-size: 44px;
+}
+
+.desde,
+.hasta {
+  display: flex;
+  gap: 30px;
+  justify-content: center;  
+  align-items: center;      
+  text-align: center;      
+
+}
+
+/* Contenedor para los selectores de fecha */
+.datePickerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  margin-bottom: 20px;
+  margin-left: 100px;
+  margin-top: 55px;
+ 
+}
+
+/* Estilo para los inputs de fecha */
+.datePickerContainer input[type="date"] {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #000000;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.datePickerContainer input[type="date"]:focus {
+  border-color: #000000;
+}
+
+/* Estilo para el botón de búsqueda */
+.datePickerContainer button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #8fb339;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.datePickerContainer button:hover {
+  background-color: #45a049;
+}
+
+.datePickerContainer button:active {
+  background-color: #388e3c;
+  transform: scale(0.98);
+}
+
+/* Contenedor para agrupar los gráficos */
+.chartsWrapper {
+  display: flex;
+  justify-content: space-around;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 70px;
+  color: #000000;
+
+}
+
+/* Estilo individual para cada gráfico */
+.chartContainer {
+  width: 100%;
+  max-width: 550px;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #000000;
+}
+
+/* Estilo para el mensaje de error */
+.error {
+  color: red;
+
+}

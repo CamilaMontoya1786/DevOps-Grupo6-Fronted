@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
-.register_page  {
+.register_page {
   position: relative;
   font-family: "Inter", sans-serif;
   display: flex;
@@ -16,12 +16,12 @@
 .register_page::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: -300px;
-  width: 800px;
-  height: 800px;
+  top: 50%; /* Centra verticalmente */
+  left: 0%; /* Centra horizontalmente */
+  width: 1000px;
+  height: 1000px;
   background-color: #b7ce63;
-  transform: rotate(45deg);
+  transform: translate(-50%, -50%) rotate(45deg); /* Desplaza al centro y rota */
   z-index: -1;
 }
 
@@ -39,7 +39,6 @@
   text-align: center;
   font-size: 24px;
   margin-bottom: 20px;
-  
 }
 
 /* Estilos para el encabezado */
@@ -59,7 +58,6 @@
 .title_register {
   font-size: 44px;
   color: #000000;
-
 }
 
 .inputPadre {
@@ -72,61 +70,40 @@
   display: flex;
   flex-direction: column; /* Apila elementos verticalmente */
   position: relative; 
-  margin-left: 20px;
-
+  margin-left: 5px;
 }
 
 .input_container {
   display: flex;
   flex-direction: column; /* Apila elementos verticalmente */
   position: relative; 
-  margin-right: 20px; /* Opcional, pero generalmente es mejor eliminarlo si ya hay un gap */
 }
 
-.inputContainer input{
+.inputContainer input {
   display: flex;
   width: 270px; /* Ancho completo del input */
   padding: 8px; /* Espaciado interno */
   border: 1px solid #000000; /* Borde */
   border-radius: 4px; /* Bordes redondeados */
-  margin-bottom: 25px; /* Espaciado inferior */
+  margin-bottom: 15px; /* Espacio entre los inputs */
 }
 
-.input_container input,select{
+.input_container input, select {
   display: flex;
   width: 270px; /* Ancho completo del input */
   padding: 8px; /* Espaciado interno */
   border: 1px solid #000000; /* Borde */
   border-radius: 4px; /* Bordes redondeados */
-  margin-bottom: 25px; /* Espaciado inferior */
+  margin-bottom: 15px; /* Espacio entre los inputs */
 }
 
-.input_container select{
+.input_container select {
   width: 268px; /* Ancho completo del input */
 }
 
-
 .error_message {
-  color: rgb(182, 1, 1); /* Color del texto de error */
-  font-size: 13px; /* Tamaño del texto */
-  display: block; /* Asegura que el mensaje ocupe el ancho completo */
-  margin-bottom: 5px; /* Espacio entre el mensaje y el input */
-  position: absolute; /* Permite posicionar el mensaje */
-  bottom: 100%; /* Coloca el mensaje encima del input */
-  left: 10px; /* Alineación horizontal */
-  transform: translateY(62px); /* Ajusta la distancia hacia arriba */
-  z-index: 10; /* Asegura que el mensaje esté por encima de otros elementos */
-}
-.error_message1 {
-  color: rgb(182, 1, 1); /* Color del texto de error */
-  font-size: 13px; /* Tamaño del texto */
-  display: block; /* Asegura que el mensaje ocupe el ancho completo */
-  margin-bottom: 5px; /* Espacio entre el mensaje y el input */
-  position: absolute; /* Permite posicionar el mensaje */
-  bottom: 100%; /* Coloca el mensaje encima del input */
-  right: 0px; /* Alineación horizontal */
-  transform: translateY(62px); /* Ajusta la distancia hacia arriba */
-  z-index: 10; /* Asegura que el mensaje esté por encima de otros elementos */
+  color: #f53d3d;
+  font-size: 12px;
 }
 
 /* Estilos para el botón de registro */
@@ -143,8 +120,6 @@
   margin-top: 20px; /* Añadir margen superior */
   width: 120px;
 }
-
-
 
 /* Estilo para el hover del botón */
 .button_register:hover {
@@ -163,16 +138,307 @@
 }
 
 .text1 {
-  color: #ee3737;
+  color: #454444;
   font-size: 12px;
   margin-top: 15px;
-  margin-bottom: 20px;
 }
 
 .helper_message {
   color: #878787;
   font-size: 10px;
   text-align: justify; /* Justifica el texto */
-  width: 280px;
-  margin-top: -20px;
+  width: 272px;
+}
+
+.linktodo{
+  justify-content: center;
+  justify-items: center;
+  text-align: center;
+}
+
+.link{
+  font-size: 12px;
+}
+
+/* Responsivo para pantallas medianas */
+@media (max-width: 1024px) {
+  .body_register {
+    width: 90%;
+    padding: 15px;
+  }
+  
+  .body_register h2 {
+    font-size: 50px; /* Aumenta el tamaño del h2 */
+  }
+  
+  .title_register {
+    font-size: 80px;
+  }
+
+  .inputPadre {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+   /* Aumentar el tamaño del texto del placeholder */
+   .inputContainer input::placeholder,
+   .input_container input::placeholder {
+     font-size: 25px; /* Ajusta el tamaño del texto del placeholder */
+   }
+
+   .input_container select{
+    width: 90%; /* Reducir un poco el ancho */
+    padding: 10px; /* Reducir el padding para hacer el input más pequeño */
+    margin-left: 35px;
+    font-size: 24px;
+   }
+
+   /* Aumentar el tamaño del texto dentro de los inputs y selects */
+   .inputContainer input,
+   .input_container input {
+     font-size: 20px;
+     width: 90%; /* Reducir un poco el ancho */
+     padding: 10px; /* Reducir el padding para hacer el input más pequeño */
+     margin-left: 35px;
+   
+   }
+   .button_register {
+    width: auto;
+    font-size: 30px;
+    
+  }
+
+  .text1 {
+    font-size: 20px;
+  }
+
+  .helper_message {
+    font-size: 25px;
+    width: 90%;
+    box-sizing: border-box;
+    margin: 0;
+    margin-left: 35px;
+  }
+
+  .error_message {
+    font-size: 20px;
+    margin-bottom: 5px;
+    margin-left: 35px;
+  }
+
+  .link{
+    font-size: 18px;
+
+  }
+}
+
+/* Responsivo para pantallas medianas más pequeñas */
+@media (min-width: 750px) and (max-width: 850px) {
+  .title_register {
+    font-size: 50px;
+  }
+
+  .body_register h2 {
+    font-size: 45px;
+  }
+  
+  .body_register {
+    width: 95%;
+  }
+
+  .inputPadre {
+    gap: 10px;
+  }
+
+  .button_register {
+    width: 180px;
+    font-size: 25px;
+  }
+
+  .text1 {
+    font-size: 20px;
+  }
+
+  .helper_message {
+    font-size: 20px;
+    width: 90%;
+    box-sizing: border-box;
+    margin: 0;
+    margin-left: 35px;
+  }
+
+  .error_message {
+    font-size: 20px;
+    margin-bottom: 10px;
+    margin-left: 35px;
+  }
+
+
+  /* Aumentar el tamaño del texto del placeholder */
+  .inputContainer input::placeholder,
+  .input_container input::placeholder,
+  .input_container select {
+    font-size: 22px; /* Ajusta el tamaño del texto del placeholder */
+  }
+  
+  /* Aumentar el tamaño del texto dentro de los inputs y selects */
+  .inputContainer input,
+  .input_container input,
+  .input_container select {
+    font-size: 20px;
+    width: 90%; /* Reducir un poco el ancho */
+    padding: 6px; /* Reducir el padding para hacer el input más pequeño */
+    margin-left: 35px;
+  
+  }
+}
+/* Responsivo para pantallas medianas más pequeñas */
+@media (min-width: 431px) and (max-width: 749px) {
+  .title_register {
+    font-size: 30px;
+  }
+
+  .body_register h2 {
+    font-size: 25px;
+  }
+  
+  .body_register {
+    width: 70%;
+  }
+
+  .inputPadre {
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .button_register {
+    width: auto;
+    font-size: 15px;
+  }
+
+  .text1 {
+    font-size: 15px;
+  }
+
+  .helper_message {
+    font-size: 20px;
+    width: 90%;
+    box-sizing: border-box;
+    margin: 0;
+    margin-left: 35px;
+  }
+
+  .error_message {
+    font-size: 20px;
+    margin-bottom: 10px;
+    margin-left: 35px;
+  }
+
+
+  /* Aumentar el tamaño del texto del placeholder */
+  .inputContainer input::placeholder,
+  .input_container input::placeholder,
+  .input_container select {
+    font-size: 15px; /* Ajusta el tamaño del texto del placeholder */
+  }
+  
+  /* Aumentar el tamaño del texto dentro de los inputs y selects */
+  .inputContainer input,
+  .input_container input,
+  .input_container select {
+    font-size: 20px;
+    width: 90%; /* Reducir un poco el ancho */
+    padding: 3px; /* Reducir el padding para hacer el input más pequeño */
+  }
+
+  
+  .link{
+    font-size: 12px;
+
+  }
+}
+
+/* Responsivo para pantallas muy pequeñas entre 375px y 430px */
+@media  (max-width: 430px) {
+  .title_register {
+    font-size: 30px; /* Reducir el tamaño del título */
+    margin-top: 25px;
+  }
+
+  .body_register {
+    width: 85%; /* Reducir el ancho del contenedor */
+    height:auto;
+    margin-top: -15px;
+    padding: 8px; /* Reducir el padding general */
+   
+  }
+
+  .header_register img {
+    margin-top: 20px;
+    width: 50px; /* Reducir el tamaño de la imagen en el encabezado */
+    height: auto;
+  }
+
+  .body_register h2 {
+    font-size: 18px; /* Reducir el tamaño del subtítulo */
+    margin-bottom: 15px; /* Reducir el margen inferior */
+  }
+
+  .inputPadre {
+    margin-top: 20px; /* Reducir el margen superior */
+    gap: 10px; /* Reducir el espacio entre los inputs */
+    flex-direction: column;
+    align-items: center;
+
+  }
+
+  .inputContainer input,
+  .input_container input,
+  .input_container select {
+    margin-right: 30px;
+    font-size: 14px; /* Reducir el tamaño del texto */
+    padding: 6px; /* Reducir el padding interno */
+    margin-bottom: 10px; /* Reducir el margen inferior */
+  }
+
+  .inputContainer input,
+  .input_container input,
+  .input_container select {
+    width: 270px;
+  }
+
+  .inputContainer input::placeholder,
+  .input_container input::placeholder,
+  .input_container select {
+    font-size: 14px; /* Ajusta el tamaño del texto del placeholder */
+  }
+
+  .button_register {
+    font-size: 12px;
+    padding: 6px 8px;
+    width: 90px;
+    margin-top: 20px; /* Ajustar margen superior del botón */
+  }
+
+  .button_container {
+    margin-top: -20px;
+  }
+
+  .text1 {
+    font-size: 12px; /* Reducir el tamaño de la fuente */
+  }
+
+  .helper_message,
+  .text,
+  .error_message {
+    font-size: 10px; /* Reducir el tamaño de fuente de mensajes de ayuda y error */
+    text-align: center; /* Centrar el texto */
+    margin: 0;
+    padding: 0;
+    width: 100%; /* Asegurar que ocupa todo el ancho disponible */
+  }
+  .link{
+    font-size: 12px;
+  }
 }
