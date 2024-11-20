@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.2.0](https://github.com/CamilaMontoya1786/DevOps-Grupo6-Fronted/compare/v1.1.0...v1.2.0) (2024-11-20)
+
+
+### Features
+
+* video ([#49](https://github.com/CamilaMontoya1786/DevOps-Grupo6-Fronted/issues/49)) ([6edac63](https://github.com/CamilaMontoya1786/DevOps-Grupo6-Fronted/commit/6edac63cdba7ba5dcee30f334e2d29a70d6bf268))
+
+
+### Bug Fixes
+
+* Sonar cloud fix bugs ([1ed0d4d](https://github.com/CamilaMontoya1786/DevOps-Grupo6-Fronted/commit/1ed0d4decbb25d73a024e689f6ed2e25112f3329))
+* sonarcloud correction ([#43](https://github.com/CamilaMontoya1786/DevOps-Grupo6-Fronted/issues/43)) ([45d5a9b](https://github.com/CamilaMontoya1786/DevOps-Grupo6-Fronted/commit/45d5a9bdec26f8e8b457f7048fe17177b67e9f1f))
+* sonarcloud correction ([#43](https://github.com/CamilaMontoya1786/DevOps-Grupo6-Fronted/issues/43)) ([#44](https://github.com/CamilaMontoya1786/DevOps-Grupo6-Fronted/issues/44)) ([b6c7842](https://github.com/CamilaMontoya1786/DevOps-Grupo6-Fronted/commit/b6c784201658052eca6d2afc1140425be633d2d2))
+
 ## [1.1.0](https://github.com/CamilaMontoya1786/DevOps-Grupo6-Fronted/compare/v1.0.0...v1.1.0) (2024-11-19)
 
 
