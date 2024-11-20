@@ -28,7 +28,7 @@ function Changepassword() {
   const changePassword = async () => {
     try {
       const response = await axios.post(
-        `https://devops-backend-grupo6.onrender.com/reset/resetPassword/${tokenEmail}`,
+        `http://devops-backend-grupo6.onrender.com/reset/resetPassword/${tokenEmail}`,
         {
           email: email,
           newPassword: passwordValue,
