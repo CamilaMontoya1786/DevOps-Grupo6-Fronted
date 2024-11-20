@@ -1,4 +1,4 @@
-import React from "react";
+
 import help from "../styles/help.module.css";
 import whatsappIcon from "../imagine/whatsapp.png"; 
 import gmailIcon from "../imagine/gmail.png"; 

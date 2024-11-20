@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios"; // Asegúrate de que axios esté instalado
@@ -8,7 +8,7 @@ import LogoImage from "../imagine/logo.png";
 function Changepassword() {
   const [passwordValue, setPasswordValue] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [message, setMessage] = useState("");
+  
 
   // Capturar token y email desde los parámetros de la URL
   const { tokenEmail, email } = useParams();
@@ -54,7 +54,7 @@ function Changepassword() {
           text: response.data.message || "Error al cambiar la contraseña.",
         });
       }
-    } catch (error) {
+    } catch  {
       Swal.fire({
         icon: "error",
         title: "Oops!",
@@ -127,7 +127,7 @@ function Changepassword() {
           </button>
         </div>
       </form>
-      {message && <p className={password["p-password"]}>{message}</p>}
+      
     </div>
   );
 }

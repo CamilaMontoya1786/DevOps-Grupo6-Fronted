@@ -1,5 +1,7 @@
 
+
 import { useEffect, useState } from 'react';
+
 import MovimientoItem from './movementItem';
 import styles from '../styles/movementHistory.module.css';
 import SearchIcon from '../imagine/lupa.png';
@@ -99,10 +101,9 @@ const refresh = async () => {
 
             {movimientos.length > 0 ? (
               movimientos.map(movimiento => (
-                <MovimientoItem refresh={refresh}
-                  
-                  movimiento={movimiento} 
-                  setMovimientos={setMovimientos} 
+              <MovimientoItem refresh={refresh}
+                movimiento={movimiento} 
+                setMovimientos={setMovimientos} 
                 />
               ))
             ) : (
