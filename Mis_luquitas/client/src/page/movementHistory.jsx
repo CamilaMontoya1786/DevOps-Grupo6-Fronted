@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import MovimientoItem from './movementItem';
 import styles from '../styles/movementHistory.module.css';
 import SearchIcon from '../imagine/lupa.png';

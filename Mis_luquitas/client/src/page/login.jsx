@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/authContext";
 import LogoImage from "../imagine/logo.png";
@@ -15,7 +15,6 @@ function Login() {
     formState: { errors },
   } = useForm({ mode: "onBlur" });
   const { signin } = useAuth();
-  const [errorMessage, setErrorMessage] = useState(""); // Estado para almacenar mensajes de error
 
   const onSubmit = async (value) => {
     try {
@@ -99,9 +98,7 @@ function Login() {
           <button className={styles.button} type="submit">
             Ingresar
           </button>
-          {errorMessage && (
-            <div className={styles.error_message_login}>{errorMessage}</div>
-          )}{" "}
+         
           {/* Mostrar mensaje de error */}
           <div className={styles.restorePassword}>
             <Link to="/restorepassword" className={styles.link}>

@@ -401,12 +401,7 @@
     font-size: 14px; /* Reducir el tamaño del texto */
     padding: 6px; /* Reducir el padding interno */
     margin-bottom: 10px; /* Reducir el margen inferior */
-  }
-
-  .inputContainer input,
-  .input_container input,
-  .input_container select {
-    width: 270px;
+    width: 270px;  
   }
 
   .inputContainer input::placeholder,
