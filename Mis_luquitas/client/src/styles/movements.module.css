@@ -242,19 +242,6 @@
   transition: border-color 0.3s ease;
 }
 
-.datePickerContainer button {
-  width: auto;
-  padding: 10px 15px;
-  background-color: #8fb339;
-  color: #000;
-  font-weight: bold;
-  border: none;
-  border-radius: 50px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
 /* .button:hover: Estilo del botón al pasar el ratón */
 .datePickerContainer button:hover {
   background-color: #64831d;

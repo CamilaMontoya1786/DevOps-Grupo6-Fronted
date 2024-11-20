@@ -177,7 +177,7 @@ function Movements() {
         title: "Datos obtenidos con éxito",
         text: "Consulta realizada correctamente.",
       });
-    } catch (err) {
+    } catch  {
       Swal.fire({
         icon: "error",
         title: "Oops",
@@ -280,9 +280,7 @@ function Movements() {
         </div>
         <div className={styles.datePickerContainer}>
           <div className={styles.desde}>
-            <label>
-              Desde
-              <input
+            <label>Desde<input
                 type="date"
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
@@ -290,9 +288,7 @@ function Movements() {
             </label>
           </div>
           <div className={styles.hasta}>
-            <label>
-              Hasta
-              <input
+            <label>Hasta<input
                 type="date"
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
@@ -300,9 +296,7 @@ function Movements() {
             </label>
           </div>
           <div className={styles.informe}>
-            <label>
-              Gasto Presupuestado
-              <input
+            <label>Gasto Presupuestado<input
                 type="text"
                 value={budgetedExpense}
                 onChange={(e) => setBudgetedExpense(e.target.value)}

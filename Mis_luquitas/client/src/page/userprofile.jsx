@@ -6,12 +6,8 @@ import defaultProfileImage from "../imagine/usuario.png"; // Importa la imagen p
 import Swal from "sweetalert2";
 
 function UserProfile() {
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    formState: { errors },
-  } = useForm();
+  const {register,handleSubmit,setValue} = useForm();
+
   const [data, setData] = useState([]);
   const [userList, setUserList] = useState([]);
   const [user, setUser] = useState();

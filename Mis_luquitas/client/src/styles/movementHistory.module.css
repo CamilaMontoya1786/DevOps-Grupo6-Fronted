@@ -25,7 +25,6 @@
 /* Estilo para el campo de filtro por fecha */
 .dateInput {
   padding: 8px 20px; /* Reducido padding */
-  border: 1px solid #ccc;
   border-radius: 20px;
   font-size: 14px;
   margin-right: 10px; /* Aumentado el margen derecho */
@@ -155,16 +154,13 @@
   text-align: center; /* Alineación de texto centrado */
   display: inline-block; /* Para asegurarse que el contenido se alinee correctamente */
   margin-top: 15px;
-
-}
-/* Asegurar que los campos select se comporten de la misma manera que los inputs */
-.table select {
   appearance: none;  /* Elimina el estilo predeterminado de los navegadores */
   -webkit-appearance: none; /* Elimina el estilo predeterminado en Safari */
   -moz-appearance: none; /* Elimina el estilo predeterminado en Firefox */
   background-color: white; /* Fondo blanco para los select */
   cursor: pointer; /* Cambia el cursor al pasar sobre el select */
 }
+
 
 /* Agregar íconos o flechas personalizadas a los campos select si es necesario */
 .table select:after {
