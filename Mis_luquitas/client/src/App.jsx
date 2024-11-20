@@ -15,7 +15,6 @@ import Income from "./page/income";
 import MovementHistory from "./page/movementHistory";
 import Reports from "./page/reports";
 
-
 function App() {
   return (
     <AuthProvider>
@@ -37,14 +36,14 @@ function MainRoutes() {
     "/changePassword",
     "/expenses",
     "/income",
+  ].some(
+    (route) =>
+      location.pathname === route || location.pathname.startsWith(route + "/")
+  );
 
- 
-  ].some((route) => location.pathname === route || location.pathname.startsWith(route + "/"));
-  
-  
   return (
     <>
-      {!hideNavbar && <Navbar />}  
+      {!hideNavbar && <Navbar />}
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
@@ -68,4 +67,3 @@ function MainRoutes() {
 }
 
 export default App;
-
