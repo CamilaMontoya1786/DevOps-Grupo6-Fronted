@@ -2,7 +2,7 @@ import  { useEffect, useState } from "react";
 import Expenses from "./expenses"; // Asegúrate de tener la ruta correcta
 import Income from "./income"; // Importa el componente Income
 import styles from "../styles/movements.module.css";
-import Agregar from "../imagine/Agregar.png";
+import Agregar from "../imagine/agregar.png";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
