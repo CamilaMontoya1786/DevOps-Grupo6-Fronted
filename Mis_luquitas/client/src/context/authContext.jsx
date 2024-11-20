@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
     const res = await registerRequest(userData);
     setUser(res.data);
   };
-
+  
   const signin = async (userData) => {
     try {
         const res = await loguinRequest(userData);

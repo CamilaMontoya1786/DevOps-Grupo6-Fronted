@@ -295,16 +295,18 @@ const Reports = () => {
       <h2>Reporte Financiero</h2>
       <div className={styles.datePickerContainer}>
         <div className={styles.desde}>
-          <label>Desde
-          <input
+
+          <label>Desde<input
+
             type="date"
             value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
           /></label>
         </div>
         <div className={styles.hasta}>
-          <label>Hasta
-          <input
+
+          <label>Hasta<input
+
             type="date"
             value={endDate}
             onChange={(e) => setEndDate(e.target.value)}
