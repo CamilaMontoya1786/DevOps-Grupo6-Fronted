@@ -77,7 +77,7 @@
 .button_expenses:hover {
   background-color: #64831d;
 }
-
+/* ----------------------------------------------------------------------------------------------------------- */
 /* Responsividad */
 
 /* Pantallas medianas 769px hasta 1280px */
@@ -178,4 +178,17 @@
     width: 100%; /* Asegura que el botón ocupe todo el ancho */
     font-size: 14px; /* Ajusta el tamaño de la fuente del botón */
   }
+}
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.closeButton svg {
+  color: #000000;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
 }

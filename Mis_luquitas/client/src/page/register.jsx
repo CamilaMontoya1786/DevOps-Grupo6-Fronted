@@ -23,7 +23,7 @@ function Register() {
 
   useEffect(() => {
     axios
-      .get("https://devops-backend-grupo6.onrender.com/identification/identifications")
+      .get("http://localhost:3000/identification/identifications")
       .then((response) => {
         setData(response.data);
       })
@@ -41,7 +41,7 @@ function Register() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get( "https://devops-backend-grupo6.onrender.com/country/countries");
+        const response = await axios.get( "http://localhost:3000/country/countries");
         setUserList(response.data);
       } catch (error) {
         Swal.fire({

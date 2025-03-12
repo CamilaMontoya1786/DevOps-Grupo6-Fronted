@@ -18,7 +18,10 @@
   display: flex;
   justify-content: center;
   width: 100%;
+  text-align: center;
+  margin: 30px;
 }
+
 
 .body_movements {
   display: flex;
@@ -27,12 +30,10 @@
   justify-content: center;
   width: 100%;
   gap: 20px;
-
 }
 
 .button_movements {
   display: flex;
-  margin-top: -10px;
   width: 220px;
   height: 70px;
   background-color: #8fb339;
@@ -40,7 +41,7 @@
   font-weight: bold;
   border: none;
   border-radius: 10px;
-  font-size: 24px;
+  font-size: 20px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   align-items: center;
@@ -51,11 +52,17 @@
   background-color: #64831d;
 }
 
+.button_movements {
+  position: relative; /* Asegura que el botón sea el contenedor de referencia */
+}
+
 .button_movements img {
   width: 50px;
-  margin-left: 20px;
   height: auto;
+  position: absolute; /* Permite usar 'right' */
+  right: 10%; /* Mueve la imagen hacia la izquierda dentro del botón */
 }
+
 
 .h2 {
   font-size: 34px;
@@ -68,14 +75,9 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 1);
   border-radius: 10px;
   font-weight: bold;
-  
+  width: 35%;
 }
 
-.header h2 {
-  text-align: center;
-  margin: 0;
-  margin: 30px;
-}
 
 .presupuesto input {
   display: flex;
@@ -87,47 +89,27 @@
   margin-top: 20px;
   background-color: #d4ee96;
   font-weight: bold;
+  text-align: center; /* Centrar el texto dentro del input */
 }
 
-.presupuesto_superior {
+.superior {
   display: flex;
-  gap: 30px;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column; /* Pone los elementos en columna */
+  justify-content: center; /* Centrar verticalmente */
+  align-items: center; /* Centrar horizontalmente */
 }
 
-.superior,
-.inferior {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-
-.superior label,
-.inferior label {
-  text-align: center;
-  width: 100%;
-  margin-bottom: 5px;
-  font-size: 24px;
-}
-
-.superior input,
-.inferior input {
+.superior label {
   text-align: center;
   font-size: 15px;
 }
 
-.inferior {
-  margin: 20px;
-}
-
 /* Modal - Estilos */
 .modalContent {
-  padding: 30px;
+  padding: 3%;
   background-color: #e5e2e2;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 1);
   text-align: center;
   max-width: 600px;
   margin: 0 auto;
@@ -137,8 +119,10 @@
 .modalHeader {
   display: flex;
   justify-content: space-between; /* Mueve el botón al extremo derecho */
-  align-items: center;           /* Asegura que el contenido esté alineado verticalmente */
+  align-items: center; /* Asegura que el contenido esté alineado verticalmente */
+ 
 }
+
 .link {
   display: block; /* Convierte el enlace en un bloque para centrarlo fácilmente */
   text-align: center; /* Centra el texto del enlace */
@@ -147,13 +131,11 @@
   margin: 10px 0; /* Añade espacio alrededor si es necesario */
 }
 
-
 .closeButton {
-  background: none;   /* Opcional: elimina el fondo si es necesario */
-  border: none;       /* Elimina el borde predeterminado */
-  cursor: pointer;    /* Cambia el cursor al pasar sobre el botón */
+  background: none; /* Opcional: elimina el fondo si es necesario */
+  border: none; /* Elimina el borde predeterminado */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
 }
-
 
 .modalOverlay {
   background-color: rgba(0, 0, 0, 0.5);
@@ -165,35 +147,31 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1000;
   font-family: "Inter", sans-serif;
 }
 
 /* Contenedor de los campos de fecha en columna */
 .datePickerContainer {
   display: flex;
-  flex-direction: column; /* Establecer la dirección a columna */
-  justify-content: center;
-  align-items: center;
-  gap: 20px; /* Espaciado entre los elementos */
-  margin-bottom: 20px;
-  margin-top: 30px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 1);
-  font-family: "Inter", sans-serif;
-  background-color: #ccc;
-  padding: 10px;
+  flex-direction: column; /* Acomoda los elementos en columna */
+  align-items: center; /* Centra los elementos horizontalmente */
+  gap: 10px; /* Espacio entre los elementos */
+  width: 100%;
+  background-color: #c8d5aa;
+  padding: 10%;
+
 }
 
-/* Estilo para los inputs de fecha en el modal */
-.datePickerContainer input[type="date"] {
-  padding: 8px 12px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  font-size: 16px;
-  color: #000000;
-  outline: none;
-  transition: border-color 0.3s ease;
+.datePickerContainer label {
+  display: flex;
+  flex-direction: column; /* Asegura que el label y su input estén en columna */
+  align-items: center; /* Centra el texto del label */
+  font-weight: bold; /* Opcional: Hace que los labels resalten */
+
+
 }
+
+
 
 .datePickerContainer input[type="date"]:focus {
   border-color: #000000;
@@ -210,13 +188,9 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-.hasta label {
-  display: block; /* Asegura que el label ocupe toda la línea */
-  margin-bottom: 10px; /* Espacio entre el label y el input */
-  font-size: 16px; /* Opcional: tamaño de la fuente */
-}
 
-.hasta input[type="date"] {
+.datePickerContainer input[type="date"], 
+.datePickerContainer input {
   padding: 8px 12px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -224,23 +198,12 @@
   color: #000;
   outline: none;
   transition: border-color 0.3s ease;
+  width: 70%;
+  text-align: center; /* Centra el texto dentro del input */
+  margin-bottom: 10%;
+  
 }
 
-.desde label {
-  display: block; /* Asegura que el label ocupe toda la línea */
-  margin-bottom: 10px; /* Espacio entre el label y el input */
-  font-size: 16px; /* Opcional: tamaño de la fuente */
-}
-
-.desde input[type="date"] {
-  padding: 8px 12px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-  color: #000;
-  outline: none;
-  transition: border-color 0.3s ease;
-}
 
 /* .button:hover: Estilo del botón al pasar el ratón */
 .datePickerContainer button:hover {
@@ -262,22 +225,8 @@
   padding: 20px; /* Puedes agregar padding para más espacio alrededor */
   gap: 30px;
 }
-.informe input[type="text"] {
-  font-size: 15px; /* Aumenta el tamaño de la fuente */
-  padding: 12px 20px; /* Aumenta el padding para hacer el campo más grande */
-  width: 100%; /* Ocupa el 100% del contenedor o ajusta con un valor específico */
-  max-width: 250px; /* Limita el tamaño máximo */
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  color: #000;
-  text-align: center;
-  transition: border-color 0.3s ease;
-}
 
-.informe input[type="text"]:focus {
-  border-color: #4546a0; /* Cambia el color del borde cuando el input está enfocado */
-}
-
+/* ----------------------------------------------------------------------------------------------------------- */
 /* Responsividad */
 
 /* Pantallas 1280px hasta 1279px */
@@ -287,7 +236,6 @@
     height: 350px; /* Ajusta la altura del contenedor */
     margin-left: 0px !important;
     margin-top: 20px;
-   
   }
 
   .header h2 {
@@ -317,7 +265,6 @@
     width: 600px; /* Disminuye el tamaño del contenedor */
     height: 450px; /* Ajusta la altura del contenedor */
     margin-left: 50px;
-    
   }
 
   .button_movements {

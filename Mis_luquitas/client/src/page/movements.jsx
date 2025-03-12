@@ -29,7 +29,7 @@ function Movements() {
   const fetchIngresos = async () => {
     try {
       const response = await axios.get(
-        "https://devops-backend-grupo6.onrender.com/subtract/getSubtract",
+        "http://localhost:3000/subtract/getSubtract",
         {
           headers: {
             Authorization: localStorage.getItem("token"),
@@ -51,7 +51,7 @@ function Movements() {
   const fetchGastos = async () => {
     try {
       const response = await axios.get(
-        "https://devops-backend-grupo6.onrender.com/subtract/getSubtract",
+        "http://localhost:3000/subtract/getSubtract",
         {
           headers: {
             Authorization: localStorage.getItem("token"),
@@ -157,7 +157,7 @@ function Movements() {
 
       // Solicitud GET al backend con fechas y monto
       const response = await axios.get(
-        "https://devops-backend-grupo6.onrender.com/subtract/getFinancialSummary",
+        "http://localhost:3000/subtract/getFinancialSummary",
         {
           params: {
             startDate,
@@ -226,7 +226,7 @@ function Movements() {
             <h2>Plan Presupuestal</h2>
           </div>
 
-          <div className={styles.presupuesto_superior}>
+          
             <div className={styles.superior}>
               <label htmlFor="ingresos">Ingresos:</label>
               <input
@@ -235,9 +235,7 @@ function Movements() {
                 readOnly
                 value={`$ ${ingresos.toLocaleString("es-CO")}`}
               />
-            </div>
 
-            <div className={styles.superior}>
               <label htmlFor="gastos">Gastos:</label>
               <input
                 type="text"
@@ -245,10 +243,7 @@ function Movements() {
                 readOnly
                 value={`$ ${gastos.toLocaleString("es-CO")}`}
               />
-            </div>
-          </div>
 
-          <div className={styles.inferior}>
             <label htmlFor="disponible">Disponible:</label>
             <input
               type="text"
@@ -257,6 +252,7 @@ function Movements() {
               value={`$ ${disponible.toLocaleString("es-CO")}`}
             />
           </div>
+
           <Link to="#" onClick={handleDownloadClick} className={styles.link}>
             Descarga tu plan presupuestal  aquí
           </Link>
@@ -279,34 +275,34 @@ function Movements() {
           
         </div>
         <div className={styles.datePickerContainer}>
-          <div className={styles.desde}>
-            <label>Desde<input
+          
+            <label>Desde: </label><input
                 type="date"
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
               />
-            </label>
-          </div>
-          <div className={styles.hasta}>
-            <label>Hasta<input
+           
+          
+            <label>Hasta:</label><input
                 type="date"
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
               />
-            </label>
-          </div>
-          <div className={styles.informe}>
-            <label>Gasto Presupuestado<input
+            
+          
+            <label>Gasto Presupuestado:</label><input
                 type="text"
                 value={budgetedExpense}
                 onChange={(e) => setBudgetedExpense(e.target.value)}
                 placeholder="Monto"
               />
-            </label>
-          </div>
+            
+          
 
           <button onClick={fetchFinancialData}>Generar Informe</button>
         </div>
+
+
         {error && <div className={styles.error}>{error}</div>}
       </Modal>
     </div>
