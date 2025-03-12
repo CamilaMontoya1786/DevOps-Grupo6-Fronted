@@ -2,6 +2,7 @@ import  { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "../styles/expenses.module.css";
 import Swal from "sweetalert2";
+import { MdClose } from "react-icons/md";
 
 function Expenses({ modoEdicion = false, expense = null, refresh }) {
   const [formData, setFormData] = useState({
@@ -20,7 +21,7 @@ function Expenses({ modoEdicion = false, expense = null, refresh }) {
     const fetchUserData = async () => {
       try {
         const response = await axios.get(
-          "https://devops-backend-grupo6.onrender.com/expenseMethodPayment/expenseMethodPayments"
+          "http://localhost:3000/expenseMethodPayment/expenseMethodPayments"
         );
         setUserList(response.data);
       } catch (error) {
@@ -34,7 +35,7 @@ function Expenses({ modoEdicion = false, expense = null, refresh }) {
     const fetchCategoryData = async () => {
       try {
         const response = await axios.get(
-          "https://devops-backend-grupo6.onrender.com/expenseCategory/expenseCategories"
+          "http://localhost:3000/expenseCategory/expenseCategories"
         );
         setCategoryList(response.data);
       } catch (error) {
@@ -79,7 +80,7 @@ function Expenses({ modoEdicion = false, expense = null, refresh }) {
       
       if (modoEdicion) {
         const response = await axios.post(
-          "https://devops-backend-grupo6.onrender.com/expense/updateExpense/" + expense.expenseId,
+          "http://localhost:3000/expense/updateExpense/" + expense.expenseId,
           expenseData,
           config
         );
@@ -102,7 +103,7 @@ function Expenses({ modoEdicion = false, expense = null, refresh }) {
         }); // Muestra el mensaje de éxito
       } else {
         const response = await axios.post(
-          "https://devops-backend-grupo6.onrender.com/expense/createExpense",
+          "http://localhost:3000/expense/createExpense",
           expenseData,
           config
         );
@@ -156,7 +157,13 @@ function Expenses({ modoEdicion = false, expense = null, refresh }) {
   return (
     <div className={styles.todo_expenses}>
       <div className={styles.container_expenses}>
+        {/* Botón de cerrar con X */}
+               <button className={styles.closeButton} onClick={() => window.location.reload()}>
+                <MdClose size={24} />
+              </button>
         <h1>Registrar Gasto</h1>
+
+        
         <form onSubmit={handleSubmit}>
           <input
             className={styles.input_expenses}

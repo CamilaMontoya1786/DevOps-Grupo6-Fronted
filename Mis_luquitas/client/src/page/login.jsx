@@ -1,4 +1,3 @@
-
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/authContext";
 import LogoImage from "../imagine/logo.png";
@@ -31,6 +30,7 @@ function Login() {
       await fetchUserData();
       console.log("Token almacenado:", user.userToken);
       navigate("/home");
+      
     } catch (error) {
       console.log("Error al iniciar sesión:", error.message);
       Swal.fire({
@@ -123,7 +123,7 @@ const fetchUserData = async () => {
     console.trace("identificando");
 
     const response = await axios.get(
-      "https://devops-backend-grupo6.onrender.com/login/getUserProfile/" + token
+      "http://localhost:3000/login/getUserProfile/" + token
     );
 
     localStorage.setItem("user", response.data);
@@ -132,6 +132,5 @@ const fetchUserData = async () => {
   }
 };
 
-// fetchUserData();
 
 export default Login;

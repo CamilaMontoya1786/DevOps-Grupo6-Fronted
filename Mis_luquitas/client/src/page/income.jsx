@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "../styles/income.module.css";
 import Swal from "sweetalert2"; // Importa SweetAlert2
+import { MdClose } from "react-icons/md";
 
 function Income({ modoEdicion = false, income = null, refresh }) {
   const [formData, setFormData] = useState({
@@ -32,7 +33,7 @@ function Income({ modoEdicion = false, income = null, refresh }) {
     const fetchUserData = async () => {
       try {
         const response = await axios.get(
-          "https://devops-backend-grupo6.onrender.com/incomeMethodPayment/incomeMethodPayments"
+          "http://localhost:3000/incomeMethodPayment/incomeMethodPayments"
         );
         setUserList(response.data);
       } catch (error) {
@@ -45,7 +46,7 @@ function Income({ modoEdicion = false, income = null, refresh }) {
   useEffect(() => {
     const fetchCategoryData = async () => {
       try {
-        const response = await axios.get("https://devops-backend-grupo6.onrender.com/incomeCategory/incomeCategories"
+        const response = await axios.get("http://localhost:3000/incomeCategory/incomeCategories"
         );
         setCategoryList(response.data);
       } catch (error) {
@@ -77,7 +78,7 @@ function Income({ modoEdicion = false, income = null, refresh }) {
       console.log(ingresoData);
 
       if (modoEdicion) {
-        const response = await axios.post("https://devops-backend-grupo6.onrender.com/income/updateIncome/" + income.incomeId,
+        const response = await axios.post("http://localhost:3000/income/updateIncome/" + income.incomeId,
           ingresoData,
           config
         );
@@ -100,7 +101,7 @@ function Income({ modoEdicion = false, income = null, refresh }) {
         }); // Muestra el mensaje de éxito
       } else {
         const response = await axios.post(
-          "https://devops-backend-grupo6.onrender.com/income/createIncome",
+          "http://localhost:3000/income/createIncome",
           ingresoData,
           config
         );
@@ -154,7 +155,12 @@ function Income({ modoEdicion = false, income = null, refresh }) {
 
   return (
     <div className={styles.todo_income}>
+       
       <div className={styles.container_income}>
+        {/* Botón de cerrar con X */}
+       <button className={styles.closeButton} onClick={() => window.location.reload()}>
+        <MdClose size={24} />
+      </button>
         <h1>Registrar Ingreso</h1>
         <form onSubmit={handleSubmit}>
           <input

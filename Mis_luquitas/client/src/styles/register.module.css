@@ -35,7 +35,6 @@
   width: 650px; /* Cambia este valor para ajustar el ancho */
   font-family: "Inter", sans-serif;
 }
-
 .body_register h2 {
   text-align: center;
   font-size: 24px;
@@ -160,6 +159,7 @@
 .link{
   font-size: 12px;
 }
+/* ----------------------------------------------------------------------------------------------------------- */
 
 /* Responsivo para pantallas medianas */
 @media (max-width: 1024px) {

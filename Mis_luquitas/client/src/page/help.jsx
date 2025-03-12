@@ -1,7 +1,8 @@
-
+import React from "react";
 import help from "../styles/help.module.css";
-import whatsappIcon from "../imagine/whatsapp.png"; 
-import gmailIcon from "../imagine/gmail.png"; 
+import whatsappIcon from "../imagine/whatsapp.png";
+import gmailIcon from "../imagine/gmail.png";
+import ReactPlayer from "react-player"; // Importa ReactPlayer
 
 function Help() {
   return (
@@ -18,9 +19,11 @@ function Help() {
 
         {/* Video de demostración */}
         <div className={help.video_help}>
-          <video controls width="100%">
-            <source src="tu_video.mp4" type="video/mp4" />
-          </video>
+          <ReactPlayer
+            url="https://youtu.be/bm-atW9XBfM?si=t5jFBR-jC_hbEr3u" // URL de YouTube
+            controls={true} // Agrega controles para el usuario
+            width="100%"
+          />
         </div>
       </div>
 
@@ -31,7 +34,7 @@ function Help() {
           {/* Contenedor horizontal para WhatsApp y Gmail */}
           <div className={help.contactItem_help}>
             <img
-              src={whatsappIcon} // Usando la variable importada
+              src={whatsappIcon}
               alt="WhatsApp Icon"
               className={help.icon_help}
             />
@@ -39,7 +42,7 @@ function Help() {
           </div>
           <div className={help.contactItem_help}>
             <img
-              src={gmailIcon} // Usando la variable importada
+              src={gmailIcon}
               alt="Gmail Icon"
               className={help.icon_help}
             />

@@ -23,7 +23,7 @@ function Register() {
 
   useEffect(() => {
     axios
-      .get("https://devops-backend-grupo6.onrender.com/identification/identifications")
+      .get("http://localhost:3000/identification/identifications")
       .then((response) => {
         setData(response.data);
       })
@@ -35,12 +35,13 @@ function Register() {
           error,
         });
       });
+      console.log(setData)
   }, []);
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get( "https://devops-backend-grupo6.onrender.com/country/countries");
+        const response = await axios.get( "http://localhost:3000/country/countries");
         setUserList(response.data);
       } catch (error) {
         Swal.fire({
@@ -81,9 +82,9 @@ function Register() {
   };
 
   const handleBeforeInput = (event) => {
-    const char = event.data;
+    const char = event.data; 
     if (!/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]$/.test(char)) {
-      event.preventDefault();
+      event.preventDefault(); 
     }
   };
 
@@ -282,4 +283,5 @@ function Register() {
   );
 }
 
-export default Register;
+export default Register; 
+

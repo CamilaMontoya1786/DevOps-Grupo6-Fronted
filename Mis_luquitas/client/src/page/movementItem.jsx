@@ -18,7 +18,7 @@ const MovimientoItem = ({ movimiento, refresh }) => {
   return (
     <>
       {/* Modal */}
-      <Modal isOpen={isOpen} onRequestClose={closeModal}>
+      <Modal isOpen={isOpen} onRequestClose={closeModal} className={style.ExpeInco}>
         {/* Icono de cerrar */}
         <button onClick={closeModal} className={style.closeModalBtn}>
           <MdClose size={24} />

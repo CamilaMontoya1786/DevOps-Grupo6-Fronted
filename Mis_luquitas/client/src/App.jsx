@@ -14,6 +14,8 @@ import Expenses from "./page/expenses";
 import Income from "./page/income";
 import MovementHistory from "./page/movementHistory";
 import Reports from "./page/reports";
+import Modal from "react-modal";
+Modal.setAppElement("#root");
 
 
 function App() {
@@ -37,14 +39,14 @@ function MainRoutes() {
     "/changePassword",
     "/expenses",
     "/income",
+  ].some(
+    (route) =>
+      location.pathname === route || location.pathname.startsWith(route + "/")
+  );
 
- 
-  ].some((route) => location.pathname === route || location.pathname.startsWith(route + "/"));
-  
-  
   return (
     <>
-      {!hideNavbar && <Navbar />}  
+      {!hideNavbar && <Navbar />}
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
@@ -52,10 +54,8 @@ function MainRoutes() {
         <Route path="/restorepassword" element={<Restorepassword />} />
         <Route path="/Home" element={<Home />} />
         <Route path="/userprofile" element={<UserProfile />} />
-        <Route
-          path="/changePassword/:tokenEmail/:email"
-          element={<Changepassword />}
-        />
+        <Route path="/changePassword/:tokenEmail/:email"element={<Changepassword />}
+/>
         <Route path="/help" element={<Help />} />
         <Route path="/movements" element={<Movements />} />
         <Route path="/expenses" element={<Expenses />} />
